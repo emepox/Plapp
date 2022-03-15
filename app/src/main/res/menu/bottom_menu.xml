@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Home"
+        />
+
+    <item
+        android:id="@+id/menu_myPlants"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="My Plants" />
+    <item
+        android:id="@+id/menu_calendar"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="Comics" />
+
+    <item
+        android:id="@+id/menu_myProfile"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Favorites" />
+
+</menu>
