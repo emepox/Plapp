@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/homePlantFragment"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/ic_home"
         android:title="Home"
         />
 
     <item
         android:id="@+id/myPlantsFragment"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@drawable/ic_flower"
         android:title="My Plants" />
     <item
         android:id="@+id/calendarFragment"
@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/myProfileFragment"
-        android:icon="@android:drawable/ic_btn_speak_now"
+        android:icon="@drawable/ic_profile"
         android:title="My profile" />
 
 </menu>
