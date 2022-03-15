@@ -3,6 +3,7 @@ package com.switcherette.plantapp.data.repositories
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.switcherette.plantapp.BuildConfig
 import com.switcherette.plantapp.data.PlantId
 import com.switcherette.plantapp.utils.convertToBase64
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +48,7 @@ class PlantIdRepo {
 
     interface PlantIdService {
         // In the interface we will define the structure of our requests.
-        @Headers("api-key: " + "zDcjYz8tBhPzSxkhWYqh3mK6LL78SE4hszLecVpPgf4gCaTLcJ")
+        @Headers("api-key: " + BuildConfig.API_KEY)
         @POST("identify/")
         fun getPlantId(@Body image: String): Call<PlantId>
 
