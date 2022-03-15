@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -78,4 +79,15 @@ dependencies {
     //gif drawable
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
 
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    // Additional firebase dependencies
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
 }
+
+
+
+
