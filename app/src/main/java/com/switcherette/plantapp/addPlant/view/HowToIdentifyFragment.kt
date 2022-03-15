@@ -1,13 +1,11 @@
 package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.databinding.FragmentHowToIdentifyBinding
-import com.switcherette.plantapp.databinding.FragmentMyPlantsBinding
 
 
 class HowToIdentifyFragment : Fragment(R.layout.fragment_how_to_identify) {
@@ -18,5 +16,13 @@ class HowToIdentifyFragment : Fragment(R.layout.fragment_how_to_identify) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentHowToIdentifyBinding.bind(view)
+
+        binding.ivCameraIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_howToIdentifyFragment_to_searchByPictureFragment)
+        }
+
+        binding.ivSearchIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_howToIdentifyFragment_to_searchByNameFragment)
+        }
     }
 }
