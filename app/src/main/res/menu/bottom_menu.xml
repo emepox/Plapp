@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_home"
+        android:id="@+id/homePlantFragment"
         android:icon="@android:drawable/ic_menu_help"
         android:title="Home"
         />
 
     <item
-        android:id="@+id/menu_myPlants"
+        android:id="@+id/myPlantsFragment"
         android:icon="@android:drawable/ic_dialog_alert"
         android:title="My Plants" />
     <item
-        android:id="@+id/menu_calendar"
+        android:id="@+id/calendarFragment"
         android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="Comics" />
 
     <item
-        android:id="@+id/menu_myProfile"
+        android:id="@+id/myProfileFragment"
         android:icon="@android:drawable/ic_btn_speak_now"
         android:title="Favorites" />
 
