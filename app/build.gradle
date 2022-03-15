@@ -86,6 +86,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    // Calendar
+    implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
+
 }
 
 
