@@ -14,11 +14,11 @@
     <item
         android:id="@+id/calendarFragment"
         android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="Comics" />
+        android:title="Calendar" />
 
     <item
         android:id="@+id/myProfileFragment"
         android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="Favorites" />
+        android:title="My profile" />
 
 </menu>
