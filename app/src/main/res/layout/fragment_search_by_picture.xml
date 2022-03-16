@@ -36,30 +36,31 @@ tools:context=".MainActivity">
 </com.google.android.material.card.MaterialCardView>
 
 <com.google.android.material.button.MaterialButton
-    android:id="@+id/btnTakeImage"
+    android:id="@+id/btnChangeImage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="16dp"
-    android:text="Take image"
+    android:text="Change image"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/btnSelectImage"
+    app:layout_constraintEnd_toStartOf="@+id/btnConfirmImage"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent" />
 
 <com.google.android.material.button.MaterialButton
-    android:id="@+id/btnSelectImage"
+    android:id="@+id/btnConfirmImage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="16dp"
-    android:text="Select gallery-image"
+    android:enabled="false"
+    android:text="Perfect shot"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toEndOf="@+id/btnTakeImage" />
+    app:layout_constraintStart_toEndOf="@+id/btnChangeImage" />
 
 <androidx.constraintlayout.widget.Barrier
     android:id="@+id/button_barrier"
@@ -67,6 +68,6 @@ tools:context=".MainActivity">
     android:layout_height="wrap_content"
     app:barrierDirection="top"
     app:barrierMargin="16dp"
-    app:constraint_referenced_ids="btnTakeImage,btnSelectImage" />
+    app:constraint_referenced_ids="btnChangeImage,btnConfirmImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
