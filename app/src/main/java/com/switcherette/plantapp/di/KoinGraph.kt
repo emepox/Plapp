@@ -9,6 +9,6 @@ object KoinGraph {
 
     val mainModule = module {
         single { PlantIdRepository() }
-        viewModel { SearchByPictureViewModel() }
+        viewModel { SearchByPictureViewModel(get()) }
     }
 }

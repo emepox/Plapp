@@ -8,8 +8,10 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.adapter.SuggestionsAdapter
 import com.switcherette.plantapp.addPlant.viewmodel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,22 +33,23 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
 
     private fun observeConfirmationBtn() {
-        searchPicVM.finalUri.observe(viewLifecycleOwner) {
+        searchPicVM.finalPath.observe(viewLifecycleOwner) {
             if (it != null) binding.btnStartPlantId.isEnabled = true
         }
     }
 
     private fun setClickListeners() {
         binding.btnChangeImage.setOnClickListener { showOptionsDialog() }
+
         binding.btnStartPlantId.setOnClickListener {
-            binding.btnChangeImage.visibility = View.GONE
-            binding.btnStartPlantId.visibility = View.GONE
-            binding.ivLoading.visibility = View.VISIBLE
+            with(binding){
+                btnChangeImage.visibility = View.GONE
+                btnStartPlantId.visibility = View.GONE
+                ivLoading.visibility = View.VISIBLE
+                tvSuggestions.visibility = View.VISIBLE
+            }
+
             searchPicVM.identifyPlant()
-//            findNavController().navigate(R.id.action_searchByPictureFragment_to_plantFormFragment,
-//                Bundle().apply {
-//                    putString("imageURI", searchPicVM.finalUri.value?.toString())
-//                })
         }
     }
 
@@ -73,7 +76,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         lifecycleScope.launchWhenStarted {
             searchPicVM.getTmpFileUri().let { uri ->
                 latestTmpUri = uri
-                searchPicVM.finalUri.value = uri
+                searchPicVM.finalPath.value = requireContext().cacheDir.absolutePath + uri
                 takeImageResult.launch(uri)
             }
         }
@@ -94,19 +97,38 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 previewImage.setImageURI(uri)
-                searchPicVM.finalUri.value = uri
+                searchPicVM.finalPath.value =  uri.toString()
             }
         }
-
 
 
     private fun observePlantId() {
-        searchPicVM.plantId.observe(viewLifecycleOwner){
-            if (it != null){
+        searchPicVM.plantId.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.is_plant) {
+                    val recyclerView = binding.rvSuggestions
 
+                    recyclerView.layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) {
+                        findNavController().navigate(R.id.action_searchByPictureFragment_to_plantFormFragment,
+                            Bundle().apply {
+                                putParcelable("suggestion", it)
+                            }
+                        )
+                    }
+
+                    recyclerView.adapter = suggestionsAdapter
+
+                    binding.ivLoading.visibility = View.GONE
+                    binding.rvSuggestions.visibility = View.VISIBLE
+
+                } else {
+                    binding.ivLoading.visibility = View.GONE
+                    binding.tvSuggestions.text = "This does not seem to be a plant... try again?"
+                }
             }
         }
     }
-
-
 }

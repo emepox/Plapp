@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.BuildConfig
 import com.switcherette.plantapp.data.PlantId
 import com.switcherette.plantapp.data.repositories.PlantIdRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,7 +23,7 @@ class SearchByPictureViewModel(
 
     val context: Context by inject()
 
-    var finalUri: MutableLiveData<Uri> = MutableLiveData()
+    var finalPath: MutableLiveData<String> = MutableLiveData()
     var plantId: MutableLiveData<PlantId> = MutableLiveData()
 
     fun getTmpFileUri(): Uri {
@@ -42,7 +41,7 @@ class SearchByPictureViewModel(
 
     fun identifyPlant() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = plantIdRepo.getPlantId(finalUri.value.toString())
+            val result = plantIdRepo.getPlantId(finalPath.value!!)
             withContext(Dispatchers.Main){
                 plantId.value = result!!
             }
