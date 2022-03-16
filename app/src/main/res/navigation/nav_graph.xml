@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homePlantFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/calendarFragment"
@@ -58,7 +58,11 @@
         android:id="@+id/myProfileFragment"
         android:name="com.switcherette.plantapp.profile.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile" />
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/plantFormFragment"
         android:name="com.switcherette.plantapp.addPlant.view.PlantFormFragment"
@@ -85,5 +89,14 @@
         <action
             android:id="@+id/action_searchByPictureFragment_to_plantFormFragment"
             app:destination="@id/plantFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.switcherette.plantapp.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homePlantFragment"
+            app:destination="@id/homePlantFragment" />
     </fragment>
 </navigation>
