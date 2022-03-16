@@ -10,7 +10,7 @@ import kotlinx.coroutines.*
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_splash_screen)
+        setContentView(R.layout.activity_splash_screen)
 
         CoroutineScope(Dispatchers.IO).launch {
             delay(2000)
