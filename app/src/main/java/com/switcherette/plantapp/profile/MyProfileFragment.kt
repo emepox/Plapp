@@ -29,6 +29,20 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
                     }
 
             }
+            btnDelete.setOnClickListener {
+                AuthUI.getInstance()
+                    .delete(requireContext())
+                    .addOnCompleteListener {
+                        Toast.makeText(requireContext(), "User deleted", Toast.LENGTH_SHORT).show()
+                        AuthUI.getInstance()
+                            .signOut(requireContext())
+                            .addOnCompleteListener {
+                                findNavController().navigate(R.id.action_myProfileFragment_to_loginFragment)
+                            }
+
+
+                    }
+            }
         }
     }
 
