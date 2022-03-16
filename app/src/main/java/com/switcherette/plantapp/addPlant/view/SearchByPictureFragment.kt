@@ -26,21 +26,27 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         observeConfirmationBtn()
         showOptionsDialog()
         setClickListeners()
+        observePlantId()
     }
+
 
     private fun observeConfirmationBtn() {
         searchPicVM.finalUri.observe(viewLifecycleOwner) {
-            if (it != null) binding.btnConfirmImage.isEnabled = true
+            if (it != null) binding.btnStartPlantId.isEnabled = true
         }
     }
 
     private fun setClickListeners() {
         binding.btnChangeImage.setOnClickListener { showOptionsDialog() }
-        binding.btnConfirmImage.setOnClickListener {
-            findNavController().navigate(R.id.action_searchByPictureFragment_to_plantFormFragment,
-                Bundle().apply {
-                    putString("imageURI", searchPicVM.finalUri.value?.toString())
-                })
+        binding.btnStartPlantId.setOnClickListener {
+            binding.btnChangeImage.visibility = View.GONE
+            binding.btnStartPlantId.visibility = View.GONE
+            binding.ivLoading.visibility = View.VISIBLE
+            searchPicVM.identifyPlant()
+//            findNavController().navigate(R.id.action_searchByPictureFragment_to_plantFormFragment,
+//                Bundle().apply {
+//                    putString("imageURI", searchPicVM.finalUri.value?.toString())
+//                })
         }
     }
 
@@ -91,6 +97,16 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                 searchPicVM.finalUri.value = uri
             }
         }
+
+
+
+    private fun observePlantId() {
+        searchPicVM.plantId.observe(viewLifecycleOwner){
+            if (it != null){
+
+            }
+        }
+    }
 
 
 }

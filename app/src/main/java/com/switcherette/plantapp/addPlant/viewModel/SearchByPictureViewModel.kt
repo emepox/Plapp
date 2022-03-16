@@ -2,21 +2,30 @@ package com.switcherette.plantapp.addPlant.viewmodel
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.BuildConfig
+import com.switcherette.plantapp.data.PlantId
+import com.switcherette.plantapp.data.repositories.PlantIdRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.File
 
 
-class SearchByPictureViewModel : ViewModel(), KoinComponent {
+class SearchByPictureViewModel(
+    private val plantIdRepo: PlantIdRepository
+) : ViewModel(), KoinComponent {
 
     val context: Context by inject()
 
     var finalUri: MutableLiveData<Uri> = MutableLiveData()
+    var plantId: MutableLiveData<PlantId> = MutableLiveData()
 
     fun getTmpFileUri(): Uri {
         val tmpFile =
@@ -29,6 +38,16 @@ class SearchByPictureViewModel : ViewModel(), KoinComponent {
             "${BuildConfig.APPLICATION_ID}.provider",
             tmpFile
         )
+    }
+
+    fun identifyPlant() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = plantIdRepo.getPlantId(finalUri.value.toString())
+            withContext(Dispatchers.Main){
+                plantId.value = result!!
+            }
+        }
+
     }
 
 }
