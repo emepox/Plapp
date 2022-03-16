@@ -48,6 +48,7 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clSearch"/>
+        app:layout_constraintTop_toBottomOf="@+id/clSearch"
+        tools:listitem="@layout/item_search_plant_byname"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
