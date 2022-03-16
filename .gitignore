@@ -24,3 +24,6 @@ local.properties
 # generated files
 bin/
 gen/
+
+#api-key
+apikey.properties
