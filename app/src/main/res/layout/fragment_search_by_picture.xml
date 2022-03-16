@@ -24,7 +24,7 @@ tools:context=".MainActivity">
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:alpha="0.25"
-        android:src="@android:drawable/ic_camera"
+        android:src="@android:drawable/ic_menu_camera"
         app:tint="@color/black" />
 
     <ImageView
