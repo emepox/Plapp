@@ -47,8 +47,17 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnGo2Form"
         app:layout_constraintTop_toBottomOf="@+id/clSearch"
         tools:listitem="@layout/item_search_plant_byname"/>
+
+    <Button
+        android:id="@+id/btnGo2Form"
+        android:text="Add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

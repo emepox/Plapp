@@ -21,7 +21,7 @@ class WaterAlarmReceiver: BroadcastReceiver() {
             .createPendingIntent()
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.plant)
+            .setSmallIcon(R.drawable.ic_flower)
             .setContentTitle("Water notification")
             .setContentText("Example description")
             .setStyle(NotificationCompat.BigTextStyle().bigText("Etiam mollis, turpis nec venenatis congue, nulla nunc laoreet neque, eget facilisis lacus tortor a mi. Nunc convallis pretium dui id pretium. Morbi varius sodales auctor."))
