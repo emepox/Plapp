@@ -105,6 +105,9 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.4.0"
     implementation "androidx.fragment:fragment-ktx:1.4.1"
 
+    //okhttp3
+    implementation"com.squareup.okhttp3:logging-interceptor:4.9.3"
+
 }
 
 
