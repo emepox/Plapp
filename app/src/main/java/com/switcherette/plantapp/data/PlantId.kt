@@ -19,6 +19,6 @@ data class Suggestion(
 
 @Parcelize
 data class PlantDetails(
-    val common_names: List<String>,
+    val common_names: List<String>?,
     val scientific_name: String
 ) : Parcelable

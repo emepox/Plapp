@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.addPlant.viewmodel
+package com.switcherette.plantapp.addPlant.viewModel
 
 import android.content.Context
 import android.net.Uri

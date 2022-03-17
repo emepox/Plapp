@@ -1,14 +1,12 @@
 package com.switcherette.plantapp.data.repositories
 
-import android.R.attr.apiKey
 import android.content.Context
 import android.util.Log
-import com.google.gson.GsonBuilder
 import com.switcherette.plantapp.BuildConfig
 import com.switcherette.plantapp.data.PlantId
-import com.switcherette.plantapp.utils.convertToBase64
-import okhttp3.*
-import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONObject
@@ -17,9 +15,9 @@ import org.koin.core.component.inject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Body
 import retrofit2.http.Headers
-import java.io.IOException
+import retrofit2.http.POST
 
 
 class PlantIdRepository : KoinComponent {
@@ -33,14 +31,18 @@ class PlantIdRepository : KoinComponent {
 
     private fun createRetrofit(): Retrofit {
 
+        val interceptor = HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+
         val client = OkHttpClient.Builder()
-            .addInterceptor(ApiInterceptor())
+            .addInterceptor(interceptor)
             .build()
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()) //GsonBuilder().serializeNulls().create()
-            //.client(client)
+            .client(client)
             .build()
     }
 
@@ -57,7 +59,8 @@ class PlantIdRepository : KoinComponent {
         images.put(fileData)
         data.put("images", images)
 
-        val response = service.getPlantId(data).execute()
+
+        val response = service.getPlantId2(PlantsRequest(listOf(fileData))).execute()
         return if (response.isSuccessful) {
             response.body()!!
         } else {
@@ -72,6 +75,10 @@ class PlantIdRepository : KoinComponent {
         @Headers("Api-Key: " + BuildConfig.API_KEY)
         @POST("identify/")
         fun getPlantId(@Body data: JSONObject): Call<PlantId?>
+
+        @Headers("Api-Key: " + BuildConfig.API_KEY)
+        @POST("identify")
+        fun getPlantId2(@Body data: PlantsRequest): Call<PlantId?>
 
     }
 
@@ -88,4 +95,8 @@ class ApiInterceptor() : Interceptor {
         return chain.proceed(chain.request())
     }
 }
+
+data class PlantsRequest(
+    val images: List<String>
+)
 

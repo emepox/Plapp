@@ -3,6 +3,7 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.adapter.SuggestionsAdapter
-import com.switcherette.plantapp.addPlant.viewmodel.SearchByPictureViewModel
+import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
