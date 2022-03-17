@@ -2,11 +2,8 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.databinding.FragmentHowToIdentifyBinding
 import com.switcherette.plantapp.databinding.FragmentSearchByNameBinding
 
 
