@@ -37,7 +37,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="Plant Name"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/primary_dark"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@id/ivPlantImage"
                 app:layout_constraintEnd_toEndOf="parent"
