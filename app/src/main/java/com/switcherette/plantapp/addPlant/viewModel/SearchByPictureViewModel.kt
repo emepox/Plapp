@@ -23,7 +23,7 @@ class SearchByPictureViewModel(
 
     val context: Context by inject()
 
-    var finalPath: MutableLiveData<String> = MutableLiveData()
+    var finalPath: MutableLiveData<Uri> = MutableLiveData()
     var plantId: MutableLiveData<PlantId> = MutableLiveData()
 
     fun getTmpFileUri(): Uri {

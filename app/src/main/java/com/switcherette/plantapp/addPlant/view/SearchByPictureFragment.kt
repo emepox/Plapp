@@ -77,7 +77,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         lifecycleScope.launchWhenStarted {
             searchPicVM.getTmpFileUri().let { uri ->
                 latestTmpUri = uri
-                searchPicVM.finalPath.value = requireContext().cacheDir.absolutePath + uri
+//                searchPicVM.finalPath.value = requireContext().cacheDir.absolutePath + uri
                 takeImageResult.launch(uri)
             }
         }
@@ -88,6 +88,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
             if (isSuccess) {
                 latestTmpUri?.let { uri ->
                     previewImage.setImageURI(uri)
+                    searchPicVM.finalPath.value = uri
                 }
             }
         }
@@ -98,7 +99,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 previewImage.setImageURI(uri)
-                searchPicVM.finalPath.value =  uri.toString()
+                searchPicVM.finalPath.value =  uri
             }
         }
 
