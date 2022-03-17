@@ -1,72 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardPreview"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:layout_margin="16dp"
-    app:cardElevation="8dp"
-    app:layout_constraintBottom_toTopOf="@id/button_barrier"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintDimensionRatio="16:9"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardPreview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonBarrier">
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:alpha="0.25"
-        android:src="@android:drawable/ic_menu_camera"
-        app:tint="@color/black" />
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:alpha="0.25"
+            android:src="@android:drawable/ic_menu_camera"
+            app:tint="@color/black" />
 
-    <ImageView
-        android:id="@+id/ivPreview"
+        <ImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/backgrounds/scenic" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChangeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/backgrounds/scenic" />
-</com.google.android.material.card.MaterialCardView>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="Change image"
+        app:layout_constraintEnd_toStartOf="@+id/btnStartPlantId"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/btnTakeImage"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginBottom="16dp"
-    android:text="Take image"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/btnSelectImage"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartPlantId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:enabled="false"
+        android:text="ID my plant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnChangeImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/btnSelectImage"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    android:text="Select gallery-image"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toEndOf="@+id/btnTakeImage" />
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/buttonBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:barrierMargin="16dp"
+        app:constraint_referenced_ids="btnChangeImage,btnStartPlantId" />
 
-<androidx.constraintlayout.widget.Barrier
-    android:id="@+id/button_barrier"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:barrierDirection="top"
-    app:barrierMargin="16dp"
-    app:constraint_referenced_ids="btnTakeImage,btnSelectImage" />
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/buttonBarrierBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:barrierMargin="16dp"
+        app:constraint_referenced_ids="cardPreview" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSuggestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        android:textAlignment="center"
+        android:text="Your plant could be..."
+        app:layout_constraintTop_toBottomOf="@id/buttonBarrierBottom"
+        app:layout_constraintBottom_toTopOf="@id/rvSuggestions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSuggestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ivLoading"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
