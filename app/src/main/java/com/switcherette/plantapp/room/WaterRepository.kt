@@ -4,7 +4,7 @@ import com.switcherette.plantapp.data.WaterEvent
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class WaterRepo : KoinComponent {
+class WaterRepository : KoinComponent {
     private val waterDB : WaterDBConnection by inject()
 
     fun addNewWaterEvent(waterEvent: WaterEvent){
