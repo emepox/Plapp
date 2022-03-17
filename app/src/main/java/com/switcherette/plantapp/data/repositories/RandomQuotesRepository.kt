@@ -2,8 +2,7 @@ package com.switcherette.plantapp.data.repositories
 
 
 import android.util.Log
-import com.switcherette.plantapp.data.RandomFact
-import org.koin.core.component.KoinComponent
+import com.switcherette.plantapp.data.RandomQuote
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,11 +10,11 @@ import retrofit2.http.GET
 
 
 
-class RandomFactsRepository : KoinComponent {
+class RandomQuotesRepository {
 
-    private val BASE_URL = "https://zenquotes.io/api/random"
+    private val BASE_URL = "https://zenquotes.io/api/"
     private val retrofit = createRetrofit()
-    private val service: RandomFactsService = retrofit.create(RandomFactsService ::class.java)
+    private val service: RandomQuotesService = retrofit.create(RandomQuotesService ::class.java)
 
 
     private fun createRetrofit(): Retrofit {
@@ -26,8 +25,8 @@ class RandomFactsRepository : KoinComponent {
     }
 
 
-    fun getRandomFact(): RandomFact? {
-        val response = service.getRandomFact().execute()
+    fun getRandomQuote(): List<RandomQuote>? {
+        val response = service.getRandomQuote().execute()
         return if (response.isSuccessful) {
             response.body()!!
         } else {
@@ -37,10 +36,10 @@ class RandomFactsRepository : KoinComponent {
     }
 
 
-    interface RandomFactsService  {
+    interface RandomQuotesService  {
 
-        @GET()
-        fun getRandomFact(): Call<RandomFact?>
+        @GET("random")
+        fun getRandomQuote(): Call<List<RandomQuote>?>
 
     }
 

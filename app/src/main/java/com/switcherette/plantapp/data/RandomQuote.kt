@@ -1,6 +1,6 @@
 package com.switcherette.plantapp.data
 
-data class RandomFact(
+data class RandomQuote(
     val q: String,
     val a: String
 )
