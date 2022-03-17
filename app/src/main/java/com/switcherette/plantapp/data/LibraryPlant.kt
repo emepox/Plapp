@@ -7,16 +7,15 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity
 data class LibraryPlant(
-    @PrimaryKey val id: String,
-    @ColumnInfo(name = "scientificName") val scientificName: String,
-    @ColumnInfo(name = "commonName") val commonName: String,
-    @ColumnInfo(name = "family") val family: String,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "cultivation") val cultivation: String,
-    @ColumnInfo(name = "light") val light: String,
-    @ColumnInfo(name = "water") val water: String,
-    @ColumnInfo(name = "disease") val disease: String
+    val id: String,
+    val scientificName: String,
+    val commonName: String,
+    val family: String,
+    val description: String,
+    val cultivation: String,
+    val light: String,
+    val water: String,
+    val disease: String
 ) : Parcelable
 
