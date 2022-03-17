@@ -33,7 +33,6 @@
             </intent-filter>
         </activity>
         <receiver android:name=".utils.WaterAlarmReceiver"/>
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
