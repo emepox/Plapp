@@ -18,22 +18,24 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMyPlants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/ibtnGo2AddPlant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerMyPlants" />
+        app:layout_constraintTop_toBottomOf="@+id/headerMyPlants"
+        app:spanCount="2"
+        tools:listitem="@layout/item_plant_myplants" />
 
     <ImageView
         android:id="@+id/ibtnGo2AddPlant"
-        android:layout_width="104dp"
-        android:layout_height="273dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxHeight="150dp"
         android:src="@drawable/plant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

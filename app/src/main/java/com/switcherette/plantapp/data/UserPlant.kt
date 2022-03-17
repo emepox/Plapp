@@ -11,14 +11,13 @@ import kotlinx.parcelize.Parcelize
 data class UserPlant(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "nickname") val nickname: String,
-    @ColumnInfo(name = "latinName") val latinName: String,
+    @ColumnInfo(name = "scientificName") val scientificName: String,
     @ColumnInfo(name = "commonName") val commonName: String,
-    @ColumnInfo(name = "climat") val climat: String,
-    @ColumnInfo(name = "tempMax") val tempMax: Int,
-    @ColumnInfo(name = "tempMin") val tempMin: Int,
+    @ColumnInfo(name = "family") val family: String,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "cultivation") val cultivation: String,
     @ColumnInfo(name = "light") val light: String,
     @ColumnInfo(name = "water") val water: String,
-    @ColumnInfo(name = "disease") val disease: String,
-    @ColumnInfo(name = "picture") val picture: String
+    @ColumnInfo(name = "disease") val disease: String
 ) : Parcelable
 

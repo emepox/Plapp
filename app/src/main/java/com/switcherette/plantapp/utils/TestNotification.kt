@@ -21,9 +21,10 @@ class TestNotification {
 //
 //        pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
 //
-//        alarmManager.setExact(
+//        alarmManager.setInexactRepeating(
 //            AlarmManager.RTC_WAKEUP,
 //            calendar.timeInMillis,
+//            AlarmManager.INTERVAL_DAY * 5,
 //            pendingIntent
 //        )
 //        Toast.makeText(requireContext(), "Alarm set to ${calendar.time}", Toast.LENGTH_LONG).show()

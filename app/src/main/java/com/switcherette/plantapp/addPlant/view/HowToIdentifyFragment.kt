@@ -25,4 +25,6 @@ class HowToIdentifyFragment : Fragment(R.layout.fragment_how_to_identify) {
             findNavController().navigate(R.id.action_howToIdentifyFragment_to_searchByNameFragment)
         }
     }
+
 }
+
