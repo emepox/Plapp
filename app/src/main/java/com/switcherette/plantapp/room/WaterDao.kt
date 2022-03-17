@@ -1,10 +1,7 @@
 package com.switcherette.plantapp.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.switcherette.plantapp.data.WaterEvent
 
 @Dao
@@ -17,6 +14,12 @@ interface WaterDao {
 
     @Query("SELECT * FROM WaterEvent WHERE plantId LIKE (:plantId)")
     fun getWaterEventById(plantId: String): WaterEvent
+
+    @Query("SELECT * FROM WaterEvent WHERE repeatStart LIKE (:startDate) ")
+    fun getWaterEventByDate(startDate: Long): List<WaterEvent>
+
+    @Update
+    fun updateDates(list: List<WaterEvent>)
 
     @Delete
     fun deleteWaterEvent(waterEvent: WaterEvent)
