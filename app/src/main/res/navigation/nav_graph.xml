@@ -30,29 +30,21 @@
             android:id="@+id/action_homePlantFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/howToIdentifyFragment"
-        android:name="com.switcherette.plantapp.addPlant.view.HowToIdentifyFragment"
-        android:label="fragment_how_to_identify"
-        tools:layout="@layout/fragment_how_to_identify" >
-        <action
-            android:id="@+id/action_howToIdentifyFragment_to_searchByPictureFragment"
-            app:destination="@id/searchByPictureFragment" />
-        <action
-            android:id="@+id/action_howToIdentifyFragment_to_searchByNameFragment"
-            app:destination="@id/searchByNameFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/myPlantsFragment"
         android:name="com.switcherette.plantapp.myPlants.MyPlantsFragment"
         android:label="fragment_my_plants"
         tools:layout="@layout/fragment_my_plants" >
         <action
-            android:id="@+id/action_myPlantsFragment_to_howToIdentifyFragment"
-            app:destination="@id/howToIdentifyFragment" />
-        <action
             android:id="@+id/action_myPlantsFragment_to_detailPlantFragment"
             app:destination="@id/detailPlantFragment" />
+        <action
+            android:id="@+id/action_myPlantsFragment_to_searchByPictureFragment"
+            app:destination="@id/searchByPictureFragment" />
+        <action
+            android:id="@+id/action_myPlantsFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"

@@ -21,21 +21,52 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:paddingBottom="40dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/ibtnGo2AddPlant"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerMyPlants"
         app:spanCount="2"
         tools:listitem="@layout/item_plant_myplants" />
 
-    <ImageView
-        android:id="@+id/ibtnGo2AddPlant"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSearchByPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxHeight="150dp"
-        android:src="@drawable/plant"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_photo"
+        android:visibility="invisible"
+        app:backgroundTint="@color/dark_green"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchByName"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddPlant"
+        app:layout_constraintStart_toStartOf="@+id/btnAddPlant"
+        app:tint="@color/white"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSearchByName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_search"
+        android:visibility="invisible"
+        app:backgroundTint="@color/dark_green"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddPlant"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddPlant"
+        app:layout_constraintStart_toStartOf="@+id/btnAddPlant"
+        app:tint="@color/white"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_add"
+        android:text="Search"
+        app:backgroundTint="@color/dark_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
