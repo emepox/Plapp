@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:firstDayOfWeek="monday"
-            app:headerColor="@color/dark_green"
+            app:headerColor="@color/primary_dark"
             app:layout_constraintBottom_toTopOf="@+id/rvCalendarTasksPerDay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
