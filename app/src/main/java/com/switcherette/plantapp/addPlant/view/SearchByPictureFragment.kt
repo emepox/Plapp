@@ -60,7 +60,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
                     val suggestionsAdapter = SuggestionsAdapter(it.suggestions) {
-                        findNavController().navigate(R.id.action_searchByPictureFragment_to_plantFormFragment,
+                        findNavController().navigate(R.id.action_searchByPictureFragment_to_plantForm1Fragment,
                             Bundle().apply {
                                 putParcelable("suggestion", it)
                             }
