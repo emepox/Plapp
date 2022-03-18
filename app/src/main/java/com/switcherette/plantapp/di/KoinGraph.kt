@@ -16,9 +16,12 @@ import org.koin.dsl.module
 object KoinGraph {
 
     val mainModule = module {
-        single { Room.databaseBuilder(get(), AppDB::class.java, "WaterDB").build() }
+        single { Room.databaseBuilder(get(), AppDB::class.java, "AppDB")
+            .createFromAsset("plants_db.db")
+            .build() }
         single { get<AppDB>().waterDao() }
         single { get<AppDB>().plantDao() }
+        single { get<AppDB>().plantInfoDao() }
         factory { WaterAlarm(get()) }
         single { WaterRepository() }
         single { PlantIdRepository() }
