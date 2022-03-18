@@ -17,7 +17,11 @@ class SuggestionsAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(suggestion: Suggestion, chooseSuggestion: (Suggestion) -> Unit) {
             binding.tvSciName.text = suggestion.plant_details.scientific_name
-            binding.tvCommonName.text = suggestion.plant_details.common_names.toString()
+            if (suggestion.plant_details.common_names.toString() != "null"){
+                binding.tvCommonName.text = suggestion.plant_details.common_names.toString()
+            } else {
+                binding.tvCommonName.text = ""
+            }
             binding.tvProbability.text = "${(suggestion.probability * 10000.0).roundToInt() / 100.0} %"
             binding.btnChoose.setOnClickListener {
                 chooseSuggestion(suggestion)

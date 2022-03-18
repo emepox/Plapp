@@ -7,12 +7,8 @@ import com.switcherette.plantapp.BuildConfig
 import com.switcherette.plantapp.data.PlantId
 import com.switcherette.plantapp.data.PlantsRequest
 import com.switcherette.plantapp.utils.convertToBase64
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONArray
-import org.json.JSONObject
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import retrofit2.Call
@@ -52,7 +48,7 @@ class PlantIdRepository : KoinComponent {
 
     fun getPlantId(image: Uri): PlantId? {
         val fileData: String = convertToBase64(context, image)
-        //change fileData to testData to test API
+        //change 'fileData' to 'testData' to test API
         val response = service.getPlantId(PlantsRequest(listOf(fileData))).execute()
         return if (response.isSuccessful) {
             response.body()!!

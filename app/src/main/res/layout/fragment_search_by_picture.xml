@@ -48,11 +48,11 @@
         android:id="@+id/tvSuggestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:visibility="invisible"
+        android:layout_marginHorizontal="16dp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:text="Your plant could be..."
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:text="@string/your_plant_could_be"
         app:layout_constraintTop_toBottomOf="@id/buttonBarrierMiddle"
         app:layout_constraintBottom_toTopOf="@id/rvSuggestions"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonBarrierMiddle"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
+        app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ivLoading"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_ball"
+        app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -96,6 +112,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvNoPic"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/buttonBarrier"
         android:layout_width="wrap_content"
@@ -127,19 +144,4 @@
 
 
 
-<!--    <com.airbnb.lottie.LottieAnimationView-->
-<!--        android:id="@+id/ivLoading"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:visibility="invisible"-->
-<!--        android:adjustViewBounds="true"-->
-<!--        android:scaleType="fitXY"-->
-<!--        app:lottie_autoPlay="true"-->
-<!--        app:lottie_loop="true"-->
-<!--        app:lottie_rawRes="@raw/loading"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvSuggestions"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 

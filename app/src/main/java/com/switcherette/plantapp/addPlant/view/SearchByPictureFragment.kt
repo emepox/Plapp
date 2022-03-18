@@ -69,12 +69,12 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     recyclerView.adapter = suggestionsAdapter
 
-                    //binding.ivLoading.visibility = View.GONE
-                    //binding.rvSuggestions.visibility = View.VISIBLE
+                    binding.ivLoading.visibility = View.GONE
+                    binding.rvSuggestions.visibility = View.VISIBLE
 
                 } else {
-                    // binding.ivLoading.visibility = View.GONE
-                    binding.tvSuggestions.text = "This does not seem to be a plant... try again?"
+                    binding.ivLoading.visibility = View.GONE
+                    binding.tvSuggestions.text = getString(R.string.not_a_plant)
                 }
             }
         }
