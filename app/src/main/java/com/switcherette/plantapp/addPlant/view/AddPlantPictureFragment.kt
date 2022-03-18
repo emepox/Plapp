@@ -50,7 +50,7 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
 
             btnStartPlantId.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_addPlantPictureFragment_to_searchByNameFragment,
+                    R.id.action_addPlantPictureFragment_to_searchByPictureFragment,
                     Bundle().apply {
                         putParcelable("picturePath", searchPicVM.finalPath.value)
                     }

@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PlantApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_photos"><u>NO PHOTOS, PLEASE!</u></string>
+    <string name="no_guess"><u>YOU GOT IT WRONG.\n\ I\'D RATHER CHOOSE FROM A LIST</u></string>
     <string name="next_step">NEXT STEP</string>
-    <string name="first_step">First, let\'s see what\n\ you've got in there</string>
-
-
+    <string name="first_step">First, let\'s see what\n\ you\'ve got in there</string>
+    <string name="second_step">Is this your plant?</string>
 </resources>

@@ -26,82 +26,13 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
 
-        observeConfirmationBtn()
-        showOptionsDialog()
-        setClickListeners()
+        identifyPlant()
         observePlantId()
     }
 
-
-    private fun observeConfirmationBtn() {
-        searchPicVM.finalPath.observe(viewLifecycleOwner) {
-            if (it != null) binding.btnStartPlantId.isEnabled = true
-        }
+    private fun identifyPlant() {
+        searchPicVM.identifyPlant(arguments?.get("plant") as Uri)
     }
-
-    private fun setClickListeners() {
-        binding.btnChangeImage.setOnClickListener { showOptionsDialog() }
-
-        binding.btnStartPlantId.setOnClickListener {
-            with(binding){
-                btnChangeImage.visibility = View.GONE
-                btnStartPlantId.visibility = View.GONE
-                ivLoading.visibility = View.VISIBLE
-                tvSuggestions.visibility = View.VISIBLE
-            }
-
-            searchPicVM.identifyPlant()
-        }
-    }
-
-    private fun showOptionsDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Let's take a look")
-            .setMessage("We need an image to identify your plant")
-            .setNeutralButton("Cancel") { dialog, which ->
-                dialog.dismiss()
-            }
-            .setNegativeButton("Take photo") { dialog, which ->
-                takeImage()
-            }
-            .setPositiveButton("Choose from gallery") { dialog, which ->
-                selectImageFromGallery()
-            }
-            .show()
-    }
-
-    private var latestTmpUri: Uri? = null
-    private val previewImage by lazy { binding.ivPreview }
-
-    private fun takeImage() {
-        lifecycleScope.launchWhenStarted {
-            searchPicVM.getTmpFileUri().let { uri ->
-                latestTmpUri = uri
-//                searchPicVM.finalPath.value = requireContext().cacheDir.absolutePath + uri
-                takeImageResult.launch(uri)
-            }
-        }
-    }
-
-    private val takeImageResult =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
-            if (isSuccess) {
-                latestTmpUri?.let { uri ->
-                    previewImage.setImageURI(uri)
-                    searchPicVM.finalPath.value = uri
-                }
-            }
-        }
-
-    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
-
-    private val selectImageFromGalleryResult =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            uri?.let {
-                previewImage.setImageURI(uri)
-                searchPicVM.finalPath.value =  uri
-            }
-        }
 
 
     private fun observePlantId() {
@@ -123,11 +54,11 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     recyclerView.adapter = suggestionsAdapter
 
-                    binding.ivLoading.visibility = View.GONE
+                    //binding.ivLoading.visibility = View.GONE
                     binding.rvSuggestions.visibility = View.VISIBLE
 
                 } else {
-                    binding.ivLoading.visibility = View.GONE
+                    // binding.ivLoading.visibility = View.GONE
                     binding.tvSuggestions.text = "This does not seem to be a plant... try again?"
                 }
             }
