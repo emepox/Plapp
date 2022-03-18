@@ -16,6 +16,7 @@ class HomePlantViewModel(
     private val appDB: AppDB
 ) : ViewModel() {
 
+
     var quote: MutableLiveData<RandomQuote> = MutableLiveData()
 
     fun getRandomQuote() {

@@ -93,7 +93,7 @@
         android:backgroundTint="@color/white"
         android:layout_height="wrap_content"
         android:text="Save Plant"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/primary_dark"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 
