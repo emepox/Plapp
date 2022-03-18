@@ -3,14 +3,10 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.adapter.SuggestionsAdapter
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
@@ -21,17 +17,36 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
     private val searchPicVM: SearchByPictureViewModel by viewModel()
     private lateinit var binding: FragmentSearchByPictureBinding
+    private lateinit var uri: Uri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
 
+        uri = arguments?.get("picturePath") as Uri
+
         identifyPlant()
         observePlantId()
+        setOnClickListeners()
+
+    }
+
+    private fun setOnClickListeners() {
+        with(binding)
+        {
+            tvNoPic.setOnClickListener {
+                findNavController().navigate(R.id.action_searchByPictureFragment_to_searchByNameFragment,
+                    Bundle().apply {
+                        putParcelable("uri", uri)
+                    }
+                )
+            }
+        }
     }
 
     private fun identifyPlant() {
-        searchPicVM.identifyPlant(arguments?.get("plant") as Uri)
+        binding.ivPreview.setImageURI(uri)
+        searchPicVM.identifyPlant(uri)
     }
 
 
@@ -55,7 +70,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                     recyclerView.adapter = suggestionsAdapter
 
                     //binding.ivLoading.visibility = View.GONE
-                    binding.rvSuggestions.visibility = View.VISIBLE
+                    //binding.rvSuggestions.visibility = View.VISIBLE
 
                 } else {
                     // binding.ivLoading.visibility = View.GONE
