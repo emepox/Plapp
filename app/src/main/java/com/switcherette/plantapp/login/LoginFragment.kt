@@ -57,7 +57,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val signInIntent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
-                    .setLogo(R.drawable.plant_logo)
+                    //.setLogo(R.drawable.plant_logo)
                     .setTheme(R.style.LoginTheme)
                     .build()
                 signInLauncher.launch(signInIntent)

@@ -40,8 +40,8 @@
             android:id="@+id/action_myPlantsFragment_to_detailPlantFragment"
             app:destination="@id/detailPlantFragment" />
         <action
-            android:id="@+id/action_myPlantsFragment_to_searchByPictureFragment"
-            app:destination="@id/searchByPictureFragment" />
+            android:id="@+id/action_myPlantsFragment_to_addPlantPictureFragment"
+            app:destination="@id/addPlantPictureFragment" />
         <action
             android:id="@+id/action_myPlantsFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
@@ -64,6 +64,21 @@
             android:id="@+id/action_plantFormFragment_to_myPlantsFragment"
             app:destination="@id/myPlantsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addPlantPictureFragment"
+        android:name="com.switcherette.plantapp.addPlant.view.AddPlantPictureFragment"
+        android:label="fragment_add_plant_picture"
+        tools:layout="@layout/fragment_add_plant_picture" >
+        <action
+            android:id="@+id/action_addPlantPictureFragment_to_searchByPictureFragment"
+            app:destination="@id/searchByPictureFragment" />
+        <action
+            android:id="@+id/action_addPlantPictureFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/searchByNameFragment"
         android:name="com.switcherette.plantapp.addPlant.view.SearchByNameFragment"
