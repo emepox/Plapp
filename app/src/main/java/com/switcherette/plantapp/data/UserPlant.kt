@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity
 data class UserPlant(
     @PrimaryKey val id: String,
+    @ColumnInfo(name = "userId") val userId: String,
     @ColumnInfo(name = "nickname") val nickname: String,
     @ColumnInfo(name = "scientificName") val scientificName: String,
     @ColumnInfo(name = "commonName") val commonName: String,

@@ -4,16 +4,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class WaterAlarm: KoinComponent {
-    private val context: Context by inject()
+class WaterAlarm(private val context: Context){
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
 
@@ -39,13 +35,9 @@ class WaterAlarm: KoinComponent {
         pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
         alarmManager.cancel(pendingIntent)
     }
-    fun checkIfNotSet(): Boolean{
+    fun isAlarmSet(): Boolean{
         val intent = Intent(context, WaterAlarmReceiver::class.java)
-        val alarmUp = PendingIntent.getBroadcast(context, 0, intent,0) != null
-        if (alarmUp) {
-            return false
-        }
-        return true
+        return PendingIntent.getBroadcast(context, 0, intent,0) != null
     }
 
 }

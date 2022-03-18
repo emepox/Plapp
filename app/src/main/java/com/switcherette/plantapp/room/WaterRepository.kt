@@ -5,21 +5,33 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class WaterRepository : KoinComponent {
-    private val waterDB : WaterDBConnection by inject()
+    private val waterDao : WaterDao by inject()
 
     fun addNewWaterEvent(waterEvent: WaterEvent){
-        waterDB.instance.waterDao().addNewWaterEvent(waterEvent)
+        waterDao.addNewWaterEvent(waterEvent)
     }
 
     fun getAllWaterEvents(): List<WaterEvent>{
-        return waterDB.instance.waterDao().getAllWaterEvents()
+        return waterDao.getAllWaterEvents()
     }
 
-    fun getWaterEventById(plantId: String): WaterEvent{
-        return waterDB.instance.waterDao().getWaterEventById(plantId)
+    fun getWaterEventByPlantId(plantId: String): WaterEvent{
+        return waterDao.getWaterEventByPlantId(plantId)
+    }
+
+    fun getWaterEventByDate(startDate: Long): List<WaterEvent>{
+        return waterDao.getWaterEventByDate(startDate)
+    }
+
+    fun getFirstWaterEventByDate(): WaterEvent{
+        return  waterDao.getFirstWaterEventByDate()
+    }
+
+    fun updateDates(list: List<WaterEvent>){
+        waterDao.updateDates(list)
     }
 
     fun deleteWaterEvent(waterEvent: WaterEvent){
-        waterDB.instance.waterDao().deleteWaterEvent(waterEvent)
+        waterDao.deleteWaterEvent(waterEvent)
     }
 }
