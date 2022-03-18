@@ -6,8 +6,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 @Entity
+@Parcelize
 data class UserPlant(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "userId") val userId: String,
