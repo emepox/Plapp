@@ -7,31 +7,50 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.data.UserPlantBuilder
 import com.switcherette.plantapp.databinding.FragmentPlantForm1Binding
 
-class PlantForm1Fragment: Fragment(R.layout.fragment_plant_form1) {
+class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
+
+    private lateinit var binding: FragmentPlantForm1Binding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-/*        val args = navArgs<>()
+        binding = FragmentPlantForm1Binding.bind(view)
+        val args: PlantForm1FragmentArgs by navArgs()
+        val userPlant = args.userPlantFromAPI
 
-        val binding = FragmentPlantForm1Binding.bind(view)
-        val plantBuilder = UserPlantBuilder(args.userPlant)
+        with(binding) {
+            etNickname.setText(userPlant?.nickname)
+            etScientificName.setText(userPlant?.scientificName)
+            etCommonName.setText(userPlant?.commonName)
 
-        binding.btnNext.setOnClickListener {
-            // Check inputs
-            binding.etNickname.text.toString().takeIf { it.isNotBlank() }?.let {
-                plantBuilder.nickname = it
-            } ?: run {
-                //show error
-                Toast.makeText(, "", Toast.LENGTH_SHORT).show()
-                binding.etNickname.error = "Need to be not empty"
+            btnNext.setOnClickListener {
+                var finalUserPlant = args.userPlantFromAPI
+
+                // Check inputs
+                binding.etNickname.text.toString().takeIf { it.isNotBlank() }?.let {
+                    finalUserPlant = finalUserPlant?.copy(nickname = it)
+                } ?: run {
+                    //show error
+                    Toast.makeText(requireContext(), "Please give your plant a nickname", Toast.LENGTH_SHORT)
+                        .show()
+                    binding.etNickname.error = "Please give your plant a nickname"
+                }
+
+                binding.etCommonName.text.toString().let {
+                    finalUserPlant = finalUserPlant?.copy(commonName = it)
+                }
+
+                binding.etScientificName.text.toString().let {
+                    finalUserPlant = finalUserPlant?.copy(scientificName = it)
+                }
+
+                // All Good?
+                val action = PlantForm1FragmentDirections
+                    .actionPlantForm1FragmentToPlantForm2Fragment(finalUserPlant)
+                findNavController().navigate(action)
             }
-
-            // All Good?
-            findNavController().navigate(...) //give builder object as parameter
-        }*/
+        }
     }
 }
