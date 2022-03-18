@@ -1,0 +1,37 @@
+package com.switcherette.plantapp.room
+
+import com.switcherette.plantapp.data.WaterEvent
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+
+class WaterRepository : KoinComponent {
+    private val waterDao : WaterDao by inject()
+
+    fun addNewWaterEvent(waterEvent: WaterEvent){
+        waterDao.addNewWaterEvent(waterEvent)
+    }
+
+    fun getAllWaterEvents(): List<WaterEvent>{
+        return waterDao.getAllWaterEvents()
+    }
+
+    fun getWaterEventByPlantId(plantId: String): WaterEvent{
+        return waterDao.getWaterEventByPlantId(plantId)
+    }
+
+    fun getWaterEventByDate(startDate: Long): List<WaterEvent>{
+        return waterDao.getWaterEventByDate(startDate)
+    }
+
+    fun getFirstWaterEventByDate(): WaterEvent{
+        return  waterDao.getFirstWaterEventByDate()
+    }
+
+    fun updateDates(list: List<WaterEvent>){
+        waterDao.updateDates(list)
+    }
+
+    fun deleteWaterEvent(waterEvent: WaterEvent){
+        waterDao.deleteWaterEvent(waterEvent)
+    }
+}

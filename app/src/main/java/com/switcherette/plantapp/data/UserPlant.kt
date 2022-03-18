@@ -12,6 +12,7 @@ import java.util.*
 @Parcelize
 @Entity
 data class UserPlant(
+
     @PrimaryKey var id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "nickname") var nickname: String = "",
     @ColumnInfo(name = "scientificName") var scientificName: String? = null,
@@ -22,4 +23,5 @@ data class UserPlant(
     @ColumnInfo(name = "light") var light: String = "",
     @ColumnInfo(name = "water") var water: String = "",
     @ColumnInfo(name = "userId") var userId: String
+
 ) : Parcelable

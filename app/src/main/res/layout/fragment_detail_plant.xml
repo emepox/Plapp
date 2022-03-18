@@ -1,15 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".detail.DetailPlantFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/ivDetailPicture"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PLANT DETAIL FRAGMENT"
+        android:layout_height="250dp"
+        android:contentDescription="My plant"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/plant_img"
         />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvDetailNickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:text="Pepita la Florecita"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvDetailScientificName"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tvDetailScientificName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="10dp"
+        android:text="Floritus Magnificus"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/tvDetailFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C7E8B1"
+        android:text="Margarita común"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clFamily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivDetailPicture"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingHorizontal="20dp"
+        >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailPicture"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/clFamily"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/tvCare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CARE"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingVertical="10dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCare"
+                android:gravity="left"
+
+                >
+
+                <ImageView
+                    android:id="@+id/ivCareWatering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_marginVertical="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvCareWatering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Watering"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1"
+                android:gravity="left"
+                >
+                <ImageView
+                    android:id="@+id/ivCareLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_marginVertical="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvCareLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Light"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:id="@+id/tvWateringTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="NEXT WATERING"
+            android:padding="20dp"
+            android:layout_gravity="right"
+            />
+    </LinearLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INFORMATION"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:paddingVertical="10dp"
+
+
+            />
+
+        <LinearLayout
+            android:id="@+id/llFamily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvInfo"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/ivCommonNameIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_my_calendar"
+
+                />
+
+
+            <TextView
+                android:id="@+id/tvDetailCommonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rosaea"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDetailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Naughty Marietta is a compact annual to around 30cm tall bearing a profusion of single flowers with bright yellow petals each marked with a central deep red blotch"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llFamily"
+            android:textSize="15sp"
+            android:justificationMode="inter_word"
+            android:paddingVertical="10dp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
