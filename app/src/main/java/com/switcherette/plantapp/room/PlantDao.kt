@@ -2,7 +2,6 @@ package com.switcherette.plantapp.room
 
 import androidx.room.*
 import com.switcherette.plantapp.data.UserPlant
-import com.switcherette.plantapp.data.WaterEvent
 
 @Dao
 interface PlantDao {

@@ -16,6 +16,7 @@ object KoinGraph {
     val mainModule = module {
         single { Room.databaseBuilder(get(), AppDB::class.java, "WaterDB").build() }
         single { get<AppDB>().waterDao() }
+        single { get<AppDB>().plantDao() }
         factory { WaterAlarm(get()) }
         single { WaterRepository() }
         single { PlantIdRepository() }
