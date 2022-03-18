@@ -9,8 +9,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Parcelize
 @Entity
+@Parcelize
 data class UserPlant(
 
     @PrimaryKey var id: String = UUID.randomUUID().toString(),
