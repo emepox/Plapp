@@ -26,12 +26,12 @@
         android:id="@+id/llPlantFormName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTextSecondPage" >
+        app:layout_constraintTop_toBottomOf="@id/tvTextSecondPage">
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,6 +59,21 @@
                 android:inputType="textMultiLine|textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Light"
+            android:stepSize="1.0"
+            android:value="3"
+            android:valueFrom="0.0"
+            android:valueTo="5.0"
+            app:labelBehavior="floating"
+            app:labelStyle="@color/white"
+            app:thumbColor="@color/white"
+            app:tickColor="@color/white"
+            app:trackColor="@color/white" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,13 +100,28 @@
                 android:inputType="textMultiLine|textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Water"
+            android:stepSize="1.0"
+            android:value="3"
+            android:valueFrom="0.0"
+            android:valueTo="5.0"
+            app:labelBehavior="floating"
+            app:labelStyle="@color/white"
+            app:thumbColor="@color/white"
+            app:tickColor="@color/white"
+            app:trackColor="@color/white" />
+
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/white"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="Save Plant"
         android:textColor="@color/primary_dark"
         app:layout_constraintBottom_toBottomOf="parent" />
