@@ -49,7 +49,7 @@ class PlantIdRepository : KoinComponent {
     fun getPlantId(image: Uri): PlantId? {
         val fileData: String = convertToBase64(context, image)
         //change 'fileData' to 'testData' to test API
-        val response = service.getPlantId(PlantsRequest(listOf(fileData))).execute()
+        val response = service.getPlantId(PlantsRequest(listOf(testData))).execute()
         return if (response.isSuccessful) {
             response.body()!!
         } else {
