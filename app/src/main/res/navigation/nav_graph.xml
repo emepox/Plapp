@@ -19,7 +19,7 @@
         android:id="@+id/homePlantFragment"
         android:name="com.switcherette.plantapp.home.HomePlantFragment"
         android:label="fragment_home_plant"
-        tools:layout="@layout/fragment_home_plant" >
+        tools:layout="@layout/fragment_home_plant">
         <action
             android:id="@+id/action_homePlantFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
@@ -35,7 +35,7 @@
         android:id="@+id/myPlantsFragment"
         android:name="com.switcherette.plantapp.myPlants.MyPlantsFragment"
         android:label="fragment_my_plants"
-        tools:layout="@layout/fragment_my_plants" >
+        tools:layout="@layout/fragment_my_plants">
         <action
             android:id="@+id/action_myPlantsFragment_to_detailPlantFragment"
             app:destination="@id/detailPlantFragment" />
@@ -50,7 +50,7 @@
         android:id="@+id/myProfileFragment"
         android:name="com.switcherette.plantapp.profile.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile" >
+        tools:layout="@layout/fragment_my_profile">
         <action
             android:id="@+id/action_myProfileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -77,25 +77,26 @@
             android:id="@+id/action_addPlantPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
     </fragment>
-
-
     <fragment
         android:id="@+id/searchByNameFragment"
         android:name="com.switcherette.plantapp.addPlant.view.SearchByNameFragment"
         android:label="fragment_search_by_name"
-        tools:layout="@layout/fragment_search_by_name" >
+        tools:layout="@layout/fragment_search_by_name">
         <action
-            android:id="@+id/action_searchByNameFragment_to_plantFormFragment"
-            app:destination="@id/plantFormFragment" />
+            android:id="@+id/action_searchByNameFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/searchByPictureFragment"
         android:name="com.switcherette.plantapp.addPlant.view.SearchByPictureFragment"
         android:label="fragment_search_by_picture"
-        tools:layout="@layout/fragment_search_by_picture" >
+        tools:layout="@layout/fragment_search_by_picture">
         <action
             android:id="@+id/action_searchByPictureFragment_to_plantFormFragment"
             app:destination="@id/plantFormFragment" />
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment" />
         <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
@@ -104,9 +105,43 @@
         android:id="@+id/loginFragment"
         android:name="com.switcherette.plantapp.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homePlantFragment"
             app:destination="@id/homePlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantForm1Fragment"
+        android:name="com.switcherette.plantapp.addPlant.view.PlantForm1Fragment"
+        android:label="PlantForm1Fragment">
+
+        <argument
+            android:name="userPlantFromAPI"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.UserPlant" />
+
+        <action
+            android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
+            app:destination="@id/plantForm2Fragment" >
+            <argument
+                android:name="userPlant"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.switcherette.plantapp.data.UserPlant" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plantForm2Fragment"
+        android:name="com.switcherette.plantapp.addPlant.view.PlantForm2Fragment"
+        android:label="PlantForm2Fragment" >
+        <argument
+            android:name="userPlant"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.UserPlant" />
+        <action
+            android:id="@+id/action_plantForm2Fragment_to_myPlantsFragment"
+            app:destination="@id/myPlantsFragment" />
     </fragment>
 </navigation>

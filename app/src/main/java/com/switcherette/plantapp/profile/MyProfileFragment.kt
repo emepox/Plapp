@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.databinding.FragmentMyProfileBinding
-import com.switcherette.plantapp.databinding.FragmentPlantFormBinding
 
 class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
 

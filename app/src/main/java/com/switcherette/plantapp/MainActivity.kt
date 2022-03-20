@@ -12,7 +12,7 @@ import com.switcherette.plantapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    private val CHANNEL_ID = "channel_id_example"
+    private val CHANNEL_ID = "channel_water"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
