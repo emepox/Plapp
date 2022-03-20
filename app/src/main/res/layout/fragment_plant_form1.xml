@@ -12,21 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingStart="15dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="40dp"
-        android:text="Congratulations to your new green friend!"
+        android:padding="16dp"
+        android:layout_marginVertical="16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:text="@string/congratulations_to_your_new_green_friend"
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/llPlantFormName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +39,7 @@
             android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/FirebaseUI.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -66,7 +65,7 @@
             android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/FirebaseUI.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -75,7 +74,6 @@
             android:hint="Scientific plant name"
             android:minWidth="200dp"
             android:textColorHint="@color/white">
-
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etScientificName"
@@ -94,7 +92,7 @@
             android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/FirebaseUI.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -117,11 +115,16 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/white"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:textColor="@color/primary_dark"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+        android:layout_marginStart="16dp"
+        android:layout_marginVertical="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingVertical="15dp"
+        android:text="@string/next_step"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

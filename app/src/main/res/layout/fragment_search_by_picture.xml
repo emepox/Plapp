@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
+    android:background="@color/primary"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -16,7 +16,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrier"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/second_step" />
@@ -31,7 +30,6 @@
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierMiddle"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonBarrier">
 
@@ -62,7 +60,7 @@
         android:id="@+id/rvSuggestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
@@ -106,6 +104,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingVertical="15dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/primary"
         android:text="@string/next_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,6 @@
         app:barrierDirection="bottom"
         app:barrierMargin="16dp"
         app:constraint_referenced_ids="rvSuggestions" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
+    android:background="@color/primary"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -16,7 +16,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrier"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/first_step" />
@@ -25,7 +24,7 @@
         android:id="@+id/cardPreview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         app:cardCornerRadius="250dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
@@ -88,6 +87,8 @@
         android:layout_marginEnd="16dp"
         android:paddingVertical="15dp"
         android:text="@string/next_step"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNoPic"
