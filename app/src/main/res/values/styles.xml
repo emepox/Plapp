@@ -15,7 +15,6 @@
         <item name="boxStrokeColor">#fff</item>
     </style>
 
-
     <style name="Widget.PlApp.MaterialCardView" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.MaterialCardView</item>
     </style>
