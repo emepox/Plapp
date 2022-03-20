@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         android:text="@string/your_plant_could_be"
@@ -82,8 +82,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/ivLoading"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"

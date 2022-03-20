@@ -16,4 +16,6 @@
     <string name="my_profile">MY PROFILE</string>
     <string name="add_plant">ADD PLANT</string>
     <string name="add_plant_to_the_family">Add plant to the family</string>
+    <string name="my_plant_tasks">MY PLANT TASKS</string>
+    <string name="plant_library">PLANT LIBRARY</string>
 </resources>
