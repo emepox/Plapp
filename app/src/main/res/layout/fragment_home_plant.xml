@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.HomePlantFragment">
 
     <ImageView
@@ -24,29 +24,52 @@
         android:id="@+id/tvHomeHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_subrayada"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
+        android:paddingVertical="16dp"
         android:text="WELCOME, STRANGER"
         android:textColor="@color/white"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="40sp"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        />
+    <ImageView
+        android:id="@+id/ivBee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:src="@drawable/ic_baseline_emoji_nature_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/tvHomePlantFact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        android:text="This is a random plant fact"
+        android:paddingBottom="5dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
+        app:layout_constraintTop_toBottomOf="@+id/ivBee"
+        tools:text="This is a random plant fact" />
+
+    <TextView
+        android:id="@+id/tvHomePlantFactAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="12sp"
         android:textStyle="italic"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomePlantFact"
+        tools:text="somebody said" />
 
     <TextView
         android:id="@+id/tvHomeListHeading"
@@ -56,20 +79,18 @@
         android:paddingVertical="10dp"
         android:text="These are your pending tasks:"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivHomePicture"
         android:textStyle="bold"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivHomePicture" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading"
-        app:layout_constraintStart_toStartOf="parent"
         android:paddingHorizontal="30dp"
         android:paddingVertical="20dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

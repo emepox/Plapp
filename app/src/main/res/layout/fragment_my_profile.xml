@@ -6,30 +6,101 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".profile.MyProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/headerMyProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="MY PROFILE FRAGMENT" />
-
-    <Button
-        android:id="@+id/btnSignOut"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign out"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnDelete"
-        />
-
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete account"
-        app:layout_constraintStart_toEndOf="@id/btnSignOut"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/montserrat_subrayada_bold"
+        android:padding="16dp"
+        android:text="@string/my_profile"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your info"
+        android:textColor="@color/primary_dark"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:fontFamily="@font/montserrat_subrayada"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerMyProfile"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="NAME AND SURNAME"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvInfo"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="E-MAIL ADDRESS"
+        android:paddingHorizontal="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvName"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SETTINGS"
+        android:textColor="@color/primary_dark"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:fontFamily="@font/montserrat_subrayada"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMail"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHANGE PASSWORD"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/accent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSettings"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIGN OUT"
+        android:paddingHorizontal="32dp"
+        android:textColor="@color/accent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPassword"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DELETE ACCOUNT"
+        android:paddingHorizontal="32dp"
+        android:textColor="#A8291F"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSignOut"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

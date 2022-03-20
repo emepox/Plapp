@@ -26,6 +26,7 @@ class HomePlantFragment : Fragment(R.layout.fragment_home_plant) {
         homePlantVM.getRandomQuote()
         homePlantVM.quote.observe(viewLifecycleOwner){
             binding.tvHomePlantFact.text = it.q
+            binding.tvHomePlantFactAuthor.text = it.a
         }
 
 

@@ -4,22 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
+    android:background="@color/primary"
     tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/headerAddPlant2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_subrayada_bold"
+        android:padding="16dp"
+        android:text="@string/add_plant"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:paddingStart="16dp"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrier"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/second_step" />
+        app:layout_constraintTop_toBottomOf="@id/headerAddPlant2"
+        android:text="@string/second_step" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPreview"
@@ -28,12 +41,10 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="250dp"
         app:cardElevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/buttonBarrierMiddle"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonBarrier">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/buttonBarrier">
 
         <ImageView
             android:id="@+id/ivPreview"
@@ -49,11 +60,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         android:text="@string/your_plant_could_be"
-        app:layout_constraintTop_toBottomOf="@id/buttonBarrierMiddle"
+        app:layout_constraintTop_toBottomOf="@id/buttonBarrier"
         app:layout_constraintBottom_toTopOf="@id/rvSuggestions"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -62,7 +73,7 @@
         android:id="@+id/rvSuggestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
@@ -71,8 +82,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/ivLoading"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
@@ -102,16 +113,14 @@
         android:id="@+id/btnStartPlantId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_margin="16dp"
         android:paddingVertical="15dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/primary"
         android:text="@string/next_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNoPic"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/buttonBarrier"
@@ -122,21 +131,12 @@
         app:constraint_referenced_ids="tvInstructions" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/buttonBarrierMiddle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:barrierMargin="16dp"
-        app:constraint_referenced_ids="cardPreview" />
-
-    <androidx.constraintlayout.widget.Barrier
         android:id="@+id/buttonBarrierBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:barrierMargin="16dp"
         app:constraint_referenced_ids="rvSuggestions" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
