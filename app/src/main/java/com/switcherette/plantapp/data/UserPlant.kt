@@ -9,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
+
 @Entity
 @Parcelize
 data class UserPlant(

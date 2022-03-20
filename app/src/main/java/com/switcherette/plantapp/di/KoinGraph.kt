@@ -1,5 +1,9 @@
 package com.switcherette.plantapp.di
 
+
+import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
+import com.switcherette.plantapp.room.WaterDBConnection
+import com.switcherette.plantapp.room.WaterRepo
 import androidx.room.Room
 import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
@@ -30,7 +34,8 @@ object KoinGraph {
         single { PlantIdRepository() }
         single { RandomQuotesRepository() }
         viewModel { SearchByPictureViewModel(get()) }
+        viewModel { AddPlantPictureViewModel() }
+        viewModel { HomePlantViewModel(get()) }
         viewModel { PlantFormViewModel(get()) }
-        viewModel { HomePlantViewModel(get(), get()) }
     }
 }

@@ -65,8 +65,7 @@ class MyPlantsFragment : Fragment(R.layout.fragment_my_plants) {
         }
 
         btnSearchByPhoto.setOnClickListener {
-
-            findNavController().navigate(R.id.action_myPlantsFragment_to_searchByPictureFragment)
+            findNavController().navigate(R.id.action_myPlantsFragment_to_addPlantPictureFragment)
         }
     }
 
