@@ -9,4 +9,5 @@
     <string name="second_step">Is this your plant?</string>
     <string name="not_a_plant">This does not seem to be a plant…\n\ you tricked us!</string>
     <string name="your_plant_could_be">Your plant could be...</string>
+    <string name="my_plants">MY PLANTS</string>
 </resources>

@@ -12,20 +12,6 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="Widget.PlApp.MaterialCardView" parent="Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.MaterialCardView</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.MyApp.MaterialCardView" parent="">
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerFamilyTopLeft">cut</item>
-        <item name="cornerFamilyBottomLeft">rounded</item>
-        <item name="cornerFamilyBottomRight">rounded</item>
-        <item name="cornerSizeTopLeft">0dp</item>
-        <item name="cornerSizeBottomLeft">10dp</item>
-        <item name="cornerSizeTopRight">10dp</item>
-        <item name="cornerSizeBottomRight">10dp</item>
-    </style>
 
     <style name="LoginTheme" parent="FirebaseUI">
         <item name="colorPrimary">@color/primary</item>
@@ -41,9 +27,11 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="android:windowBackground">@drawable/login_plant</item>
-        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@drawable/bg_leaf</item>
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorHint">@android:color/white</item>
     </style>
+
 </resources>
+

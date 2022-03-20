@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+
+
+    android:layout_marginEnd="10dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPreview"
         style="@style/Widget.PlApp.MaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        android:scrollbars="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,49 +25,49 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivPlantImage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                app:cardCornerRadius="250dp"
-                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
-
 
             <TextView
                 android:id="@+id/tvProbability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/accent"
-                android:textColor="@color/black"
                 android:gravity="center_vertical"
-                android:textSize="18sp"
                 android:padding="2dp"
+                android:elevation="2dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="100%" />
 
             <TextView
                 android:id="@+id/tvSciName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:textSize="18sp"
                 android:textStyle="italic"
-                app:layout_constraintStart_toEndOf="@id/ivPlantImage"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPlantImage"
                 tools:text="Scientific name" />
 
             <TextView
                 android:id="@+id/tvCommonName"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/ivPlantImage"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSciName"
                 tools:text="Common names" />
 
@@ -71,22 +75,12 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnChoose"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-                Of="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="THAT'S MY PLANT!"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCommonName" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDetails"
-                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-                Of="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEE DETAILS"
-                app:layout_constraintEnd_toStartOf="@id/btnChoose"
-                app:layout_constraintTop_toBottomOf="@id/tvCommonName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
