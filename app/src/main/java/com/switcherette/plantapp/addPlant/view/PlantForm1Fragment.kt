@@ -1,6 +1,5 @@
 package com.switcherette.plantapp.addPlant.view
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -28,10 +27,13 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
         binding = FragmentPlantForm1Binding.bind(view)
 
-        // get API info from Bundle
+        // get API info (if coming from SearchByPicture)
         val args: PlantForm1FragmentArgs by navArgs()
         val apiSuggestion = args.suggestionFromApi
         val imageFromUser: String? = args.photoFromUser
+
+        // get Plant info (if coming from SearchByName)
+        val plantFromSearchByName = args.userPlant
 
         // initialise UserPlant object
         finalUserPlant = UserPlant(
@@ -43,50 +45,47 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             null,
             null,
             1,
-            1,
+            3,
             imageFromUser,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
 
-        apiSuggestion?.plant_details?.scientific_name?.let { getInfoFromPlantLibrary(it) }
-        observeFinalUserPlant(finalUserPlant, apiSuggestion)
+        if (apiSuggestion != null) {
+            apiSuggestion.plant_details.scientific_name.let { getInfoFromPlantLibrary(it) }
+            plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
+                if (it?.scientificName == null) {
+                    finalUserPlant.scientificName = apiSuggestion.plant_details.scientific_name
+                } else finalUserPlant.scientificName = it.scientificName
+
+                if (it?.commonName == null) {
+                    finalUserPlant.commonName =
+                        apiSuggestion.plant_details.common_names.toString().drop(1).dropLast(1)
+                } else finalUserPlant.commonName = it.commonName
+
+                if (it?.img == null) {
+                    finalUserPlant.image =
+                        apiSuggestion.plant_details.wiki_image?.value
+                } else finalUserPlant.image = it.img
+
+                finalUserPlant.family = it?.family
+                finalUserPlant.description = it?.description
+                finalUserPlant.cultivation = it?.cultivation
+                finalUserPlant.light = it?.light ?: 2
+                finalUserPlant.water = it?.water ?: 15
+            }
+        } else if ( plantFromSearchByName != null) {
+            finalUserPlant = plantFromSearchByName
+        }
+
+        binding.etScientificName.setText(finalUserPlant.scientificName)
+        binding.etCommonName.setText(finalUserPlant.commonName)
+
         handleOnClick(finalUserPlant)
     }
 
-    private fun observeFinalUserPlant(
-        finalUserPlant: UserPlant,
-        apiSuggestion: Suggestion?
-    ) {
-        plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
-            if (it?.scientificName == null) {
-                finalUserPlant.scientificName = apiSuggestion?.plant_details?.scientific_name
-            } else finalUserPlant.scientificName = it.scientificName
-
-            if (it?.commonName == null) {
-                finalUserPlant.commonName =
-                    apiSuggestion?.plant_details?.common_names.toString().drop(1).dropLast(1)
-            } else finalUserPlant.commonName = it.commonName
-
-            if (it?.commonName == null) {
-                finalUserPlant.image =
-                    apiSuggestion?.plant_details?.wiki_image?.value
-            } else finalUserPlant.image = it.img
-
-            finalUserPlant.family = it?.family
-            finalUserPlant.description = it?.description
-            finalUserPlant.cultivation = it?.cultivation
-            finalUserPlant.light = it?.light ?: 2
-            finalUserPlant.water = it?.water ?: 15
-
-            binding.etScientificName.setText(finalUserPlant.scientificName)
-            binding.etCommonName.setText(finalUserPlant.commonName)
-
-        }
-    }
 
     private fun handleOnClick(userPlant: UserPlant) {
         var finalUserPlant = userPlant
-
 
         binding.btnNext.setOnClickListener {
             with(binding) {

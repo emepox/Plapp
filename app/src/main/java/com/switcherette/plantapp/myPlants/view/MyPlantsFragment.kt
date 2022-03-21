@@ -68,7 +68,6 @@ class MyPlantsFragment : Fragment(R.layout.fragment_my_plants) {
             val myPlantsAdapter = MyPlantsAdapter(plant) { showPlantDetails(it) }
             recyclerView.adapter = myPlantsAdapter
         }
-
     }
 
     private fun showPlantDetails(userPlant: UserPlant) {
