@@ -16,31 +16,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/plant_img"
-        />
+        android:foreground="#96323232"
+        android:foregroundTintMode="src_atop"
 
-    <TextView
-        android:id="@+id/tvDetailNickname"
+        />
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:text="Pepita la Florecita"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvDetailCommonName"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/tvDetailCommonName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="10dp"
-        android:text="Margarita común"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
-        />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDetailPicture"
+        >
+        <TextView
+            android:id="@+id/tvDetailNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:text="Pepita la Florecita"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tvDetailCommonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            android:text="Margarita común"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+
 
 
 
