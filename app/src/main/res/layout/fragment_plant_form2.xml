@@ -59,7 +59,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:text="Light"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -99,7 +99,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:text="Water"
             android:textColor="@color/white"
             android:textSize="20sp" />

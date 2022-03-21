@@ -22,7 +22,7 @@ data class UserPlant(
     @ColumnInfo(name = "description") var description: String? = null,
     @ColumnInfo(name = "cultivation") var cultivation: String? = null,
     @ColumnInfo(name = "light") var light: Int = 4,
-    @ColumnInfo(name = "water") var water: Int = 15,
+    @ColumnInfo(name = "water") var water: Int = 1,
     @ColumnInfo(name = "userId") var userId: String
 
 ) : Parcelable
