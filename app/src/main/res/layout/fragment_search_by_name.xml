@@ -54,24 +54,40 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MY PLANT IS NOT HERE"
+        android:textAlignment="viewEnd"
+        android:paddingVertical="6dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
+        android:textColor="#F44336"
+        app:layout_constraintTop_toBottomOf="@id/clSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvSearchPlantByName" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearchPlantByName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="5dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/btnGo2Form"
-        app:layout_constraintTop_toBottomOf="@+id/clSearch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoList"
         tools:listitem="@layout/item_search_plant_byname"/>
 
-    <Button
-        android:id="@+id/btnGo2Form"
-        android:text="Add"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<!--    <Button-->
+<!--        android:id="@+id/btnGo2Form"-->
+<!--        android:text="Add"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

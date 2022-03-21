@@ -1,8 +1,8 @@
 package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
@@ -10,9 +10,11 @@ import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.adapter.SearchByNameAdapter
 import com.switcherette.plantapp.addPlant.viewModel.SearchByNameViewModel
+import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentSearchByNameBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
@@ -27,20 +29,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
         searchByNameVM.getAllPlants()
         setRecyclerView()
-
-//        binding.btnGo2Form.setOnClickListener {
-//            val mockUserPlant = UserPlant(
-//                scientificName = "Kaktus",
-//                commonName = "Spezieller Kaktus",
-//                family = "Kaktue realus",
-//                description = "It hurts a lot if you touch it",
-//                light = 4,
-//                water = 1,
-//                userId = Firebase.auth.currentUser?.uid.orEmpty()
-//            )
-//            val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)
-//            findNavController().navigate(action)
-//        }
+        binding.tvNoList.setOnClickListener { createEmptyUserPlant() }
     }
 
     private fun setRecyclerView() {
@@ -49,15 +38,35 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        searchByNameVM.allPlants.observe(viewLifecycleOwner) {
-            val allPlantsAdapter = SearchByNameAdapter(it) { showPlantDetails() }
+        searchByNameVM.allPlants.observe(viewLifecycleOwner) { plant ->
+            val allPlantsAdapter = SearchByNameAdapter(plant) { choosePlant(it) }
             recyclerView.adapter = allPlantsAdapter
         }
-
     }
 
-    private fun showPlantDetails() {
-        TODO("Not yet implemented")
+    private fun choosePlant(plantInfo: PlantInfo) {
+        val userPlant = UserPlant(
+            UUID.randomUUID().toString(),
+            "",
+            plantInfo.scientificName,
+            plantInfo.commonName,
+            plantInfo.family,
+            plantInfo.description,
+            plantInfo.cultivation,
+            plantInfo.light ?: 2,
+            plantInfo.water ?: 15,
+            plantInfo.img,
+            Firebase.auth.currentUser?.uid.orEmpty()
+        )
+
+        val action =
+            SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(userPlant)
+        findNavController().navigate(action)
     }
+
+    private fun createEmptyUserPlant() {
+        findNavController().navigate(R.id.action_searchByNameFragment_to_plantForm1Fragment)
+    }
+
 }
 
