@@ -43,7 +43,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             null,
             null,
             1,
-            1,
+            3,
             imageFromUser,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
@@ -76,7 +76,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             finalUserPlant.description = it?.description
             finalUserPlant.cultivation = it?.cultivation
             finalUserPlant.light = it?.light ?: 1
-            finalUserPlant.water = it?.water ?: 1
+            finalUserPlant.water = it?.water ?: 3
 
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)

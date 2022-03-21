@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.switcherette.plantapp.addPlant.viewModel.PlantForm1ViewModel
 import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
+import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
 import com.switcherette.plantapp.data.repositories.PlantIdRepository
 import com.switcherette.plantapp.data.repositories.PlantLibraryRepository
 import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
@@ -42,5 +43,6 @@ object KoinGraph {
         viewModel { PlantForm1ViewModel(get()) }
         viewModel { PlantFormViewModel(get(), get()) }
         viewModel { MyPlantsViewModel(get()) }
+        viewModel { CalendarViewModel(get()) }
     }
 }

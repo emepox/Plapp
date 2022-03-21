@@ -33,7 +33,6 @@ class PlantFormViewModel(
                     createAlarm(waterEvent.repeatStart)
                 }
             }
-
         }
     }
 

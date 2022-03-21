@@ -13,7 +13,6 @@ import com.switcherette.plantapp.data.room.PlantRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
 
 
 class MyPlantsViewModel(
@@ -31,7 +30,5 @@ class MyPlantsViewModel(
                 userPlants.value = result!!
             }
         }
-
     }
-
 }
