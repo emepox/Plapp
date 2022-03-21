@@ -24,13 +24,13 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
         with(binding) {
 
-            etWater.setText(finalUserPlant?.water)
-            etLight.setText(finalUserPlant?.light)
+            etWater.setText(finalUserPlant?.water.toString())
+            etLight.setText(finalUserPlant?.light.toString())
 
             btnSave.setOnClickListener {
 
                 etLight.text.toString().takeIf { it.isNotBlank() }?.let {
-                    finalUserPlant = finalUserPlant?.copy(light = it)
+                    finalUserPlant = finalUserPlant?.copy(light = it.toInt())
                 } ?: run {
                     Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
                         .show()
@@ -38,7 +38,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
                 }
 
                 etWater.text.toString().takeIf { it.isNotBlank() }?.let {
-                    finalUserPlant = finalUserPlant?.copy(water = it)
+                    finalUserPlant = finalUserPlant?.copy(water = it.toInt())
                 } ?: run {
                     Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
                         .show()

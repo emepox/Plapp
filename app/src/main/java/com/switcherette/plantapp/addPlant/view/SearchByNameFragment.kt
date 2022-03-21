@@ -26,11 +26,11 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
                 commonName = "Spezieller Kaktus",
                 family = "Kaktue realus",
                 description = "It hurts a lot if you touch it",
-                light = "lots of light",
+                light = 3,
                 userId = Firebase.auth.currentUser?.uid.orEmpty()
             )
-            val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)
-            findNavController().navigate(action)
+            //val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)
+            //findNavController().navigate(action)
         }
     }
 }
