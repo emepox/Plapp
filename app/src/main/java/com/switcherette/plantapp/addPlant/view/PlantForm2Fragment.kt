@@ -3,14 +3,19 @@ package com.switcherette.plantapp.addPlant.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
     private lateinit var binding: FragmentPlantForm2Binding
+
+    private val plantFormViewModel: PlantFormViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,6 +39,12 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
                 val water = slWater.value
                 finalUserPlant = finalUserPlant?.copy(water = water.toString())
+
+               // plantFormViewModel.writePlant()
+
+                findNavController().navigate(R.id.action_plantForm2Fragment_to_myPlantsFragment)
+
+
 
             }
         }
