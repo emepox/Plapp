@@ -25,39 +25,25 @@
         android:paddingHorizontal="20dp"
         android:text="Pepita la Florecita"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvDetailScientificName"
+        app:layout_constraintBottom_toTopOf="@id/tvDetailCommonName"
         android:textSize="20sp"
         android:textStyle="bold"
         />
-
     <TextView
-        android:id="@+id/tvDetailScientificName"
+        android:id="@+id/tvDetailCommonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:paddingBottom="10dp"
-        android:text="Floritus Magnificus"
+        android:text="Margarita común"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
-        android:textSize="15sp"
-        android:textStyle="italic"
         />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/tvDetailFamily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#C7E8B1"
-        android:text="Margarita común"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        />
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,16 +150,57 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-        <TextView
-            android:id="@+id/tvWateringTime"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="NEXT WATERING"
-            android:padding="20dp"
-            android:layout_gravity="right"
-            />
+            app:cardBackgroundColor="#404CAF50"
+            android:elevation="20dp"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/tvWateringTimeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="NEXT WATERING"
+                    android:padding="20dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvWateringTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:text="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWateringTimeTitle" />
+
+                <TextView
+                    android:id="@+id/tvWateringDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="days"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWateringTime" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
     </LinearLayout>
 
 
@@ -186,7 +213,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
         >
+
+
 
         <TextView
             android:id="@+id/tvInfo"
@@ -197,8 +227,8 @@
             app:layout_constraintEnd_toStartOf="parent"
             android:paddingVertical="10dp"
 
-
             />
+
 
         <LinearLayout
             android:id="@+id/llFamily"
@@ -207,24 +237,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvInfo"
             android:orientation="horizontal"
-            android:gravity="center"
+
             >
-            <ImageView
-                android:id="@+id/ivCommonNameIcon"
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tvDetailScientificName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_my_calendar"
+                android:backgroundTint="#C7E8B1"
+                android:text="Floritus Magnificus"
+                app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="10dp"
+                android:textAppearance="@style/myChip"
 
                 />
 
-
-            <TextView
-                android:id="@+id/tvDetailCommonName"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tvDetailFamily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#79009688"
                 android:text="Rosaea"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
+                app:layout_constraintEnd_toEndOf="parent"
+
                 />
 
 
@@ -243,6 +280,36 @@
             android:justificationMode="inter_word"
             android:paddingVertical="10dp"
             />
+
+
+        <TextView
+            android:id="@+id/tvDetailCultivationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cultivation"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailDescription"
+            android:textSize="15sp"
+            android:justificationMode="inter_word"
+            android:paddingVertical="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tvDetailCultivation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Easy to grow in reasonable conditions; requires a sheltered, sunny position"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailCultivationTitle"
+            android:textSize="15sp"
+            android:justificationMode="inter_word"
+            android:paddingVertical="10dp"
+            />
+
 
 
 
