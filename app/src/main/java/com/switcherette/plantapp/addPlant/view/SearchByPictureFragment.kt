@@ -59,7 +59,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
 
     private fun observePlantId() {
-        searchPicVM.plantId.observe(viewLifecycleOwner) {
+        searchPicVM.plantId.observe(viewLifecycleOwner) { it ->
             if (it != null) {
                 if (it.is_plant) {
                     val recyclerView = binding.rvSuggestions
@@ -67,12 +67,10 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                     recyclerView.layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) {
-                        findNavController().navigate(R.id.action_searchByPictureFragment_to_plantForm1Fragment,
-                            Bundle().apply {
-                                putParcelable("suggestion", it)
-                            }
-                        )
+                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
+                        val action = SearchByPictureFragmentDirections
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion)
+                        findNavController().navigate(action)
                     }
 
                     recyclerView.adapter = suggestionsAdapter

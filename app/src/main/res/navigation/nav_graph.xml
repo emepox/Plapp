@@ -55,15 +55,6 @@
             android:id="@+id/action_myProfileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/plantFormFragment"
-        android:name="com.switcherette.plantapp.addPlant.view.PlantFormFragment"
-        android:label="fragment_plant_form"
-        tools:layout="@layout/fragment_plant_form" >
-        <action
-            android:id="@+id/action_plantFormFragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/addPlantPictureFragment"
@@ -92,14 +83,17 @@
         android:label="fragment_search_by_picture"
         tools:layout="@layout/fragment_search_by_picture">
         <action
-            android:id="@+id/action_searchByPictureFragment_to_plantFormFragment"
-            app:destination="@id/plantFormFragment" />
-        <action
-            android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
-            app:destination="@id/plantForm1Fragment" />
-        <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment" >
+            <argument
+                android:name="suggestionFromApi"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.switcherette.plantapp.data.Suggestion" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -114,13 +108,11 @@
         android:id="@+id/plantForm1Fragment"
         android:name="com.switcherette.plantapp.addPlant.view.PlantForm1Fragment"
         android:label="PlantForm1Fragment">
-
         <argument
-            android:name="userPlantFromAPI"
+            android:name="suggestionFromApi"
             android:defaultValue="@null"
             app:nullable="true"
-            app:argType="com.switcherette.plantapp.data.UserPlant" />
-
+            app:argType="com.switcherette.plantapp.data.Suggestion" />
         <action
             android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
             app:destination="@id/plantForm2Fragment" >

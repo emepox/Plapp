@@ -30,6 +30,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
             setLabelsForLight()
 
+
             setRecommendedValuesLightAndWater(finalUserPlant)
 
             btnSave.setOnClickListener {

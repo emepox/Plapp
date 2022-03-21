@@ -107,20 +107,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnStartPlantId" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStartPlantId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:paddingVertical="15dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/primary"
-        android:text="@string/next_step"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btnStartPlantId"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:paddingVertical="15dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:textColor="@color/primary"-->
+<!--        android:text="@string/next_step"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/buttonBarrier"

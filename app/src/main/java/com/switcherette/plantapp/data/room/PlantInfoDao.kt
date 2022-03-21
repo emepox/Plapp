@@ -8,4 +8,7 @@ import com.switcherette.plantapp.data.PlantInfo
 interface PlantInfoDao {
     @Query("SELECT * FROM PlantInfo")
     fun getAllPlantInfo(): List<PlantInfo>
+
+    @Query("SELECT * FROM PlantInfo WHERE scientificName LIKE (:name)")
+    fun getPlantByName(name: String): PlantInfo?
 }
