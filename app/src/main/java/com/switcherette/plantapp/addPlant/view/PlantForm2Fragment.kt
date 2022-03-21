@@ -15,7 +15,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
     private lateinit var binding: FragmentPlantForm2Binding
     private val waterConverter = mapOf(Pair(3, 1),Pair(5,2),Pair(7,3),Pair(14,4),Pair(15,5),Pair(30,6))
-    private val plantFormViewModel: PlantFormViewModel by viewModel()
+    private val plantForm2ViewModel: PlantForm2ViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
