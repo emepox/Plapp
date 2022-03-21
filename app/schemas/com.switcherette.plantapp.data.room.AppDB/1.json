@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "35b7c8ac76b645ac43c4d3519e887e2f",
+    "identityHash": "bdd4227325eea7d1f633832090e041ed",
     "entities": [
       {
         "tableName": "WaterEvent",
@@ -124,7 +124,7 @@
       },
       {
         "tableName": "PlantInfo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `scientificName` TEXT NOT NULL, `commonName` TEXT NOT NULL, `family` TEXT NOT NULL, `description` TEXT NOT NULL, `cultivation` TEXT NOT NULL, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `disease` TEXT NOT NULL, `img` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `scientificName` TEXT, `commonName` TEXT, `family` TEXT, `description` TEXT, `cultivation` TEXT, `light` INTEGER, `water` INTEGER, `disease` TEXT, `img` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -136,55 +136,55 @@
             "fieldPath": "scientificName",
             "columnName": "scientificName",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "commonName",
             "columnName": "commonName",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "family",
             "columnName": "family",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "description",
             "columnName": "description",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "cultivation",
             "columnName": "cultivation",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "light",
             "columnName": "light",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "water",
             "columnName": "water",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "disease",
             "columnName": "disease",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "img",
             "columnName": "img",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -200,7 +200,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '35b7c8ac76b645ac43c4d3519e887e2f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bdd4227325eea7d1f633832090e041ed')"
     ]
   }
 }

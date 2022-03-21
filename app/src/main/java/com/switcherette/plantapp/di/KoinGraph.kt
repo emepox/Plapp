@@ -21,7 +21,7 @@ object KoinGraph {
 
       single {
             Room.databaseBuilder(get(), AppDB::class.java, "AppDB")
-                .createFromAsset("plants_db.db")
+                .createFromAsset("PlantInfo.db")
                 .build()
         }
         single { get<AppDB>().waterDao() }
