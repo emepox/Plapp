@@ -13,6 +13,7 @@ import com.switcherette.plantapp.home.HomePlantViewModel
 import com.switcherette.plantapp.data.room.AppDB
 import com.switcherette.plantapp.data.room.PlantRepository
 import com.switcherette.plantapp.data.room.WaterRepository
+import com.switcherette.plantapp.myPlants.viewModel.MyPlantsViewModel
 import com.switcherette.plantapp.utils.WaterAlarm
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -40,5 +41,6 @@ object KoinGraph {
         viewModel { HomePlantViewModel(get(), get()) }
         viewModel { PlantForm1ViewModel(get()) }
         viewModel { PlantFormViewModel(get(), get()) }
+        viewModel { MyPlantsViewModel(get()) }
     }
 }

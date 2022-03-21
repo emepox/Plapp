@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/myPlantsFragment"
-        android:name="com.switcherette.plantapp.myPlants.MyPlantsFragment"
+        android:name="com.switcherette.plantapp.myPlants.view.MyPlantsFragment"
         android:label="fragment_my_plants"
         tools:layout="@layout/fragment_my_plants">
         <action
@@ -75,7 +75,13 @@
         tools:layout="@layout/fragment_search_by_name">
         <action
             android:id="@+id/action_searchByNameFragment_to_plantForm1Fragment"
-            app:destination="@id/plantForm1Fragment" />
+            app:destination="@id/plantForm1Fragment" >
+            <argument
+                android:name="userPlant"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.switcherette.plantapp.data.UserPlant" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/searchByPictureFragment"
@@ -93,6 +99,11 @@
                 android:defaultValue="@null"
                 app:nullable="true"
                 app:argType="com.switcherette.plantapp.data.Suggestion" />
+            <argument
+                android:name="photoUri"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -113,6 +124,16 @@
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="com.switcherette.plantapp.data.Suggestion" />
+        <argument
+            android:name="photoFromUser"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="userPlant"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.UserPlant" />
         <action
             android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
             app:destination="@id/plantForm2Fragment" >
