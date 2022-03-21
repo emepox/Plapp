@@ -7,8 +7,8 @@ import org.koin.core.component.inject
 class PlantRepository: KoinComponent {
     private val plantDao : PlantDao by inject()
 
-    fun addNewUserPlant(userPlant: UserPlant){
-        plantDao.addNewUserPlant(userPlant)
+    fun addNewUserPlant(userPlant: UserPlant): Long{
+        return plantDao.addNewUserPlant(userPlant)
     }
 
     fun getUserPlantsByUserId(userId: String): List<UserPlant>{

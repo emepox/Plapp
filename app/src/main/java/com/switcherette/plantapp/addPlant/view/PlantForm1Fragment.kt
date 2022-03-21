@@ -78,6 +78,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
     private fun handleOnClick(userPlant: UserPlant) {
         var finalUserPlant = userPlant
 
+
         binding.btnNext.setOnClickListener {
             with(binding) {
                 // Check inputs
@@ -102,7 +103,6 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                     finalUserPlant = finalUserPlant.copy(scientificName = it)
                 }
 
-                // All Good?
                 val action = PlantForm1FragmentDirections
                     .actionPlantForm1FragmentToPlantForm2Fragment(finalUserPlant)
                 findNavController().navigate(action)

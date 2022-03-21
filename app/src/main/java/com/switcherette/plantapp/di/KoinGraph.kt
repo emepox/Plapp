@@ -11,6 +11,7 @@ import com.switcherette.plantapp.data.repositories.PlantLibraryRepository
 import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
 import com.switcherette.plantapp.home.HomePlantViewModel
 import com.switcherette.plantapp.data.room.AppDB
+import com.switcherette.plantapp.data.room.PlantRepository
 import com.switcherette.plantapp.data.room.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -25,19 +26,19 @@ object KoinGraph {
                 .createFromAsset("plants_db.db")
                 .build()
         }
-
         single { get<AppDB>().waterDao() }
         single { get<AppDB>().plantDao() }
         single { get<AppDB>().plantInfoDao() }
         factory { WaterAlarm(get()) }
         single { WaterRepository() }
+        single { PlantRepository() }
         single { PlantIdRepository() }
         single { RandomQuotesRepository() }
         single { PlantLibraryRepository() }
         viewModel { SearchByPictureViewModel(get()) }
         viewModel { AddPlantPictureViewModel() }
         viewModel { HomePlantViewModel(get(), get()) }
-        viewModel { PlantFormViewModel(get()) }
         viewModel { PlantForm1ViewModel(get()) }
+        viewModel { PlantFormViewModel(get(), get()) }
     }
 }

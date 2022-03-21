@@ -2,17 +2,20 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
+import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
     private lateinit var binding: FragmentPlantForm2Binding
+
+    private val plantFormViewModel: PlantFormViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,34 +26,68 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
         var finalUserPlant = args.userPlant
 
         with(binding) {
+            setLabelsForWater()
 
-            etWater.setText(finalUserPlant?.water.toString())
-            etLight.setText(finalUserPlant?.light.toString())
+            setLabelsForLight()
+
+
+            setRecommendedValuesLightAndWater(finalUserPlant)
 
             btnSave.setOnClickListener {
 
-                etLight.text.toString().takeIf { it.isNotBlank() }?.let {
-                    finalUserPlant = finalUserPlant?.copy(light = it.toInt())
-                } ?: run {
-                    Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
-                        .show()
-                    etLight.error = "Please fill this field"
-                }
+                val light = slLight.value
+                finalUserPlant = finalUserPlant?.copy(light = light.toString())
 
-                etWater.text.toString().takeIf { it.isNotBlank() }?.let {
-                    finalUserPlant = finalUserPlant?.copy(water = it.toInt())
-                } ?: run {
-                    Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
-                        .show()
-                    etWater.error = "Please fill this field"
-                }
+                val water = slWater.value
+                finalUserPlant = finalUserPlant?.copy(water = water.toString())
 
+               // plantFormViewModel.writePlant()
 
-                finalUserPlant?.userId = Firebase.auth.currentUser?.uid!!
+                findNavController().navigate(R.id.action_plantForm2Fragment_to_myPlantsFragment)
 
             }
+        }
+    }
 
+    private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater(
+        finalUserPlant: UserPlant?
+    ) {
+        if (finalUserPlant?.water.isNullOrBlank()) {
+            slWater.value = 3.0F
+        } else {
+            finalUserPlant?.water?.let { slWater.value = it.toFloat() }
         }
 
+        if (finalUserPlant?.light.isNullOrBlank()) {
+            slLight.value = 3.0F
+        } else {
+            finalUserPlant?.light?.let { slLight.value = it.toFloat() }
+        }
+    }
+
+    private fun FragmentPlantForm2Binding.setLabelsForWater() {
+        slWater.setLabelFormatter {
+            when (it.toInt()) {
+                1 -> "every 3 days"
+                2 -> "every 5 days"
+                3 -> "every 7 days"
+                4 -> "every 14 days"
+                5 -> "every 15 days"
+                6 -> "every 30 days"
+                else -> "unknown"
+            }
+        }
+    }
+
+    private fun FragmentPlantForm2Binding.setLabelsForLight() {
+        slLight.setLabelFormatter {
+            when (it.toInt()) {
+                1 -> "Full shade"
+                2 -> "Partial shade"
+                3 -> "Partial sun"
+                4 -> "Full sun"
+                else -> "unknown"
+            }
+        }
     }
 }
