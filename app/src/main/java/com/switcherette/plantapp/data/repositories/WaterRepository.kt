@@ -1,6 +1,7 @@
-package com.switcherette.plantapp.data.room
+package com.switcherette.plantapp.data.repositories
 
 import com.switcherette.plantapp.data.WaterEvent
+import com.switcherette.plantapp.data.room.WaterDao
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

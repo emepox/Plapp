@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
-import com.switcherette.plantapp.data.room.PlantRepository
-import com.switcherette.plantapp.data.room.WaterRepository
+import com.switcherette.plantapp.data.repositories.UserPlantRepository
+import com.switcherette.plantapp.data.repositories.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,15 +14,15 @@ import org.koin.core.component.inject
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PlantFormViewModel(
+class PlantForm2ViewModel(
     private val waterRepository: WaterRepository,
-    private val plantRepository: PlantRepository
+    private val userPlantRepository: UserPlantRepository
 ) : ViewModel(), KoinComponent {
 
     private val waterAlarm: WaterAlarm by inject()
     fun writePlant(userPlant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
-            val id = plantRepository.addNewUserPlant(userPlant)
+            val id = userPlantRepository.addNewUserPlant(userPlant)
             val waterEvent = createWaterEvent(userPlant, id)
             waterRepository.addNewWaterEvent(waterEvent)
             with(waterAlarm) {

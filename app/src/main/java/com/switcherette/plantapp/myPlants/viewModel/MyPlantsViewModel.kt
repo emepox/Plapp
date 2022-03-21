@@ -1,23 +1,19 @@
 package com.switcherette.plantapp.myPlants.viewModel
 
-import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.switcherette.plantapp.data.PlantId
 import com.switcherette.plantapp.data.UserPlant
-import com.switcherette.plantapp.data.repositories.PlantIdRepository
-import com.switcherette.plantapp.data.room.PlantRepository
+import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
 
 
 class MyPlantsViewModel(
-    private val userPlantRepo: PlantRepository
+    private val userPlantRepo: UserPlantRepository
 ) : ViewModel(){
 
     var userPlants: MutableLiveData<List<UserPlant>> = MutableLiveData()

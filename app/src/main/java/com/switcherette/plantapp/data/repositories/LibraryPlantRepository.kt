@@ -6,7 +6,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class PlantLibraryRepository: KoinComponent {
+class LibraryPlantRepository: KoinComponent {
     private val plantInfoDao : PlantInfoDao by inject()
 
     fun getPlantByName(name: String): PlantInfo?{

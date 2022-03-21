@@ -6,7 +6,6 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.switcherette.plantapp.BuildConfig
-import com.switcherette.plantapp.data.repositories.PlantIdRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.File
