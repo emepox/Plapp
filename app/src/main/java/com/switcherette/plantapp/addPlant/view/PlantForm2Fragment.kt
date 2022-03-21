@@ -35,16 +35,14 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
             btnSave.setOnClickListener {
 
                 val light = slLight.value
-                finalUserPlant = finalUserPlant?.copy(light = light.toString())
+                finalUserPlant = finalUserPlant?.copy(light = light.toInt())
 
                 val water = slWater.value
-                finalUserPlant = finalUserPlant?.copy(water = water.toString())
+                finalUserPlant = finalUserPlant?.copy(water = water.toInt())
 
-               // plantFormViewModel.writePlant()
+               plantFormViewModel.writePlant(finalUserPlant!!)
 
                 findNavController().navigate(R.id.action_plantForm2Fragment_to_myPlantsFragment)
-
-
 
             }
         }
@@ -53,16 +51,16 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater(
         finalUserPlant: UserPlant?
     ) {
-        if (finalUserPlant?.water.isNullOrBlank()) {
+        if (finalUserPlant?.water == null) {
             slWater.value = 3.0F
         } else {
-            finalUserPlant?.water?.let { slWater.value = it.toFloat() }
+            finalUserPlant.water.let { slWater.value = it.toFloat() }
         }
 
-        if (finalUserPlant?.light.isNullOrBlank()) {
+        if (finalUserPlant?.light == null) {
             slLight.value = 3.0F
         } else {
-            finalUserPlant?.light?.let { slLight.value = it.toFloat() }
+            finalUserPlant.light.let { slLight.value = it.toFloat() }
         }
     }
 

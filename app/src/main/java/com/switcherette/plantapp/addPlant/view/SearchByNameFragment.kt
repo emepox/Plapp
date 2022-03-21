@@ -26,8 +26,8 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
                 commonName = "Spezieller Kaktus",
                 family = "Kaktue realus",
                 description = "It hurts a lot if you touch it",
-                light = "4",
-                water = "1",
+                light = 4,
+                water = 1,
                 userId = Firebase.auth.currentUser?.uid.orEmpty()
             )
             val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)

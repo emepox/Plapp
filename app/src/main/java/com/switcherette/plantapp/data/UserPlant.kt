@@ -21,8 +21,8 @@ data class UserPlant(
     @ColumnInfo(name = "family") var family: String? = null,
     @ColumnInfo(name = "description") var description: String? = null,
     @ColumnInfo(name = "cultivation") var cultivation: String? = null,
-    @ColumnInfo(name = "light") var light: String = "",
-    @ColumnInfo(name = "water") var water: String = "",
+    @ColumnInfo(name = "light") var light: Int = 4,
+    @ColumnInfo(name = "water") var water: Int = 1,
     @ColumnInfo(name = "userId") var userId: String
 
 ) : Parcelable
