@@ -11,6 +11,7 @@ interface UserPlantDao {
     @Query("SELECT * FROM UserPlant WHERE userId LIKE (:userId)")
     fun getUserPlantsByUserId(userId: String): List<UserPlant>
 
+
     @Delete
     fun deleteUserPlant(userPlant: UserPlant)
 }

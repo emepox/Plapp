@@ -64,15 +64,19 @@ class MyPlantsFragment : Fragment(R.layout.fragment_my_plants) {
         recyclerView.layoutManager =
             GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
 
-        myPlantsVM.userPlants.observe(viewLifecycleOwner) {
-            val myPlantsAdapter = MyPlantsAdapter(it) { showPlantDetails() }
+        myPlantsVM.userPlants.observe(viewLifecycleOwner) { plant ->
+            val myPlantsAdapter = MyPlantsAdapter(plant) { showPlantDetails(it) }
             recyclerView.adapter = myPlantsAdapter
         }
 
     }
 
-    private fun showPlantDetails() {
-        TODO("Not yet implemented")
+    private fun showPlantDetails(userPlant: UserPlant) {
+        findNavController().navigate(R.id.action_myPlantsFragment_to_detailPlantFragment,
+            Bundle().apply {
+                putParcelable("plant", userPlant)
+            }
+        )
     }
 
     private fun setOptionsAnimation() {
