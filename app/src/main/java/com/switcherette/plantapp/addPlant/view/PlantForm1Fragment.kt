@@ -1,5 +1,6 @@
 package com.switcherette.plantapp.addPlant.view
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -30,6 +31,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         // get API info from Bundle
         val args: PlantForm1FragmentArgs by navArgs()
         val apiSuggestion = args.suggestionFromApi
+        val imageFromUser: Uri = args.photoFromUser
+
         // initialise UserPlant object
         finalUserPlant = UserPlant(
             UUID.randomUUID().toString(),
@@ -41,6 +44,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             null,
             4,
             15,
+            imageFromUser.path,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
 
@@ -62,6 +66,11 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                 finalUserPlant.commonName =
                     apiSuggestion?.plant_details?.common_names.toString().drop(1).dropLast(1)
             } else finalUserPlant.commonName = it.commonName
+
+            if (it?.commonName == null) {
+                finalUserPlant.image =
+                    apiSuggestion?.plant_details?.wiki_image?.value
+            } else finalUserPlant.image = it.img
 
             finalUserPlant.family = it?.family
             finalUserPlant.description = it?.description

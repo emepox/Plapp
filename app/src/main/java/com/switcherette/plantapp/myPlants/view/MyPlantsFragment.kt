@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.myPlants
+package com.switcherette.plantapp.myPlants.view
 
 import android.os.Bundle
 import android.view.View

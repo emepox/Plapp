@@ -1,19 +1,12 @@
 package com.switcherette.plantapp.addPlant.view
 
 
-import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.adapter.SuggestionsAdapter
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
@@ -69,7 +62,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
                         val action = SearchByPictureFragmentDirections
-                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion)
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, uri)
                         findNavController().navigate(action)
                     }
 

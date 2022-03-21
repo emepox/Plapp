@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/myPlantsFragment"
-        android:name="com.switcherette.plantapp.myPlants.MyPlantsFragment"
+        android:name="com.switcherette.plantapp.myPlants.view.MyPlantsFragment"
         android:label="fragment_my_plants"
         tools:layout="@layout/fragment_my_plants">
         <action
@@ -93,6 +93,11 @@
                 android:defaultValue="@null"
                 app:nullable="true"
                 app:argType="com.switcherette.plantapp.data.Suggestion" />
+            <argument
+                android:name="photoUri"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="Uri" />
         </action>
     </fragment>
     <fragment
@@ -113,6 +118,11 @@
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="com.switcherette.plantapp.data.Suggestion" />
+        <argument
+            android:name="photoFromUser"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="Uri" />
         <action
             android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
             app:destination="@id/plantForm2Fragment" >
