@@ -12,7 +12,7 @@ import org.koin.core.component.inject
 
 class SearchByNameAdapter(
     private val dataSet: List<PlantInfo>,
-    private var seePlantDetails: (PlantInfo) -> Unit
+    private var choosePlant: (PlantInfo) -> Unit
 ) : RecyclerView.Adapter<SearchByNameAdapter.PlantInfoViewHolder>() {
 
     class PlantInfoViewHolder(
@@ -21,7 +21,7 @@ class SearchByNameAdapter(
 
         val context: Context by inject()
 
-        fun bind(plant: PlantInfo, seePlantDetails: (PlantInfo) -> Unit) {
+        fun bind(plant: PlantInfo, choosePlant: (PlantInfo) -> Unit) {
 
             with(binding){
                 tvPlantName.text = plant.scientificName
@@ -48,8 +48,8 @@ class SearchByNameAdapter(
 //                    .into(binding.ivPlantImage);
 //            }
 
-            binding.root.setOnClickListener {
-                seePlantDetails(plant)
+            binding.btnChoose.setOnClickListener {
+                choosePlant(plant)
             }
         }
     }
@@ -65,7 +65,7 @@ class SearchByNameAdapter(
     }
 
     override fun onBindViewHolder(holderInfo: PlantInfoViewHolder, position: Int) {
-        holderInfo.bind(dataSet[position], seePlantDetails)
+        holderInfo.bind(dataSet[position], choosePlant)
     }
 
 
