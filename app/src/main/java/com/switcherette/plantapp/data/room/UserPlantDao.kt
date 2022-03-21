@@ -4,7 +4,7 @@ import androidx.room.*
 import com.switcherette.plantapp.data.UserPlant
 
 @Dao
-interface PlantDao {
+interface UserPlantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNewUserPlant(userPlant: UserPlant): Long
 

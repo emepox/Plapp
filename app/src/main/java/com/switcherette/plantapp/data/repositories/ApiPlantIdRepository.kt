@@ -19,7 +19,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 
-class PlantIdRepository : KoinComponent {
+class ApiPlantIdRepository : KoinComponent {
 
     private val BASE_URL = "https://api.plant.id/v2/"
     private val retrofit = createRetrofit()
