@@ -1,5 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PlantApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_photos"><u>NO PHOTOS, PLEASE!</u></string>
+    <string name="no_guess"><u>YOU GOT IT WRONG.\n I\'D RATHER CHOOSE FROM A LIST</u></string>
+    <string name="next_step">NEXT STEP</string>
+    <string name="first_step">First, let\'s see what\n\ you\'ve got in there</string>
+    <string name="second_step">Is this your plant?</string>
+    <string name="not_a_plant">This does not seem to be a plant…\n\ you tricked us!</string>
+    <string name="your_plant_could_be">Here are our guesses:</string>
+    <string name="my_plants">MY PLANTS</string>
+    <string name="congratulations_to_your_new_green_friend">Congratulations to your new green friend!</string>
+    <string name="you_are_nearly_done">You are nearly done!</string>
+    <string name="light_and_water">Please make sure your green friend\n gets the right amount of light and water</string>
+    <string name="my_profile">MY PROFILE</string>
+    <string name="add_plant">ADD PLANT</string>
+    <string name="add_plant_to_the_family">Add plant to the family</string>
+    <string name="my_plant_tasks">MY PLANT TASKS</string>
+    <string name="plant_library">PLANT LIBRARY</string>
 </resources>

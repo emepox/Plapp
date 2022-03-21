@@ -34,3 +34,4 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         }
     }
 }
+

@@ -20,5 +20,13 @@ data class Suggestion(
 @Parcelize
 data class PlantDetails(
     val common_names: List<String>?,
-    val scientific_name: String
+    val scientific_name: String,
+    val wiki_image: WikiImage?
 ) : Parcelable
+
+@Parcelize
+data class WikiImage(
+    val value: String,
+    val citation: String
+) : Parcelable
+

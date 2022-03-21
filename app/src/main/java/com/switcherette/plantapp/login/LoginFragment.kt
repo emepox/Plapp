@@ -33,7 +33,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         // Initialize Firebase Auth
         auth = Firebase.auth
-        Log.e("loginCurrentUser", "${auth.currentUser}")
+        Log.e("loginCurrentUser", "${auth.currentUser?.uid}")
+
 
         // Check if user is signed in (non-null) and update UI accordingly.
             val currentUser = auth.currentUser
@@ -59,6 +60,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val signInIntent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
+                    .setLogo(R.drawable.plapp_logo)
+                    .setTheme(R.style.LoginTheme)
                     .build()
                 signInLauncher.launch(signInIntent)
             }
