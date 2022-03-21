@@ -1,13 +1,10 @@
 package com.switcherette.plantapp.di
 
 
-import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import androidx.room.Room
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm1ViewModel
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
-import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
+import com.switcherette.plantapp.addPlant.viewModel.*
 import com.switcherette.plantapp.data.repositories.ApiPlantIdRepository
-import com.switcherette.plantapp.data.repositories.LibraryPlantRepository
+import com.switcherette.plantapp.data.repositories.PlantInfoRepository
 import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
 import com.switcherette.plantapp.home.HomePlantViewModel
 import com.switcherette.plantapp.data.room.AppDB
@@ -35,12 +32,13 @@ object KoinGraph {
         single { UserPlantRepository() }
         single { ApiPlantIdRepository() }
         single { RandomQuotesRepository() }
-        single { LibraryPlantRepository() }
+        single { PlantInfoRepository() }
         viewModel { SearchByPictureViewModel(get()) }
         viewModel { AddPlantPictureViewModel() }
         viewModel { HomePlantViewModel(get(), get()) }
         viewModel { PlantForm1ViewModel(get()) }
         viewModel { PlantForm2ViewModel(get(), get()) }
         viewModel { MyPlantsViewModel(get()) }
+        viewModel { SearchByNameViewModel(get()) }
     }
 }
