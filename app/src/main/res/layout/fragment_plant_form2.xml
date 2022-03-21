@@ -24,25 +24,25 @@
         android:id="@+id/tvTextSecondPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:gravity="center"
         android:padding="16dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:text="@string/you_are_nearly_done"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/headerAddPlant" />
 
     <TextView
         android:id="@+id/tvTextSecondPage2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:gravity="center"
         android:paddingStart="16dp"
-
         android:paddingEnd="16dp"
+
         android:paddingBottom="32dp"
         android:text="@string/light_and_water"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvTextSecondPage" />
 
@@ -50,46 +50,28 @@
         android:id="@+id/llPlantFormName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTextSecondPage2" >
+        app:layout_constraintTop_toBottomOf="@id/tvTextSecondPage2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="Light"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/FirebaseUI.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:hint="Light"
-            android:minWidth="200dp"
-            android:textColorHint="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etLight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:inputType="textMultiLine|textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:contentDescription="Light"
             android:stepSize="1.0"
-            android:value="3"
             android:valueFrom="0.0"
             android:valueTo="5.0"
             app:labelBehavior="floating"
@@ -101,28 +83,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="Water"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/FirebaseUI.TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:hint="Water"
-            android:minWidth="200dp"
-            android:textColorHint="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etWater"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:inputType="textMultiLine|textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slWater"
@@ -130,7 +94,6 @@
             android:layout_height="wrap_content"
             android:contentDescription="Water"
             android:stepSize="1.0"
-            android:value="3"
             android:valueFrom="0.0"
             android:valueTo="5.0"
             app:labelBehavior="floating"
@@ -146,12 +109,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
         android:paddingVertical="15dp"
         android:text="@string/add_plant_to_the_family"
-        android:backgroundTint="@color/white"
         android:textColor="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
