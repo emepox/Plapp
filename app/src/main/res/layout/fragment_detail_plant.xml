@@ -44,19 +44,6 @@
 
 
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clFamily"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ivDetailPicture"
-        app:layout_constraintStart_toStartOf="parent"
-        android:paddingHorizontal="20dp"
-        >
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,7 +55,6 @@
             android:id="@+id/clCare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/clFamily"
             app:layout_constraintStart_toStartOf="parent"
             android:paddingVertical="15dp"
             android:paddingHorizontal="20dp"
