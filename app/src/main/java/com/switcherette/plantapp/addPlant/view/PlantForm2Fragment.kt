@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
+import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,7 +41,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
                 val water = slWater.value
                 finalUserPlant = finalUserPlant?.copy(water = waterConverter.entries.find{ it.value == water.toInt() }!!.key )
 
-               plantFormViewModel.writePlant(finalUserPlant!!)
+               plantForm2ViewModel.writePlant(finalUserPlant!!)
 
                 findNavController().navigate(R.id.action_plantForm2Fragment_to_myPlantsFragment)
 
