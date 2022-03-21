@@ -36,9 +36,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
                 finalUserPlant = finalUserPlant?.copy(water = water.toString())
 
             }
-
         }
-
     }
 
     private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater(
@@ -61,10 +59,11 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
         slWater.setLabelFormatter {
             when (it.toInt()) {
                 1 -> "every 3 days"
-                2 -> "every week"
-                3 -> "every 2 weeks"
-                4 -> "every 3 weeks"
-                5 -> "monthly"
+                2 -> "every 5 days"
+                3 -> "every 7 days"
+                4 -> "every 14 days"
+                5 -> "every 15 days"
+                6 -> "every 30 days"
                 else -> "unknown"
             }
         }
@@ -73,38 +72,12 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private fun FragmentPlantForm2Binding.setLabelsForLight() {
         slLight.setLabelFormatter {
             when (it.toInt()) {
-                1 -> "shadow"
-                2 -> "half shadow"
-                3 -> "medium"
-                4 -> "partly sun"
-                5 -> "direct sun"
+                1 -> "Full shade"
+                2 -> "Partial shade"
+                3 -> "Partial sun"
+                4 -> "Full sun"
                 else -> "unknown"
             }
         }
     }
 }
-
-/* btnSave.setOnClickListener {
-
-     etLight.text.toString().takeIf { it.isNotBlank() }?.let {
-         finalUserPlant = finalUserPlant?.copy(light = it)
-     } ?: run {
-         Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
-             .show()
-         etLight.error = "Please fill this field"
-     }
-
-     etWater.text.toString().takeIf { it.isNotBlank() }?.let {
-         finalUserPlant = finalUserPlant?.copy(water = it)
-     } ?: run {
-         Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT)
-             .show()
-         etWater.error = "Please fill this field"
-     }
-
-
-     finalUserPlant?.userId = Firebase.auth.currentUser?.uid!!
-
-
-}
-*/
