@@ -16,7 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.databinding.FragmentLoginBinding
-import com.switcherette.plantapp.room.AppDB
+import com.switcherette.plantapp.data.room.AppDB
 
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -60,7 +60,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val signInIntent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
-                    //.setLogo(R.drawable.plant_logo)
+                    .setLogo(R.drawable.plapp_logo)
                     .setTheme(R.style.LoginTheme)
                     .build()
                 signInLauncher.launch(signInIntent)

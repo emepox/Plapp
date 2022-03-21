@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.Splash"
+            android:theme="@style/Theme.PlantApp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

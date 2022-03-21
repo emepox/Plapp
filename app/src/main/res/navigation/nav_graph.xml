@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/myPlantsFragment"
-        android:name="com.switcherette.plantapp.myPlants.MyPlantsFragment"
+        android:name="com.switcherette.plantapp.myPlants.view.MyPlantsFragment"
         android:label="fragment_my_plants"
         tools:layout="@layout/fragment_my_plants">
         <action
@@ -55,6 +55,7 @@
             android:id="@+id/action_myProfileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+<<<<<<< HEAD
     <fragment
         android:id="@+id/plantFormFragment"
         android:name="com.switcherette.plantapp.addPlant.view.PlantFormFragment"
@@ -64,6 +65,8 @@
             android:id="@+id/action_plantFormFragment_to_myPlantsFragment"
             app:destination="@id/myPlantsFragment" />
     </fragment>
+=======
+>>>>>>> staging
 
     <fragment
         android:id="@+id/addPlantPictureFragment"
@@ -77,17 +80,24 @@
             android:id="@+id/action_addPlantPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
     </fragment>
-
-
     <fragment
+<<<<<<< HEAD
 
+=======
+>>>>>>> staging
         android:id="@+id/searchByNameFragment"
         android:name="com.switcherette.plantapp.addPlant.view.SearchByNameFragment"
         android:label="fragment_search_by_name"
         tools:layout="@layout/fragment_search_by_name">
         <action
             android:id="@+id/action_searchByNameFragment_to_plantForm1Fragment"
-            app:destination="@id/plantForm1Fragment" />
+            app:destination="@id/plantForm1Fragment" >
+            <argument
+                android:name="userPlant"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.switcherette.plantapp.data.UserPlant" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/searchByPictureFragment"
@@ -95,11 +105,30 @@
         android:label="fragment_search_by_picture"
         tools:layout="@layout/fragment_search_by_picture">
         <action
+<<<<<<< HEAD
             android:id="@+id/action_searchByPictureFragment_to_plantFormFragment"
             app:destination="@id/plantFormFragment" />
         <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
+=======
+            android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment" />
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment" >
+            <argument
+                android:name="suggestionFromApi"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.switcherette.plantapp.data.Suggestion" />
+            <argument
+                android:name="photoUri"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="string" />
+        </action>
+>>>>>>> staging
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -114,13 +143,21 @@
         android:id="@+id/plantForm1Fragment"
         android:name="com.switcherette.plantapp.addPlant.view.PlantForm1Fragment"
         android:label="PlantForm1Fragment">
-
         <argument
-            android:name="userPlantFromAPI"
+            android:name="suggestionFromApi"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.Suggestion" />
+        <argument
+            android:name="photoFromUser"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="userPlant"
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="com.switcherette.plantapp.data.UserPlant" />
-
         <action
             android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
             app:destination="@id/plantForm2Fragment" >

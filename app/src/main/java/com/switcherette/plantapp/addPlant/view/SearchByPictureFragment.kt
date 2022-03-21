@@ -13,6 +13,7 @@ import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
     private val searchPicVM: SearchByPictureViewModel by viewModel()
@@ -51,20 +52,18 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
 
     private fun observePlantId() {
-        searchPicVM.plantId.observe(viewLifecycleOwner) {
+        searchPicVM.plantId.observe(viewLifecycleOwner) { it ->
             if (it != null) {
                 if (it.is_plant) {
                     val recyclerView = binding.rvSuggestions
 
                     recyclerView.layoutManager =
-                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) {
-                        findNavController().navigate(R.id.action_searchByPictureFragment_to_plantForm1Fragment,
-                            Bundle().apply {
-                                putParcelable("suggestion", it)
-                            }
-                        )
+                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
+                        val action = SearchByPictureFragmentDirections
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, uri.path)
+                        findNavController().navigate(action)
                     }
 
                     recyclerView.adapter = suggestionsAdapter
@@ -80,3 +79,8 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         }
     }
 }
+
+
+
+
+

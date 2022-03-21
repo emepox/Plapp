@@ -9,7 +9,7 @@ import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentHomePlantBinding
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
-import com.switcherette.plantapp.room.AppDB
+import com.switcherette.plantapp.data.room.AppDB
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -26,6 +26,7 @@ class HomePlantFragment : Fragment(R.layout.fragment_home_plant) {
         homePlantVM.getRandomQuote()
         homePlantVM.quote.observe(viewLifecycleOwner){
             binding.tvHomePlantFact.text = it.q
+            binding.tvHomePlantFactAuthor.text = it.a
         }
 
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.RandomQuote
 import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
-import com.switcherette.plantapp.room.AppDB
+import com.switcherette.plantapp.data.room.AppDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

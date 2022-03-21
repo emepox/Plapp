@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.PlantId
-import com.switcherette.plantapp.data.repositories.PlantIdRepository
+import com.switcherette.plantapp.data.repositories.ApiPlantIdRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,14 +13,14 @@ import org.koin.core.component.KoinComponent
 
 
 class SearchByPictureViewModel(
-    private val plantIdRepo: PlantIdRepository
+    private val apiPlantIdRepo: ApiPlantIdRepository
 ) : ViewModel(), KoinComponent {
 
     var plantId: MutableLiveData<PlantId> = MutableLiveData()
 
     fun identifyPlant(path: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = plantIdRepo.getPlantId(path)
+            val result = apiPlantIdRepo.getPlantId(path)
             withContext(Dispatchers.Main){
                 plantId.value = result!!
             }
