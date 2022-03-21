@@ -30,8 +30,8 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
                 water = "1",
                 userId = Firebase.auth.currentUser?.uid.orEmpty()
             )
-            val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)
-            findNavController().navigate(action)
+            //val action = SearchByNameFragmentDirections.actionSearchByNameFragmentToPlantForm1Fragment(mockUserPlant)
+            //findNavController().navigate(action)
         }
     }
 }
