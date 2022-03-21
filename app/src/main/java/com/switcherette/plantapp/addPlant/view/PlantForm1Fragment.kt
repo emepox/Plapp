@@ -28,7 +28,6 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             btnNext.setOnClickListener {
                 var finalUserPlant = args.userPlantFromAPI
 
-                // Check inputs
                 binding.etNickname.text.toString().takeIf { it.isNotBlank() }?.let {
                     finalUserPlant = finalUserPlant?.copy(nickname = it)
                 } ?: run {
@@ -46,7 +45,6 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                     finalUserPlant = finalUserPlant?.copy(scientificName = it)
                 }
 
-                // All Good?
                 val action = PlantForm1FragmentDirections
                     .actionPlantForm1FragmentToPlantForm2Fragment(finalUserPlant)
                 findNavController().navigate(action)
