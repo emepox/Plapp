@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.switcherette.plantapp.data.UserPlant
-import com.switcherette.plantapp.data.WikiImage
 import com.switcherette.plantapp.databinding.ItemPlantMyplantsBinding
-import com.switcherette.plantapp.databinding.ItemSuggestionBinding
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.File
@@ -25,22 +23,27 @@ class MyPlantsAdapter(
         val context: Context by inject()
 
         fun bind(plant: UserPlant, seePlantDetails: (UserPlant) -> Unit) {
-
             binding.tvPlantName.text = plant.nickname
 
-            if (plant.image?.contains("http")!!){
-                Glide
-                    .with(context)
-                    .load(File(plant.image!!))
-                    .centerCrop()
-                    .into(binding.ivPlantImage);
-            } else {
-                Glide
-                    .with(context)
-                    .load(plant.image)
-                    .centerCrop()
-                    .into(binding.ivPlantImage);
-            }
+            Glide
+                .with(context)
+                .load(plant.image)
+                .centerCrop()
+                .into(binding.ivPlantImage);
+
+//            if (plant.image?.contains("http")!!){
+//                Glide
+//                    .with(context)
+//                    .load(File(plant.image!!))
+//                    .centerCrop()
+//                    .into(binding.ivPlantImage);
+//            } else {
+//                Glide
+//                    .with(context)
+//                    .load(plant.image)
+//                    .centerCrop()
+//                    .into(binding.ivPlantImage);
+//            }
 
             binding.root.setOnClickListener {
                 seePlantDetails(plant)

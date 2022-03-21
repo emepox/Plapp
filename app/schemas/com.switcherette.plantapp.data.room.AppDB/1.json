@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3ac1c6d2475760615174b667ec995f0e",
+    "identityHash": "35b7c8ac76b645ac43c4d3519e887e2f",
     "entities": [
       {
         "tableName": "WaterEvent",
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "UserPlant",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nickname` TEXT NOT NULL, `scientificName` TEXT, `commonName` TEXT, `family` TEXT, `description` TEXT, `cultivation` TEXT, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `userId` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nickname` TEXT NOT NULL, `scientificName` TEXT, `commonName` TEXT, `family` TEXT, `description` TEXT, `cultivation` TEXT, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `image` TEXT, `userId` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -99,6 +99,12 @@
             "columnName": "water",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "userId",
@@ -194,7 +200,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3ac1c6d2475760615174b667ec995f0e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '35b7c8ac76b645ac43c4d3519e887e2f')"
     ]
   }
 }

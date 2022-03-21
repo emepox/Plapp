@@ -31,7 +31,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         // get API info from Bundle
         val args: PlantForm1FragmentArgs by navArgs()
         val apiSuggestion = args.suggestionFromApi
-        val imageFromUser: Uri = args.photoFromUser
+        val imageFromUser: String? = args.photoFromUser
 
         // initialise UserPlant object
         finalUserPlant = UserPlant(
@@ -42,9 +42,9 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             null,
             null,
             null,
-            4,
-            15,
-            imageFromUser.path,
+            1,
+            1,
+            imageFromUser,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
 
@@ -75,8 +75,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             finalUserPlant.family = it?.family
             finalUserPlant.description = it?.description
             finalUserPlant.cultivation = it?.cultivation
-            finalUserPlant.light = it?.light ?: 4
-            finalUserPlant.water = it?.water ?: 15
+            finalUserPlant.light = it?.light ?: 1
+            finalUserPlant.water = it?.water ?: 1
 
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)
