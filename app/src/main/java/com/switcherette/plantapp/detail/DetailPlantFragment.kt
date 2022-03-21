@@ -23,5 +23,17 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
         Log.e("myplant", plant.toString())
 
+        with(binding) {
+            tvDetailNickname.text = plant.nickname
+            tvDetailCommonName.text = plant.commonName
+            tvCareWatering.text = plant.water.toString()
+            tvCareLight.text = plant.light.toString()
+            tvDetailScientificName.text = plant.scientificName
+            tvDetailFamily.text = plant.family
+            tvDetailDescription.text = plant.description
+            tvDetailCultivation.text = plant.cultivation
+
+        }
+
     }
 }
