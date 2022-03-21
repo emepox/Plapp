@@ -44,8 +44,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             null,
             null,
             null,
-            2,
-            15,
+            1,
+            3,
             imageFromUser,
             Firebase.auth.currentUser?.uid.orEmpty()
         )

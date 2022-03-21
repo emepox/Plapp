@@ -37,6 +37,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/tvDetailCommonName"
             android:layout_width="match_parent"
@@ -135,7 +136,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.card.MaterialCardView
+
+        <TextView
+            android:id="@+id/tvWateringTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="20dp"
@@ -186,6 +189,7 @@
         </com.google.android.material.card.MaterialCardView>
 
 
+
     </LinearLayout>
 
 
@@ -199,6 +203,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
+
         <TextView
             android:id="@+id/tvInfo"
             android:layout_width="match_parent"
@@ -208,8 +213,8 @@
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-            />
 
+            />
 
         <LinearLayout
             android:id="@+id/llFamily"
@@ -218,11 +223,9 @@
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvInfo"
-
             >
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/tvDetailScientificName"
+            <ImageView
+                android:id="@+id/ivCommonNameIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -232,17 +235,17 @@
                 app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
                 app:layout_constraintEnd_toEndOf="parent"
 
+
                 />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/tvDetailFamily"
+
+            <TextView
+                android:id="@+id/tvDetailCommonName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#79009688"
                 android:text="Rosaea"
-                app:layout_constraintBottom_toBottomOf="@id/ivDetailPicture"
-                app:layout_constraintEnd_toEndOf="parent"
-
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 />
 
 
@@ -260,7 +263,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llFamily" />
-
 
         <TextView
             android:id="@+id/tvDetailCultivationTitle"
