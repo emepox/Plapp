@@ -75,8 +75,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             finalUserPlant.family = it?.family
             finalUserPlant.description = it?.description
             finalUserPlant.cultivation = it?.cultivation
-            finalUserPlant.light = it?.light ?: 1
-            finalUserPlant.water = it?.water ?: 1
+            finalUserPlant.light = it?.light ?: 2
+            finalUserPlant.water = it?.water ?: 15
 
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)
