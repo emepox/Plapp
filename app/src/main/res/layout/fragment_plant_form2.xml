@@ -67,15 +67,14 @@
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slLight"
+            style="@style/Myslider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:contentDescription="Light"
             android:stepSize="1.0"
-            android:valueFrom="0.0"
+            android:valueFrom="1.0"
             android:valueTo="5.0"
-            app:labelBehavior="floating"
-            app:labelStyle="@color/white"
             app:thumbColor="@color/white"
             app:tickColor="@color/white"
             app:trackColor="@color/white" />
@@ -90,17 +89,17 @@
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slWater"
+            style="@style/Myslider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="Water"
             android:stepSize="1.0"
-            android:valueFrom="0.0"
+            android:valueFrom="1.0"
             android:valueTo="5.0"
-            app:labelBehavior="floating"
-            app:labelStyle="@color/white"
             app:thumbColor="@color/white"
             app:tickColor="@color/white"
             app:trackColor="@color/white" />
+
 
     </LinearLayout>
 
