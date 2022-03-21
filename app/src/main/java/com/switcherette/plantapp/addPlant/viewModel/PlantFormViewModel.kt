@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
-import com.switcherette.plantapp.room.WaterRepository
+import com.switcherette.plantapp.data.room.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

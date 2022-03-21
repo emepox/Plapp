@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.room
+package com.switcherette.plantapp.data.room
 
 import androidx.room.Dao
 import androidx.room.Query

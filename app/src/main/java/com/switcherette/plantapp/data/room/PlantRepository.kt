@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.room
+package com.switcherette.plantapp.data.room
 
 import com.switcherette.plantapp.data.UserPlant
 import org.koin.core.component.KoinComponent

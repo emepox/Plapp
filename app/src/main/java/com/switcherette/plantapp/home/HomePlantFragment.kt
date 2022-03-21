@@ -9,7 +9,7 @@ import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentHomePlantBinding
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
-import com.switcherette.plantapp.room.AppDB
+import com.switcherette.plantapp.data.room.AppDB
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

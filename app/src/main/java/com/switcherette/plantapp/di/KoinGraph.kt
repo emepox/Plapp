@@ -8,8 +8,8 @@ import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.data.repositories.PlantIdRepository
 import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
 import com.switcherette.plantapp.home.HomePlantViewModel
-import com.switcherette.plantapp.room.AppDB
-import com.switcherette.plantapp.room.WaterRepository
+import com.switcherette.plantapp.data.room.AppDB
+import com.switcherette.plantapp.data.room.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

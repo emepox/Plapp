@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "60bee0911f5750fdc4153aa68bf7a70f",
+    "identityHash": "012f12bf57afcbdec55be910740d5160",
     "entities": [
       {
         "tableName": "WaterEvent",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "PlantInfo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `scientificName` TEXT NOT NULL, `commonName` TEXT NOT NULL, `family` TEXT NOT NULL, `description` TEXT NOT NULL, `cultivation` TEXT NOT NULL, `light` TEXT NOT NULL, `water` TEXT NOT NULL, `disease` TEXT NOT NULL, `img` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `scientificName` TEXT NOT NULL, `commonName` TEXT NOT NULL, `family` TEXT NOT NULL, `description` TEXT NOT NULL, `cultivation` TEXT NOT NULL, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `disease` TEXT NOT NULL, `img` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -159,13 +159,13 @@
           {
             "fieldPath": "light",
             "columnName": "light",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "water",
             "columnName": "water",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -194,7 +194,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '60bee0911f5750fdc4153aa68bf7a70f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '012f12bf57afcbdec55be910740d5160')"
     ]
   }
 }
