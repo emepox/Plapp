@@ -13,10 +13,14 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentDetailPlantBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
+
+    private val detailPlantVM: DetailPlantViewModel by viewModel()
 
     private lateinit var binding: FragmentDetailPlantBinding
     private lateinit var plant: UserPlant
@@ -116,7 +120,8 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         }
 
         btnDeletePlant.setOnClickListener {
-            Toast.makeText(requireContext(), "Clicked Delete", Toast.LENGTH_SHORT).show()
+            detailPlantVM.deletePlant(plant)
+            findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
 
         }
 

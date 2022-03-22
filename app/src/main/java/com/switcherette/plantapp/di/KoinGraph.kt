@@ -6,6 +6,7 @@ import com.switcherette.plantapp.addPlant.viewModel.*
 import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
 import com.switcherette.plantapp.data.repositories.*
 import com.switcherette.plantapp.data.room.AppDB
+import com.switcherette.plantapp.detail.DetailPlantViewModel
 import com.switcherette.plantapp.home.HomePlantViewModel
 import com.switcherette.plantapp.myPlants.viewModel.MyPlantsViewModel
 import com.switcherette.plantapp.utils.WaterAlarm
@@ -38,5 +39,7 @@ object KoinGraph {
         viewModel { MyPlantsViewModel(get()) }
         viewModel { CalendarViewModel(get()) }
         viewModel { SearchByNameViewModel(get()) }
+        viewModel { DetailPlantViewModel(get()) }
+
     }
 }
