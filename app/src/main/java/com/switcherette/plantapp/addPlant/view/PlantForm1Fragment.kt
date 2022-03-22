@@ -58,7 +58,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         apiSuggestion: Suggestion?,
         plantFromSearchByName: UserPlant?
     ) {
-        if (apiSuggestion != null && plantFromSearchByName == null) {
+        if (apiSuggestion != null) {
             getInfoFromPlantLibrary(apiSuggestion.plant_details.scientific_name)
             plantForm1VM.infoFromPlantLibrary.observe(viewLifecycleOwner) {
                 if (it?.scientificName == null) {
@@ -72,9 +72,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
                 if (finalUserPlant.image == null) {
                     if (it?.img == null) {
-                        val fileUri: Uri =
-                            Uri.parse("android.resource://com.switcherette.plantapp/" + R.drawable.plant_img)
-                        finalUserPlant.image = fileUri.path
+                        finalUserPlant.image = apiSuggestion.plant_details.wiki_image?.value
                     } else finalUserPlant.image = it.img
                 }
 
@@ -88,13 +86,16 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                 binding.etCommonName.setText(finalUserPlant.commonName)
                 handleOnClick(finalUserPlant)
             }
-        } else if (plantFromSearchByName != null && apiSuggestion == null) {
+        } else if (plantFromSearchByName != null) {
             finalUserPlant = plantFromSearchByName
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)
 
             handleOnClick(finalUserPlant)
 
+        } else {
+            finalUserPlant.image = R.drawable.plant_img.toString()
+            handleOnClick(finalUserPlant)
         }
 
 
