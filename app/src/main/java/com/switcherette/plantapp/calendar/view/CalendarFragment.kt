@@ -44,12 +44,24 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
                 val millis = convertEventDayToMillis(eventDay)
                 setHeadingForDay(millis)
                 calendarVM.getWaterEventByDate(millis)
+
+                calendarVM.getWaterEventByTimeRange(startTime(eventDay), endTime(eventDay))
             }
+
 
             private fun convertEventDayToMillis(eventDay: EventDay): Long {
                 val c = Calendar.getInstance()
                 c.time = eventDay.calendar.time
                 return c.timeInMillis
+
+                /*    return eventDay.calendar.let {
+                        it[Calendar.HOUR_OF_DAY] = 12
+                        it[Calendar.MINUTE] = 0
+                        it[Calendar.SECOND] = 0
+                        it[Calendar.MILLISECOND] = 0
+                        it.timeInMillis
+                    }*/
+
             }
 
             private fun setHeadingForDay(millis: Long) {
@@ -58,6 +70,27 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
 
                 binding.tvSelectedDate.text = dateSimpleDayFormat
             }
+
+            private fun startTime(eventDay: EventDay): Long {
+                return eventDay.calendar.let {
+                    it[Calendar.HOUR_OF_DAY] = 1
+                    it[Calendar.MINUTE] = 0
+                    it[Calendar.SECOND] = 0
+                    it[Calendar.MILLISECOND] = 0
+                    it.timeInMillis
+                }
+            }
+
+            private fun endTime(eventDay: EventDay): Long {
+                return eventDay.calendar.let {
+                    it[Calendar.HOUR_OF_DAY] = 23
+                    it[Calendar.MINUTE] = 0
+                    it[Calendar.SECOND] = 0
+                    it[Calendar.MILLISECOND] = 0
+                    it.timeInMillis
+                }
+            }
+
         })
     }
 

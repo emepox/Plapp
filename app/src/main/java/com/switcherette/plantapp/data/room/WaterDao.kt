@@ -18,6 +18,9 @@ interface WaterDao {
     @Query("SELECT * FROM WaterEvent WHERE repeatStart LIKE (:startDate) ")
     fun getWaterEventByDate(startDate: Long): List<WaterEvent>
 
+    @Query("SELECT * FROM WaterEvent WHERE repeatStart BETWEEN :startTime AND :endTime")
+    fun getWaterEventByTimeRange(startTime: Long, endTime: Long): List<WaterEvent>
+
     @Query("SELECT * FROM WaterEvent ORDER BY repeatStart ASC LIMIT 1")
     fun getFirstWaterEventByDate(): WaterEvent
 

@@ -30,7 +30,9 @@ class TasksAdapter(private val dataSet: List<WaterEvent>) :
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
         val waterEvent: WaterEvent = dataSet[position]
-        holder.plantNickname.text = userPlantRepo.getUserPlantByPlantId(waterEvent.plantId).nickname
+        val userPlant = userPlantRepo.getUserPlantByPlantId(waterEvent.plantId)
+
+        holder.plantNickname.text = userPlant.nickname
         holder.wateringFrequency.text = waterEvent.repeatInterval.toString()
     }
 
