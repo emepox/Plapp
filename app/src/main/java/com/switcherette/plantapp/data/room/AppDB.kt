@@ -13,6 +13,6 @@ import com.switcherette.plantapp.data.WaterEvent
 @Database(entities = [WaterEvent::class, UserPlant::class, PlantInfo::class], version = 1)
 abstract class AppDB: RoomDatabase(){
     abstract fun waterDao(): WaterDao
-    abstract fun plantDao(): PlantDao
+    abstract fun plantDao(): UserPlantDao
     abstract fun plantInfoDao(): PlantInfoDao
 }

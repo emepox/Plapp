@@ -21,11 +21,10 @@
 
             <ImageView
                 android:id="@+id/ivPlantImage"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_flower"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +55,7 @@
                 android:layout_marginStart="15dp"
                 tools:text="Placeholder for common names"
                 android:ellipsize="end"
-                android:lines="1"
+                android:lines="2"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"

@@ -1,18 +1,13 @@
 package com.switcherette.plantapp.di
 
 
-import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import androidx.room.Room
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm1ViewModel
-import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
-import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
-import com.switcherette.plantapp.data.repositories.PlantIdRepository
-import com.switcherette.plantapp.data.repositories.PlantLibraryRepository
-import com.switcherette.plantapp.data.repositories.RandomQuotesRepository
-import com.switcherette.plantapp.home.HomePlantViewModel
+import com.switcherette.plantapp.addPlant.viewModel.*
+import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
+import com.switcherette.plantapp.data.repositories.*
 import com.switcherette.plantapp.data.room.AppDB
-import com.switcherette.plantapp.data.room.PlantRepository
-import com.switcherette.plantapp.data.room.WaterRepository
+import com.switcherette.plantapp.home.HomePlantViewModel
+import com.switcherette.plantapp.myPlants.viewModel.MyPlantsViewModel
 import com.switcherette.plantapp.utils.WaterAlarm
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -21,7 +16,7 @@ object KoinGraph {
 
     val mainModule = module {
 
-      single {
+        single {
             Room.databaseBuilder(get(), AppDB::class.java, "AppDB")
                 .createFromAsset("PlantInfo.db")
                 .build()
@@ -31,14 +26,17 @@ object KoinGraph {
         single { get<AppDB>().plantInfoDao() }
         single { WaterAlarm(get()) }
         single { WaterRepository() }
-        single { PlantRepository() }
-        single { PlantIdRepository() }
+        single { UserPlantRepository() }
+        single { ApiPlantIdRepository() }
         single { RandomQuotesRepository() }
-        single { PlantLibraryRepository() }
+        single { PlantInfoRepository() }
         viewModel { SearchByPictureViewModel(get()) }
         viewModel { AddPlantPictureViewModel() }
         viewModel { HomePlantViewModel(get(), get()) }
         viewModel { PlantForm1ViewModel(get()) }
-        viewModel { PlantFormViewModel(get(), get()) }
+        viewModel { PlantForm2ViewModel(get(), get()) }
+        viewModel { MyPlantsViewModel(get()) }
+        viewModel { CalendarViewModel(get()) }
+        viewModel { SearchByNameViewModel(get()) }
     }
 }

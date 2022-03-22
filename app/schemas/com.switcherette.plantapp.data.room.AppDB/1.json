@@ -44,7 +44,7 @@
       },
       {
         "tableName": "UserPlant",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nickname` TEXT NOT NULL, `scientificName` TEXT, `commonName` TEXT, `family` TEXT, `description` TEXT, `cultivation` TEXT, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `userId` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nickname` TEXT NOT NULL, `scientificName` TEXT, `commonName` TEXT, `family` TEXT, `description` TEXT, `cultivation` TEXT, `light` INTEGER NOT NULL, `water` INTEGER NOT NULL, `image` TEXT, `userId` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -99,6 +99,12 @@
             "columnName": "water",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "userId",

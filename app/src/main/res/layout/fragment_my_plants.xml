@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myPlants.MyPlantsFragment">
+    tools:context=".myPlants.view.MyPlantsFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/headerMyPlants"
@@ -23,6 +23,7 @@
         android:id="@+id/rvMyPlants"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:orientation="vertical"
         android:paddingBottom="40dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

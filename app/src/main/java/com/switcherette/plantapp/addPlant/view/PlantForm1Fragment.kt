@@ -27,57 +27,65 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
         binding = FragmentPlantForm1Binding.bind(view)
 
-        // get API info from Bundle
         val args: PlantForm1FragmentArgs by navArgs()
+        // get API info (if coming from SearchByPicture)
         val apiSuggestion = args.suggestionFromApi
-        // initialise UserPlant object
-        finalUserPlant = UserPlant(
-            UUID.randomUUID().toString(),
-            "",
-            null,
-            null,
-            null,
-            null,
-            null,
-            4,
-            15,
-            Firebase.auth.currentUser?.uid.orEmpty()
-        )
+        val imageFromUser: String? = args.photoFromUser
+        // get Plant info (if coming from SearchByName)
+        val plantFromSearchByName = args.userPlant
 
-        apiSuggestion?.plant_details?.scientific_name?.let { getInfoFromPlantLibrary(it) }
-        observeFinalUserPlant(finalUserPlant, apiSuggestion)
-        handleOnClick(finalUserPlant)
+        // initialise UserPlant object
+        finalUserPlant = UserPlant(UUID.randomUUID().toString(), "", null, null, null, null, null, 2, 15, imageFromUser, Firebase.auth.currentUser?.uid.orEmpty())
+
+        fillForm(apiSuggestion, plantFromSearchByName)
     }
 
-    private fun observeFinalUserPlant(
-        finalUserPlant: UserPlant,
-        apiSuggestion: Suggestion?
+    private fun fillForm(
+        apiSuggestion: Suggestion?,
+        plantFromSearchByName: UserPlant?
     ) {
-        plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
-            if (it?.scientificName == null) {
-                finalUserPlant.scientificName = apiSuggestion?.plant_details?.scientific_name
-            } else finalUserPlant.scientificName = it.scientificName
+        if (apiSuggestion != null && plantFromSearchByName == null) {
+            getInfoFromPlantLibrary(apiSuggestion.plant_details.scientific_name)
+            plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
+                if (it?.scientificName == null) {
+                    finalUserPlant.scientificName = apiSuggestion.plant_details.scientific_name
+                } else finalUserPlant.scientificName = it.scientificName
 
-            if (it?.commonName == null) {
-                finalUserPlant.commonName =
-                    apiSuggestion?.plant_details?.common_names.toString().drop(1).dropLast(1)
-            } else finalUserPlant.commonName = it.commonName
+                if (it?.commonName == null) {
+                    finalUserPlant.commonName =
+                        apiSuggestion.plant_details.common_names.toString().drop(1).dropLast(1)
+                } else finalUserPlant.commonName = it.commonName
 
-            finalUserPlant.family = it?.family
-            finalUserPlant.description = it?.description
-            finalUserPlant.cultivation = it?.cultivation
-            finalUserPlant.light = it?.light ?: 4
-            finalUserPlant.water = it?.water ?: 15
+                if (it?.img == null) {
+                    finalUserPlant.image =
+                        apiSuggestion.plant_details.wiki_image?.value
+                } else finalUserPlant.image = it.img
 
+                finalUserPlant.family = it?.family
+                finalUserPlant.description = it?.description
+                finalUserPlant.cultivation = it?.cultivation
+                finalUserPlant.light = it?.light ?: 2
+                finalUserPlant.water = it?.water ?: 15
+
+                binding.etScientificName.setText(finalUserPlant.scientificName)
+                binding.etCommonName.setText(finalUserPlant.commonName)
+                handleOnClick(finalUserPlant)
+            }
+        } else if (plantFromSearchByName != null && apiSuggestion == null) {
+            finalUserPlant = plantFromSearchByName
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)
 
+            handleOnClick(finalUserPlant)
+
         }
+
+
     }
+
 
     private fun handleOnClick(userPlant: UserPlant) {
         var finalUserPlant = userPlant
-
 
         binding.btnNext.setOnClickListener {
             with(binding) {

@@ -44,5 +44,8 @@
         <!-- color used by the text in the Tooltip -->
         <item name="colorOnPrimary">@color/white</item>
     </style>
+    <style name="myChip" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textStyle">italic</item>
+    </style>
 
 </resources>
