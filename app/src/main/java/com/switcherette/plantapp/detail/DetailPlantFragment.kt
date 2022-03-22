@@ -49,7 +49,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     private lateinit var btnEditPlant: FloatingActionButton
     private lateinit var btnDeletePlant: FloatingActionButton
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
