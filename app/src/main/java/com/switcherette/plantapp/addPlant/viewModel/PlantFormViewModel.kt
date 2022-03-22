@@ -24,16 +24,20 @@ class PlantFormViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val id = plantRepository.addNewUserPlant(userPlant)
             val waterEvent = createWaterEvent(userPlant, id)
-            waterRepository.addNewWaterEvent(waterEvent)
+            val firstEvent = waterRepository.getFirstWaterEventByDate()
             with(waterAlarm) {
-                if (isAlarmSet()) {
-                    val nextEvent = waterRepository.getFirstWaterEventByDate().repeatStart
-                    if (nextEvent > waterEvent.repeatStart) createAlarm(waterEvent.repeatStart)
-                } else {
+                if (firstEvent == null) {
+                    waterRepository.addNewWaterEvent(waterEvent)
                     createAlarm(waterEvent.repeatStart)
+                } else {
+                    if (isAlarmSet()) {
+                        val nextEvent = firstEvent.repeatStart
+                        if (nextEvent > waterEvent.repeatStart) createAlarm(waterEvent.repeatStart)
+                    }
                 }
+                waterRepository.addNewWaterEvent(waterEvent)
             }
-
+            waterAlarm.isAlarmSet()
         }
     }
 

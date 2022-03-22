@@ -43,7 +43,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
                plantFormViewModel.writePlant(finalUserPlant!!)
 
-                findNavController().navigate(R.id.action_plantForm2Fragment_to_myPlantsFragment)
+                findNavController().navigate(R.id.myPlantsFragment)
 
             }
         }

@@ -23,7 +23,7 @@ class WaterRepository : KoinComponent {
         return waterDao.getWaterEventByDate(startDate)
     }
 
-    fun getFirstWaterEventByDate(): WaterEvent{
+    fun getFirstWaterEventByDate(): WaterEvent?{
         return  waterDao.getFirstWaterEventByDate()
     }
 
