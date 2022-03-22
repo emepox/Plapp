@@ -9,10 +9,10 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.switcherette.plantapp.databinding.ActivityMainBinding
+import com.switcherette.plantapp.utils.CHANNEL_ID
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    private val CHANNEL_ID = "channel_water"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

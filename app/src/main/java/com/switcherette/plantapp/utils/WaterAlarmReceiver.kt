@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavDeepLinkBuilder
+import com.switcherette.plantapp.MainActivity
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import kotlinx.coroutines.CoroutineScope
@@ -17,14 +18,13 @@ import org.koin.core.component.inject
 
 class WaterAlarmReceiver : BroadcastReceiver(), KoinComponent {
 
-    private val CHANNEL_ID = "channel_water"
-    private val notificationId = "water".hashCode()
     private val waterAlarm: WaterAlarm by inject()
     private val waterRepository: WaterRepository by inject()
 
     override fun onReceive(context: Context?, intent: Intent?) {
         intent!!.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pendingIntent = NavDeepLinkBuilder(context!!)
+            .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
             .setDestination(R.id.calendarFragment)
             .createPendingIntent()
@@ -39,7 +39,7 @@ class WaterAlarmReceiver : BroadcastReceiver(), KoinComponent {
             .setAutoCancel(true)
 //            .setStyle(NotificationCompat.BigTextStyle().bigText("")
         with(NotificationManagerCompat.from(context)) {
-            notify(notificationId, builder.build())
+            notify(WATER_NOTIFICATION_ID, builder.build())
 
         }
         setNewAlarm()

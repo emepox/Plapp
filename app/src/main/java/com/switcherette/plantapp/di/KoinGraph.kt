@@ -8,6 +8,7 @@ import com.switcherette.plantapp.data.repositories.*
 import com.switcherette.plantapp.data.room.AppDB
 import com.switcherette.plantapp.home.HomePlantViewModel
 import com.switcherette.plantapp.myPlants.viewModel.MyPlantsViewModel
+import com.switcherette.plantapp.profile.MyProfileViewModel
 import com.switcherette.plantapp.utils.WaterAlarm
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -21,6 +22,7 @@ object KoinGraph {
                 .createFromAsset("PlantInfo.db")
                 .build()
         }
+        single { SharedPrefsRepository(get()) }
         single { get<AppDB>().waterDao() }
         single { get<AppDB>().plantDao() }
         single { get<AppDB>().plantInfoDao() }
@@ -34,9 +36,10 @@ object KoinGraph {
         viewModel { AddPlantPictureViewModel() }
         viewModel { HomePlantViewModel(get(), get()) }
         viewModel { PlantForm1ViewModel(get()) }
-        viewModel { PlantForm2ViewModel(get(), get()) }
+        viewModel { PlantForm2ViewModel(get(), get(), get(), get()) }
         viewModel { MyPlantsViewModel(get()) }
         viewModel { CalendarViewModel(get()) }
         viewModel { SearchByNameViewModel(get()) }
+        viewModel { MyProfileViewModel(get(), get(), get()) }
     }
 }
