@@ -29,4 +29,10 @@ class DetailPlantViewModel(
         }
     }
 
+    fun editPlant(plant: UserPlant) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userPlantRepo.addNewUserPlant(plant)
+        }
+    }
+
 }
