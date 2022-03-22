@@ -25,6 +25,8 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     private lateinit var binding: FragmentDetailPlantBinding
     private lateinit var plant: UserPlant
 
+    private var saveIcon : Boolean = false
+
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
             requireContext(),
@@ -61,11 +63,12 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
         plant = arguments?.getParcelable("plant")!!
 
-        Log.e("myplant", plant.family.toString())
+        Log.e("myplant", "${plant.image}")
 
         setOptionsAnimation()
 
         with(binding) {
+
 
             tvDetailNickname.text = plant.nickname
             tvDetailCommonName.text = plant.commonName?: "No common name data"
@@ -116,7 +119,20 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
 
         btnEditPlant.setOnClickListener {
-            Toast.makeText(requireContext(), "Clicked Edit", Toast.LENGTH_SHORT).show()
+            Log.e("saveiconbefore", "$saveIcon")
+            saveIcon = !saveIcon
+            Log.e("saveiconafter", "$saveIcon")
+            if (saveIcon) {
+
+                // EDIT FUNCTIONALITY
+                Toast.makeText(requireContext(), "Clicked edit", Toast.LENGTH_SHORT).show()
+                btnEditPlant.setImageResource(R.drawable.ic_save)
+            } else {
+                // SAVE FUNCTIONALITY
+                Toast.makeText(requireContext(), "Clicked save", Toast.LENGTH_SHORT).show()
+
+                btnEditPlant.setImageResource(R.drawable.ic_edit2)
+            }
         }
 
         btnDeletePlant.setOnClickListener {
