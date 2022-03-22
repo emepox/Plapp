@@ -35,8 +35,6 @@ class TasksAdapter(private val dataSet: List<WaterEvent>) :
 
         holder.plantNickname.text = userPlant.nickname
         holder.wateringFrequency.text = "every ${nextWatering}days"
-      /*  holder.wateringFrequency.text = nextWatering.toString()*/
-      /*  holder.wateringFrequency.text = waterEvent.repeatInterval.toString()*/
     }
 
     override fun getItemCount(): Int {

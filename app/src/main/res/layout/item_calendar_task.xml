@@ -8,18 +8,18 @@
         android:id="@+id/ivPlantIcon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_flower"
         android:layout_marginStart="10dp"
+        android:src="@drawable/ic_flower"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTaskItemNickname"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="Nickname"
         app:layout_constraintBottom_toBottomOf="@id/ivPlantIcon"
-        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/ivPlantIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/tvTaskItemWatering"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="every 5 days"
         app:layout_constraintBottom_toBottomOf="@id/ivPlantIcon"

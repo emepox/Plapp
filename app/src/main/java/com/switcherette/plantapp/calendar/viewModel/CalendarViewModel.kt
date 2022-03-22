@@ -24,15 +24,6 @@ class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel
         }
     }
 
-    fun getWaterEventByDate(date: Long) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = Firebase.auth.currentUser?.uid?.let {
-                waterEventRepo.getWaterEventByDate(date)
-            }
-            waterEventsPerDay.postValue(result!!)
-        }
-    }
-
     fun getWaterEventByTimeRange(startTime: Long, endTime:Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val result = waterEventRepo.getWaterEventByTimeRange(startTime, endTime)

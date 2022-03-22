@@ -29,7 +29,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
         calendarVM.getWaterEvents()
 
         binding.rvCalendarTasksPerDay.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         observeAllWaterEvents()
 
@@ -43,7 +43,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             override fun onDayClick(eventDay: EventDay) {
                 val millis = convertEventDayToMillis(eventDay)
                 setHeadingForDay(millis)
-                calendarVM.getWaterEventByDate(millis)
 
                 calendarVM.getWaterEventByTimeRange(startTime(eventDay), endTime(eventDay))
             }
@@ -53,15 +52,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
                 val c = Calendar.getInstance()
                 c.time = eventDay.calendar.time
                 return c.timeInMillis
-
-                /*    return eventDay.calendar.let {
-                        it[Calendar.HOUR_OF_DAY] = 12
-                        it[Calendar.MINUTE] = 0
-                        it[Calendar.SECOND] = 0
-                        it[Calendar.MILLISECOND] = 0
-                        it.timeInMillis
-                    }*/
-
             }
 
             private fun setHeadingForDay(millis: Long) {
