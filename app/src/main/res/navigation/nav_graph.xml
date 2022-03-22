@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.switcherette.plantapp.calendar.CalendarFragment"
+        android:name="com.switcherette.plantapp.calendar.view.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
@@ -19,17 +19,7 @@
         android:id="@+id/homePlantFragment"
         android:name="com.switcherette.plantapp.home.HomePlantFragment"
         android:label="fragment_home_plant"
-        tools:layout="@layout/fragment_home_plant">
-        <action
-            android:id="@+id/action_homePlantFragment_to_myProfileFragment"
-            app:destination="@id/myProfileFragment" />
-        <action
-            android:id="@+id/action_homePlantFragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
-        <action
-            android:id="@+id/action_homePlantFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home_plant"/>
 
     <fragment
         android:id="@+id/myPlantsFragment"
@@ -51,22 +41,7 @@
         android:name="com.switcherette.plantapp.profile.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile">
-        <action
-            android:id="@+id/action_myProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
     </fragment>
-<<<<<<< HEAD
-    <fragment
-        android:id="@+id/plantFormFragment"
-        android:name="com.switcherette.plantapp.addPlant.view.PlantFormFragment"
-        android:label="fragment_plant_form"
-        tools:layout="@layout/fragment_plant_form" >
-        <action
-            android:id="@+id/action_plantFormFragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
-    </fragment>
-=======
->>>>>>> staging
 
     <fragment
         android:id="@+id/addPlantPictureFragment"
@@ -81,10 +56,6 @@
             app:destination="@id/searchByNameFragment" />
     </fragment>
     <fragment
-<<<<<<< HEAD
-
-=======
->>>>>>> staging
         android:id="@+id/searchByNameFragment"
         android:name="com.switcherette.plantapp.addPlant.view.SearchByNameFragment"
         android:label="fragment_search_by_name"
@@ -104,16 +75,11 @@
         android:name="com.switcherette.plantapp.addPlant.view.SearchByPictureFragment"
         android:label="fragment_search_by_picture"
         tools:layout="@layout/fragment_search_by_picture">
-        <action
-<<<<<<< HEAD
-            android:id="@+id/action_searchByPictureFragment_to_plantFormFragment"
-            app:destination="@id/plantFormFragment" />
+
         <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
-=======
-            android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
-            app:destination="@id/searchByNameFragment" />
+
         <action
             android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
             app:destination="@id/plantForm1Fragment" >
@@ -128,7 +94,6 @@
                 app:nullable="true"
                 app:argType="string" />
         </action>
->>>>>>> staging
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -177,8 +142,5 @@
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="com.switcherette.plantapp.data.UserPlant" />
-        <action
-            android:id="@+id/action_plantForm2Fragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
     </fragment>
 </navigation>

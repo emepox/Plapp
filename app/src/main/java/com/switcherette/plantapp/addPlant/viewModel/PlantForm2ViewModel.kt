@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
-import com.switcherette.plantapp.data.repositories.UserPlantRepository
-import com.switcherette.plantapp.data.repositories.WaterRepository
+import com.switcherette.plantapp.data.room.PlantRepository
+import com.switcherette.plantapp.data.room.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,26 +14,30 @@ import org.koin.core.component.inject
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PlantForm2ViewModel(
+class PlantFormViewModel(
     private val waterRepository: WaterRepository,
-    private val userPlantRepository: UserPlantRepository
+    private val plantRepository: PlantRepository
 ) : ViewModel(), KoinComponent {
 
     private val waterAlarm: WaterAlarm by inject()
     fun writePlant(userPlant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
-            val id = userPlantRepository.addNewUserPlant(userPlant)
+            val id = plantRepository.addNewUserPlant(userPlant)
             val waterEvent = createWaterEvent(userPlant, id)
-            waterRepository.addNewWaterEvent(waterEvent)
+            val firstEvent = waterRepository.getFirstWaterEventByDate()
             with(waterAlarm) {
-                if (isAlarmSet()) {
-                    val nextEvent = waterRepository.getFirstWaterEventByDate().repeatStart
-                    if (nextEvent > waterEvent.repeatStart) createAlarm(waterEvent.repeatStart)
-                } else {
+                if (firstEvent == null) {
+                    waterRepository.addNewWaterEvent(waterEvent)
                     createAlarm(waterEvent.repeatStart)
+                } else {
+                    if (isAlarmSet()) {
+                        val nextEvent = firstEvent.repeatStart
+                        if (nextEvent > waterEvent.repeatStart) createAlarm(waterEvent.repeatStart)
+                    }
                 }
+                waterRepository.addNewWaterEvent(waterEvent)
             }
-
+            waterAlarm.isAlarmSet()
         }
     }
 

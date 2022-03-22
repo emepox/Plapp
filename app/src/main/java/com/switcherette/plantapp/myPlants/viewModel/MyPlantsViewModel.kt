@@ -27,7 +27,5 @@ class MyPlantsViewModel(
                 userPlants.value = result!!
             }
         }
-
     }
-
 }

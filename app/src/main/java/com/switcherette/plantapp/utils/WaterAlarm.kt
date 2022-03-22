@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,7 +27,7 @@ class WaterAlarm(private val context: Context){
         )
         val sdf = SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.getDefault())
         val date = sdf.format(Date(start))
-        Toast.makeText(context, "Alarm set to $date", Toast.LENGTH_LONG).show()
+        Log.i("alarm", "alarm set to $date")
     }
 
     fun cancelAlarm(){
@@ -37,6 +38,7 @@ class WaterAlarm(private val context: Context){
     }
     fun isAlarmSet(): Boolean{
         val intent = Intent(context, WaterAlarmReceiver::class.java)
+        Log.i("is set", "${PendingIntent.getBroadcast(context, 0, intent,0) != null}")
         return PendingIntent.getBroadcast(context, 0, intent,0) != null
     }
 

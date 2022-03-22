@@ -33,7 +33,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
             tvName.text = user.displayName
             tvMail.text = user.email
             tvPassword.setOnClickListener { showChangePasswordDialog() }
-            tvSignOut.setOnClickListener { signUserOut()}
+            tvSignOut.setOnClickListener { signUserOut() }
             tvDelete.setOnClickListener { deleteUser() }
         }
     }
@@ -43,7 +43,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
             .signOut(requireContext())
             .addOnCompleteListener {
                 Toast.makeText(requireContext(), "Signed out", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_myProfileFragment_to_loginFragment)
+                findNavController().navigate(R.id.loginFragment)
             }
     }
 
@@ -55,7 +55,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
                 AuthUI.getInstance()
                     .signOut(requireContext())
                     .addOnCompleteListener {
-                        findNavController().navigate(R.id.action_myProfileFragment_to_loginFragment)
+                        findNavController().navigate(R.id.loginFragment)
                     }
             }
     }
@@ -81,13 +81,15 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
         input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         builder.setView(input)
 
-        builder.setPositiveButton("SAVE NEW PASSWORD",
-            DialogInterface.OnClickListener { dialog, which ->
-                newPassword = input.text.toString()
-                updatePassword(newPassword)
-            })
-        builder.setNegativeButton("CANCEL",
-            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setPositiveButton(
+            "SAVE NEW PASSWORD"
+        ) { dialog, which ->
+            newPassword = input.text.toString()
+            updatePassword(newPassword)
+        }
+        builder.setNegativeButton(
+            "CANCEL"
+        ) { dialog, which -> dialog.cancel() }
         builder.show()
     }
 

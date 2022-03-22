@@ -3,6 +3,7 @@ package com.switcherette.plantapp.utils
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavDeepLinkBuilder
@@ -46,12 +47,18 @@ class WaterAlarmReceiver : BroadcastReceiver(), KoinComponent {
 
     private fun setNewAlarm() {
         CoroutineScope(Dispatchers.IO).launch {
-            val newDate = waterRepository.getFirstWaterEventByDate().repeatInterval
-            waterAlarm.createAlarm(newDate)
-
-            waterRepository.getWaterEventByDate(newDate)
-                .map { it.copy(repeatStart = it.repeatStart + it.repeatInterval) }
+            val currentDate = waterRepository.getFirstWaterEventByDate()!!.repeatStart
+            waterRepository.getWaterEventByDate(currentDate)
+                .map {
+                    Log.i("yeet", "Result: ${it.repeatStart + it.repeatInterval}"
+                )
+                    it.copy(repeatStart = it.repeatStart + it.repeatInterval) }
                 .let { waterRepository.updateDates(it) }
+            val newDate = waterRepository.getFirstWaterEventByDate()!!.repeatStart
+            waterAlarm.createAlarm(newDate)
+            Log.i("yeet", "")
         }
+
+
     }
 }

@@ -3,17 +3,20 @@ package com.switcherette.plantapp.addPlant.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.databinding.ItemSearchPlantBynameBinding
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.sql.Date
+import java.text.SimpleDateFormat
 
 class SearchByNameAdapter(
-    private val dataSet: List<PlantInfo>,
-    private var seePlantDetails: (PlantInfo) -> Unit
-) : RecyclerView.Adapter<SearchByNameAdapter.PlantInfoViewHolder>() {
+    private var choosePlant: (PlantInfo) -> Unit
+) : ListAdapter<PlantInfo, SearchByNameAdapter.PlantInfoViewHolder>(SightingsDiffUtil()) {
 
     class PlantInfoViewHolder(
         private val binding: ItemSearchPlantBynameBinding
@@ -21,8 +24,7 @@ class SearchByNameAdapter(
 
         val context: Context by inject()
 
-        fun bind(plant: PlantInfo, seePlantDetails: (PlantInfo) -> Unit) {
-
+        fun bind(plant: PlantInfo, choosePlant: (PlantInfo) -> Unit) {
             with(binding){
                 tvPlantName.text = plant.scientificName
                 tvCommonName.text = plant.commonName
@@ -48,8 +50,8 @@ class SearchByNameAdapter(
 //                    .into(binding.ivPlantImage);
 //            }
 
-            binding.root.setOnClickListener {
-                seePlantDetails(plant)
+            binding.btnChoose.setOnClickListener {
+                choosePlant(plant)
             }
         }
     }
@@ -64,12 +66,18 @@ class SearchByNameAdapter(
         return PlantInfoViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holderInfo: PlantInfoViewHolder, position: Int) {
-        holderInfo.bind(dataSet[position], seePlantDetails)
+    override fun onBindViewHolder(holder: PlantInfoViewHolder, position: Int) {
+        holder.bind(getItem(position), choosePlant)
     }
 
+    class SightingsDiffUtil : DiffUtil.ItemCallback<PlantInfo>() {
+        override fun areItemsTheSame(oldItem: PlantInfo, newItem: PlantInfo): Boolean {
+            return oldItem == newItem
+        }
 
-    override fun getItemCount(): Int {
-        return dataSet.size
+        override fun areContentsTheSame(oldItem: PlantInfo, newItem: PlantInfo): Boolean {
+            return oldItem.id == newItem.id
+        }
     }
 }
+

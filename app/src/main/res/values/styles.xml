@@ -30,7 +30,6 @@
         <item name="cornerSizeBottomRight">10dp</item>
     </style>
 
-
     <style name="Myslider" parent="@style/Widget.MaterialComponents.Slider">
         <item name="labelStyle">@style/My_Tooltip</item>
         <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
@@ -45,10 +44,8 @@
         <!-- color used by the text in the Tooltip -->
         <item name="colorOnPrimary">@color/white</item>
     </style>
-
     <style name="myChip" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textStyle">italic</item>
-
     </style>
 
 </resources>
