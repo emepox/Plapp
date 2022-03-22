@@ -10,7 +10,7 @@
         android:id="@+id/ivHomePicture"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:contentDescription="Plant App"
+        android:contentDescription="@string/plapp"
         android:foreground="#96323232"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/plant_img" />
 
-
     <TextView
         android:id="@+id/tvHomeHeading"
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:paddingHorizontal="20dp"
         android:paddingVertical="16dp"
-        android:text="WELCOME, STRANGER"
+        android:text="@string/welcome_stranger"
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentHomePlantBinding
@@ -28,6 +30,7 @@ class HomePlantFragment : Fragment(R.layout.fragment_home_plant) {
             binding.tvHomePlantFact.text = it.q
             binding.tvHomePlantFactAuthor.text = it.a
         }
+        binding.tvHomeHeading.text = "WELCOME, ${Firebase.auth.currentUser?.displayName?.uppercase()}" ?: resources.getString(R.string.welcome_stranger)
 
 
     }
