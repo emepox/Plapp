@@ -6,7 +6,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PlantId(
     val is_plant: Boolean,
-    val suggestions: List<Suggestion>
+    val suggestions: List<Suggestion>,
+    val images: List<Images>
+) : Parcelable
+
+@Parcelize
+data class Images(
+    val url: String
 ) : Parcelable
 
 @Parcelize

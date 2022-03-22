@@ -19,6 +19,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
     private val searchPicVM: SearchByPictureViewModel by viewModel()
     private lateinit var binding: FragmentSearchByPictureBinding
     private lateinit var uri: Uri
+    private lateinit var photoUrlFromAPI: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +39,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
             tvNoPic.setOnClickListener {
                 findNavController().navigate(R.id.action_searchByPictureFragment_to_searchByNameFragment,
                     Bundle().apply {
-                        putParcelable("uri", uri)
+                        putString("userPhotoUrl", photoUrlFromAPI)
                     }
                 )
             }
@@ -54,6 +55,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
     private fun observePlantId() {
         searchPicVM.plantId.observe(viewLifecycleOwner) { it ->
             if (it != null) {
+                photoUrlFromAPI = it.images[0].url
                 if (it.is_plant) {
                     val recyclerView = binding.rvSuggestions
 
@@ -62,7 +64,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
                         val action = SearchByPictureFragmentDirections
-                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, null, uri.path, null)
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, null, photoUrlFromAPI, null)
                         findNavController().navigate(action)
                     }
 

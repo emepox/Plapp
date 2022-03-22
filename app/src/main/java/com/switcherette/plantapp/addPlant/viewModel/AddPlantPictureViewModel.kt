@@ -2,6 +2,7 @@ package com.switcherette.plantapp.addPlant.viewModel
 
 import android.content.Context
 import android.net.Uri
+import android.os.Environment
 import androidx.core.content.FileProvider
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +20,8 @@ class AddPlantPictureViewModel() : ViewModel(), KoinComponent {
 
     fun getTmpFileUri(): Uri {
         val tmpFile =
-            File.createTempFile("tmp_image_file", ".png", context.cacheDir).apply {
+            File.createTempFile("tmp_image_file", ".png", context.cacheDir)
+                .apply {
                 createNewFile()
                 deleteOnExit()
             }

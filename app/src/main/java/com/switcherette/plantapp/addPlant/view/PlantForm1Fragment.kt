@@ -94,7 +94,7 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
             handleOnClick(finalUserPlant)
 
         } else {
-            finalUserPlant.image = R.drawable.plant_img.toString()
+            finalUserPlant.image = "android.resource://com.switcherette.plantapp/" + R.drawable.plant_img.toString()
             handleOnClick(finalUserPlant)
         }
 
