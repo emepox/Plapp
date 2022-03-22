@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.adapter.TasksAdapter
 import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
 import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.databinding.FragmentCalendarBinding
@@ -26,10 +28,49 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
 
         calendarVM.getWaterEvents()
 
-        calendarVM.waterEvents.observe(viewLifecycleOwner) { events ->
+        binding.rvCalendarTasksPerDay.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        observeAllWaterEvents()
+
+        observeWaterEventsPerDay()
+
+        onDateClick()
+    }
+
+    private fun onDateClick() {
+        binding.calendarView.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                val millis = convertEventDayToMillis(eventDay)
+                setHeadingForDay(millis)
+                calendarVM.getWaterEventByDate(millis)
+            }
+
+            private fun convertEventDayToMillis(eventDay: EventDay): Long {
+                val c = Calendar.getInstance()
+                c.time = eventDay.calendar.time
+                return c.timeInMillis
+            }
+
+            private fun setHeadingForDay(millis: Long) {
+                val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+                val dateSimpleDayFormat = sdf.format(millis)
+
+                binding.tvSelectedDate.text = dateSimpleDayFormat
+            }
+        })
+    }
+
+    private fun observeWaterEventsPerDay() {
+        calendarVM.waterEventsPerDay.observe(viewLifecycleOwner) { events ->
+            binding.rvCalendarTasksPerDay.adapter = TasksAdapter(events)
+        }
+    }
+
+    private fun observeAllWaterEvents() {
+        calendarVM.allWaterEvents.observe(viewLifecycleOwner) { events ->
             if (events != null) {
                 fillCalendarWithEvents(convertEventsToEventDays(events))
-
             } else {
                 Toast.makeText(requireContext(), "Http error", Toast.LENGTH_SHORT).show()
             }
@@ -48,20 +89,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
     private fun fillCalendarWithEvents(events: List<EventDay>) {
         binding.calendarView.apply {
             setEvents(events)
-
-            setOnDayClickListener(object : OnDayClickListener {
-                override fun onDayClick(eventDay: EventDay) {
-                    val c = Calendar.getInstance()
-                    c.time = eventDay.calendar.time
-                    val millis = c.timeInMillis
-
-                    val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-                    val dateSimpleDayFormat = sdf.format(millis)
-
-                    binding.tvSelectedDate.setText(dateSimpleDayFormat)
-                }
-            })
         }
     }
-
 }
