@@ -76,6 +76,17 @@
         android:layout_margin="32dp"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/tvSuggestions"
+        app:layout_constraintBottom_toTopOf="@id/pageIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.chahinem.pageindicator.PageIndicator
+        android:id="@+id/pageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:piSelectedColor="@color/accent"
+        app:layout_constraintTop_toBottomOf="@id/rvSuggestions"
         app:layout_constraintBottom_toTopOf="@id/buttonBarrierBottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
