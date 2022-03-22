@@ -1,5 +1,6 @@
 package com.switcherette.plantapp.addPlant.view
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
@@ -22,11 +23,14 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
     private lateinit var binding: FragmentSearchByNameBinding
     private val searchByNameVM: SearchByNameViewModel by viewModel()
+    private var userPhotoUrl: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentSearchByNameBinding.bind(view)
+
+        userPhotoUrl = arguments?.getString("userPhotoUrl")
 
         searchByNameVM.getAllPlants()
         setRecyclerView()
@@ -61,6 +65,14 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
     }
 
     private fun choosePlant(plantInfo: PlantInfo) {
+
+        var image: String? = null
+        if (userPhotoUrl != null){
+            image = userPhotoUrl
+        } else {
+            image = plantInfo.img
+        }
+
         val userPlant = UserPlant(
             UUID.randomUUID().toString(),
             "",
@@ -71,7 +83,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
             plantInfo.cultivation,
             plantInfo.light ?: 2,
             plantInfo.water ?: 15,
-            plantInfo.img,
+            image,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
 

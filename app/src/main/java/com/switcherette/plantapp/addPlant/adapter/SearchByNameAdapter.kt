@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.databinding.ItemSearchPlantBynameBinding
 import org.koin.core.component.KoinComponent
@@ -33,22 +34,9 @@ class SearchByNameAdapter(
             Glide
                 .with(context)
                 .load(plant.img)
+                .placeholder(R.drawable.plant_img)
                 .centerCrop()
                 .into(binding.ivPlantImage);
-
-//            if (plant.image?.contains("http")!!){
-//                Glide
-//                    .with(context)
-//                    .load(File(plant.image!!))
-//                    .centerCrop()
-//                    .into(binding.ivPlantImage);
-//            } else {
-//                Glide
-//                    .with(context)
-//                    .load(plant.image)
-//                    .centerCrop()
-//                    .into(binding.ivPlantImage);
-//            }
 
             binding.btnChoose.setOnClickListener {
                 choosePlant(plant)
