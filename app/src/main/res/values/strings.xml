@@ -28,4 +28,10 @@
     <string name="light">Light</string>
     <string name="what_about_water_needs">What about WATER needs?</string>
     <string name="water">Water</string>
+    <string name="your_info">YOUR INFO</string>
+    <string name="settings">SETTINGS</string>
+    <string name="receive_water_notifications">Receive water notifications:</string>
+    <string name="change_password">CHANGE PASSWORD</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="delete_account">DELETE ACCOUNT</string>
 </resources>

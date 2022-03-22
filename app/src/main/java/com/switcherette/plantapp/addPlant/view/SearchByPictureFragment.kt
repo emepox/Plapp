@@ -62,7 +62,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
                         val action = SearchByPictureFragmentDirections
-                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, uri.path)
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, null, uri.path, null)
                         findNavController().navigate(action)
                     }
 

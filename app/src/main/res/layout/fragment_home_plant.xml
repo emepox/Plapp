@@ -24,7 +24,7 @@
         android:id="@+id/tvHomeHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_subrayada"
+        android:fontFamily="@font/montserrat_bold"
         android:paddingHorizontal="20dp"
         android:paddingVertical="16dp"
         android:text="WELCOME, STRANGER"

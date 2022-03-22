@@ -14,13 +14,13 @@ class PlantForm1ViewModel(
     private val plantInfoRepository: PlantInfoRepository,
 ) : ViewModel(), KoinComponent {
 
-    var plantInfoAPI : MutableLiveData<PlantInfo?> = MutableLiveData()
+    var infoFromPlantLibrary : MutableLiveData<PlantInfo?> = MutableLiveData()
 
     fun getPlantFromLibrary(scientificName: String){
         viewModelScope.launch(Dispatchers.IO) {
             val result = plantInfoRepository.getPlantByName(scientificName)
             withContext(Dispatchers.Main){
-                plantInfoAPI.value = result
+                infoFromPlantLibrary.value = result
             }
         }
 
