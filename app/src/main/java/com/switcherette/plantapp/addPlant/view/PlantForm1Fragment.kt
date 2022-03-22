@@ -27,31 +27,25 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
         binding = FragmentPlantForm1Binding.bind(view)
 
-        // get API info (if coming from SearchByPicture)
         val args: PlantForm1FragmentArgs by navArgs()
+        // get API info (if coming from SearchByPicture)
         val apiSuggestion = args.suggestionFromApi
         val imageFromUser: String? = args.photoFromUser
-
         // get Plant info (if coming from SearchByName)
         val plantFromSearchByName = args.userPlant
 
         // initialise UserPlant object
-        finalUserPlant = UserPlant(
-            UUID.randomUUID().toString(),
-            "",
-            null,
-            null,
-            null,
-            null,
-            null,
-            1,
-            3,
-            imageFromUser,
-            Firebase.auth.currentUser?.uid.orEmpty()
-        )
+        finalUserPlant = UserPlant(UUID.randomUUID().toString(), "", null, null, null, null, null, 2, 15, imageFromUser, Firebase.auth.currentUser?.uid.orEmpty())
 
-        if (apiSuggestion != null) {
-            apiSuggestion.plant_details.scientific_name.let { getInfoFromPlantLibrary(it) }
+        fillForm(apiSuggestion, plantFromSearchByName)
+    }
+
+    private fun fillForm(
+        apiSuggestion: Suggestion?,
+        plantFromSearchByName: UserPlant?
+    ) {
+        if (apiSuggestion != null && plantFromSearchByName == null) {
+            getInfoFromPlantLibrary(apiSuggestion.plant_details.scientific_name)
             plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
                 if (it?.scientificName == null) {
                     finalUserPlant.scientificName = apiSuggestion.plant_details.scientific_name
@@ -72,15 +66,21 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                 finalUserPlant.cultivation = it?.cultivation
                 finalUserPlant.light = it?.light ?: 2
                 finalUserPlant.water = it?.water ?: 15
+
+                binding.etScientificName.setText(finalUserPlant.scientificName)
+                binding.etCommonName.setText(finalUserPlant.commonName)
+                handleOnClick(finalUserPlant)
             }
-        } else if ( plantFromSearchByName != null) {
+        } else if (plantFromSearchByName != null && apiSuggestion == null) {
             finalUserPlant = plantFromSearchByName
+            binding.etScientificName.setText(finalUserPlant.scientificName)
+            binding.etCommonName.setText(finalUserPlant.commonName)
+
+            handleOnClick(finalUserPlant)
+
         }
 
-        binding.etScientificName.setText(finalUserPlant.scientificName)
-        binding.etCommonName.setText(finalUserPlant.commonName)
 
-        handleOnClick(finalUserPlant)
     }
 
 
