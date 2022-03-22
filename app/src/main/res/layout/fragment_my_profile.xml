@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/white_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".profile.MyProfileFragment">
+    tools:context=".profile.view.MyProfileFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/headerMyProfile"
