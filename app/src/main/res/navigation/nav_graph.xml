@@ -28,13 +28,19 @@
         tools:layout="@layout/fragment_my_plants">
         <action
             android:id="@+id/action_myPlantsFragment_to_detailPlantFragment"
-            app:destination="@id/detailPlantFragment" />
+            app:destination="@id/detailPlantFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_myPlantsFragment_to_addPlantPictureFragment"
-            app:destination="@id/addPlantPictureFragment" />
+            app:destination="@id/addPlantPictureFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_myPlantsFragment_to_searchByNameFragment"
-            app:destination="@id/searchByNameFragment" />
+            app:destination="@id/searchByNameFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
