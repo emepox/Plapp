@@ -27,11 +27,11 @@
         android:gravity="center"
         android:padding="16dp"
 
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:text="@string/congratulations_to_your_new_green_friend"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/headerAddPlant"/>
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/headerAddPlant" />
 
     <LinearLayout
         android:id="@+id/llPlantFormName"
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What nickname did you have in mind?"
+            android:text="@string/what_s_its_name"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:hint="Nickname"
+            android:hint="@string/nickname"
             android:inputType="text"
             android:minWidth="200dp"
             android:textColorHint="@color/white">
@@ -66,14 +66,15 @@
                 android:id="@+id/etNickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scientific plant name"
+            android:text="@string/scientifically_speaking"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -84,7 +85,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:hint="Scientific plant name"
+            android:hint="@string/plant_s_scientific_name"
             android:minWidth="200dp"
             android:textColorHint="@color/white">
 
@@ -93,14 +94,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
-                android:inputType="textMultiLine|textCapWords" />
+                android:inputType="textMultiLine|textCapWords"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Common plant name"
+            android:text="@string/everybody_knows_it_as"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -111,7 +113,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:hint="Common plant name"
+            android:hint="@string/plant_s_common_name"
             android:minWidth="200dp"
             android:textColorHint="@color/white">
 
@@ -120,7 +122,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
-                android:inputType="textMultiLine|textCapWords" />
+                android:inputType="textMultiLine|textCapWords"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -130,12 +133,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
         android:paddingVertical="15dp"
         android:text="@string/next_step"
-        android:backgroundTint="@color/white"
         android:textColor="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

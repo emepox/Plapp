@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
+import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import com.switcherette.plantapp.utils.WaterAlarm
-import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -14,7 +14,7 @@ import org.koin.core.component.inject
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PlantFormViewModel(
+class PlantForm2ViewModel(
     private val waterRepository: WaterRepository,
     private val plantRepository: UserPlantRepository
 ) : ViewModel(), KoinComponent {
