@@ -2,6 +2,7 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         searchByNameVM.getAllPlants()
         setRecyclerView()
         binding.tvNoList.setOnClickListener { createEmptyUserPlant() }
+
     }
 
     private fun setRecyclerView() {
@@ -38,9 +40,23 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        searchByNameVM.allPlants.observe(viewLifecycleOwner) { plant ->
-            val allPlantsAdapter = SearchByNameAdapter(plant) { choosePlant(it) }
-            recyclerView.adapter = allPlantsAdapter
+        val allPlantsAdapter = SearchByNameAdapter() { choosePlant(it) }
+        recyclerView.adapter = allPlantsAdapter
+
+        searchByNameVM.allPlants.observe(viewLifecycleOwner) {
+            allPlantsAdapter.submitList(it)
+        }
+
+        binding.etSearch.addTextChangedListener { text ->
+            allPlantsAdapter.submitList(searchByNameVM.allPlants.value?.filter {
+                (it.scientificName!!.contains(
+                    text.toString(),
+                    true
+                )) || (it.commonName != null && it.commonName.contains(
+                    text.toString(),
+                    true
+                ))
+            })
         }
     }
 
