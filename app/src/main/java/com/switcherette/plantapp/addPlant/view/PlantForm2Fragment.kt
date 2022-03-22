@@ -6,16 +6,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.switcherette.plantapp.addPlant.viewModel.PlantFormViewModel
+
 
 class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
     private lateinit var binding: FragmentPlantForm2Binding
     private val waterConverter = mapOf(Pair(3, 1),Pair(5,2),Pair(7,3),Pair(14,4),Pair(15,5),Pair(30,6))
-    private val plantForm2ViewModel: PlantForm2ViewModel by viewModel()
+    private val plantForm2ViewModel: PlantFormViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
