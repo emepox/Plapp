@@ -2,6 +2,7 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -27,27 +28,38 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
         with(binding) {
             setLabelsForWater()
-
             setLabelsForLight()
-
-
             setRecommendedValuesLightAndWater(finalUserPlant)
-
-            btnSave.setOnClickListener {
-
-                val light = slLight.value
-                finalUserPlant = finalUserPlant?.copy(light = light.toInt())
-
-                val water = slWater.value
-                finalUserPlant = finalUserPlant?.copy(water = waterConverter.entries.find{ it.value == water.toInt() }!!.key )
-
-               plantForm2ViewModel.writePlant(finalUserPlant!!)
-
-                findNavController().navigate(R.id.myPlantsFragment)
-
-            }
+            setSaveListener(finalUserPlant)
         }
     }
+
+    private fun FragmentPlantForm2Binding.setSaveListener(
+        finalUserPlant: UserPlant?
+    ) {
+        var finalUserPlant1 = finalUserPlant
+        btnSave.setOnClickListener {
+
+            val light = slLight.value
+            finalUserPlant1 = finalUserPlant1?.copy(light = light.toInt())
+
+            val water = slWater.value
+            finalUserPlant1 =
+                finalUserPlant1?.copy(water = waterConverter.entries.find { it.value == water.toInt() }!!.key)
+
+            plantForm2ViewModel.writePlant(finalUserPlant1!!)
+
+            findNavController().navigate(R.id.myPlantsFragment)
+
+            Toast.makeText(
+                requireContext(),
+                "Plapp! ${finalUserPlant?.nickname ?: "Your green friend"} has been added to the family :)",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
+    }
+
 
     private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater(
         finalUserPlant: UserPlant?

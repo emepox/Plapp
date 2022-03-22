@@ -18,4 +18,14 @@
     <string name="add_plant_to_the_family">Add plant to the family</string>
     <string name="my_plant_tasks">MY PLANT TASKS</string>
     <string name="plant_library">PLANT LIBRARY</string>
+    <string name="what_s_its_name">What\'s its name?</string>
+    <string name="scientifically_speaking">Scientifically speaking, it is a...</string>
+    <string name="nickname">Nickname</string>
+    <string name="plant_s_scientific_name">Plant\'s scientific name</string>
+    <string name="everybody_knows_it_as">although everybody knows it as...</string>
+    <string name="plant_s_common_name">Plant\'s common name</string>
+    <string name="how_much_light_does_it_like">How much LIGHT does it like?</string>
+    <string name="light">Light</string>
+    <string name="what_about_water_needs">What about WATER needs?</string>
+    <string name="water">Water</string>
 </resources>
