@@ -19,17 +19,7 @@
         android:id="@+id/homePlantFragment"
         android:name="com.switcherette.plantapp.home.HomePlantFragment"
         android:label="fragment_home_plant"
-        tools:layout="@layout/fragment_home_plant">
-        <action
-            android:id="@+id/action_homePlantFragment_to_myProfileFragment"
-            app:destination="@id/myProfileFragment" />
-        <action
-            android:id="@+id/action_homePlantFragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
-        <action
-            android:id="@+id/action_homePlantFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home_plant"/>
 
     <fragment
         android:id="@+id/myPlantsFragment"
@@ -50,11 +40,7 @@
         android:id="@+id/myProfileFragment"
         android:name="com.switcherette.plantapp.profile.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile">
-        <action
-            android:id="@+id/action_myProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_my_profile"/>
 
     <fragment
         android:id="@+id/addPlantPictureFragment"
@@ -153,8 +139,5 @@
             android:defaultValue="@null"
             app:nullable="true"
             app:argType="com.switcherette.plantapp.data.UserPlant" />
-        <action
-            android:id="@+id/action_plantForm2Fragment_to_myPlantsFragment"
-            app:destination="@id/myPlantsFragment" />
     </fragment>
 </navigation>

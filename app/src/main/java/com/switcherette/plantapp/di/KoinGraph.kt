@@ -24,7 +24,7 @@ object KoinGraph {
         single { get<AppDB>().waterDao() }
         single { get<AppDB>().plantDao() }
         single { get<AppDB>().plantInfoDao() }
-        factory { WaterAlarm(get()) }
+        single { WaterAlarm(get()) }
         single { WaterRepository() }
         single { UserPlantRepository() }
         single { ApiPlantIdRepository() }
