@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.home
+package com.switcherette.plantapp.home.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomePlantViewModel(
+class HomeViewModel(
     private val randomQuotesRepo: RandomQuotesRepository,
     private val appDB: AppDB
 ) : ViewModel() {
