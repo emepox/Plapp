@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.adapter.TasksAdapter
+import com.switcherette.plantapp.calendar.adapter.TasksAdapter
 import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
 import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.databinding.FragmentCalendarBinding

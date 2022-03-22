@@ -1,4 +1,4 @@
-package com.switcherette.plantapp.addPlant.adapter
+package com.switcherette.plantapp.calendar.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.WaterEvent
-import java.text.SimpleDateFormat
-import java.util.*
+import com.switcherette.plantapp.data.repositories.UserPlantRepository
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class TasksAdapter(private val dataSet: List<WaterEvent>) :
+    RecyclerView.Adapter<TasksAdapter.TasksViewHolder>(), KoinComponent {
 
-    RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
+    private val userPlantRepo: UserPlantRepository by inject()
 
     class TasksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -27,10 +29,9 @@ class TasksAdapter(private val dataSet: List<WaterEvent>) :
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
-        val currentData: WaterEvent = dataSet[position]
-        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-        holder.plantNickname.text = currentData.plantId
-        holder.wateringFrequency.text = currentData.repeatInterval.toString()
+        val waterEvent: WaterEvent = dataSet[position]
+        holder.plantNickname.text = userPlantRepo.getUserPlantByPlantId(waterEvent.plantId).nickname
+        holder.wateringFrequency.text = waterEvent.repeatInterval.toString()
     }
 
     override fun getItemCount(): Int {
