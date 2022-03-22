@@ -15,6 +15,51 @@
 
         >
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnEditPlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_edit2"
+            android:visibility="invisible"
+            app:backgroundTint="@color/primary_dark"
+            app:tint="#94ECEEEC"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/btnEdit"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnDeletePlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:visibility="invisible"
+            app:backgroundTint="@color/primary_dark"
+            app:tint="@color/white"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/btnEditPlant"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@android:drawable/ic_menu_edit"
+            tools:text="Search"
+            app:backgroundTint="@color/primary_dark"
+            app:tint="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
         <ImageView
             android:id="@+id/ivDetailPicture"
             android:layout_width="match_parent"
@@ -86,7 +131,7 @@
                     android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="left"
+                    android:gravity="left | center"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvCare"
@@ -95,10 +140,12 @@
 
                     <ImageView
                         android:id="@+id/ivCareWatering"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_marginVertical="10dp"
-                        android:src="@android:drawable/ic_menu_my_calendar" />
+                        android:src="@drawable/ic_watering"
+
+                        />
 
                     <TextView
                         android:id="@+id/tvCareWatering"
@@ -117,7 +164,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="left"
+                    android:gravity="left | center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,10 +172,11 @@
 
                     <ImageView
                         android:id="@+id/ivCareLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_marginVertical="10dp"
-                        android:src="@android:drawable/ic_menu_my_calendar" />
+                        android:src="@drawable/ic_sun"
+                        />
 
                     <TextView
                         android:id="@+id/tvCareLight"
@@ -303,5 +351,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </ScrollView>

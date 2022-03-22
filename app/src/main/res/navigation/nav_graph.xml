@@ -46,7 +46,8 @@
         android:id="@+id/myProfileFragment"
         android:name="com.switcherette.plantapp.profile.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile"/>
+        tools:layout="@layout/fragment_my_profile">
+    </fragment>
 
     <fragment
         android:id="@+id/addPlantPictureFragment"
@@ -80,9 +81,11 @@
         android:name="com.switcherette.plantapp.addPlant.view.SearchByPictureFragment"
         android:label="fragment_search_by_picture"
         tools:layout="@layout/fragment_search_by_picture">
+
         <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment" />
+
         <action
             android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
             app:destination="@id/plantForm1Fragment" >

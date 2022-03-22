@@ -7,10 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
+
 
 class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
