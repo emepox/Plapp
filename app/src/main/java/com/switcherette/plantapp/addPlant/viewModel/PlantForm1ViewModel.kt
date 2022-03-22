@@ -25,7 +25,4 @@ class PlantForm1ViewModel(
         }
 
     }
-
-
-
 }

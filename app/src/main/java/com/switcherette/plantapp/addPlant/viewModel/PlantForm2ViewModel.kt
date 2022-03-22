@@ -24,8 +24,8 @@ class PlantForm2ViewModel(
 
     fun writePlant(userPlant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
-            val id = plantRepository.addNewUserPlant(userPlant)
-            val waterEvent = createWaterEvent(userPlant, id)
+            plantRepository.addNewUserPlant(userPlant)
+            val waterEvent = createWaterEvent(userPlant)
             val firstEvent = waterRepository.getFirstWaterEventByDate()
             val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
             with(waterAlarm) {
@@ -43,7 +43,7 @@ class PlantForm2ViewModel(
         }
     }
 
-    private fun createWaterEvent(userPlant: UserPlant, id: Long): WaterEvent {
+    private fun createWaterEvent(userPlant: UserPlant): WaterEvent {
         val today = Calendar.getInstance().let {
             it[Calendar.HOUR_OF_DAY] = 12
             it[Calendar.MINUTE] = 0
@@ -54,7 +54,7 @@ class PlantForm2ViewModel(
         val repeatInterval = TimeUnit.DAYS.toMillis(userPlant.water.toLong())
         val repeatStart = today + repeatInterval
         return WaterEvent(
-            plantId = id.toString(),
+            plantId = userPlant.id,
             repeatStart = repeatStart,
             repeatInterval = repeatInterval
         )

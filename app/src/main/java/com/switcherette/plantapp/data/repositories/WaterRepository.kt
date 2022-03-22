@@ -24,6 +24,10 @@ class WaterRepository : KoinComponent {
         return waterDao.getWaterEventByDate(startDate)
     }
 
+    fun getWaterEventByTimeRange(startTime: Long, endTime: Long): List<WaterEvent>{
+        return waterDao.getWaterEventByTimeRange(startTime, endTime)
+    }
+
     fun getFirstWaterEventByDate(): WaterEvent?{
         return  waterDao.getFirstWaterEventByDate()
     }

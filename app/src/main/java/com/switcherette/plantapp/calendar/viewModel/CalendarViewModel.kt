@@ -9,20 +9,26 @@ import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel() {
 
-    var waterEvents: MutableLiveData<List<WaterEvent>> = MutableLiveData()
+    var allWaterEvents: MutableLiveData<List<WaterEvent>> = MutableLiveData()
+    var waterEventsPerDay: MutableLiveData<List<WaterEvent>> = MutableLiveData()
 
     fun getWaterEvents() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = Firebase.auth.currentUser?.uid?.let {
                 waterEventRepo.getAllWaterEvents()
             }
-            withContext(Dispatchers.Main) {
-                waterEvents.value = result!!
-            }
+            allWaterEvents.postValue(result!!)
+        }
+    }
+
+    fun getWaterEventByTimeRange(startTime: Long, endTime:Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = waterEventRepo.getWaterEventByTimeRange(startTime, endTime)
+
+            waterEventsPerDay.postValue(result!!)
         }
     }
 }

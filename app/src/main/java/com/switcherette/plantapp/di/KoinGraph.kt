@@ -20,7 +20,7 @@ object KoinGraph {
 
         single {
             Room.databaseBuilder(get(), AppDB::class.java, "AppDB")
-                .createFromAsset("PlantInfo.db")
+                .createFromAsset("PlantInfo.db").allowMainThreadQueries()
                 .build()
         }
         single { SharedPrefsRepository(get()) }
