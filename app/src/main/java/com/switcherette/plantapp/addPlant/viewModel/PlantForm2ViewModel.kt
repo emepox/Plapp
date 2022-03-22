@@ -4,44 +4,46 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
+import com.switcherette.plantapp.data.repositories.SharedPrefsRepository
 import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import com.switcherette.plantapp.data.repositories.WaterRepository
+import com.switcherette.plantapp.utils.NOTIFICATION_TOGGLE_KEY
 import com.switcherette.plantapp.utils.WaterAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class PlantForm2ViewModel(
     private val waterRepository: WaterRepository,
-    private val plantRepository: UserPlantRepository
+    private val plantRepository: UserPlantRepository,
+    private val sharedPrefsRepository: SharedPrefsRepository,
+    private val waterAlarm: WaterAlarm
 ) : ViewModel(), KoinComponent {
 
-    private val waterAlarm: WaterAlarm by inject()
     fun writePlant(userPlant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
-            val id = plantRepository.addNewUserPlant(userPlant)
-            val waterEvent = createWaterEvent(userPlant, id)
+            plantRepository.addNewUserPlant(userPlant)
+            val waterEvent = createWaterEvent(userPlant)
             val firstEvent = waterRepository.getFirstWaterEventByDate()
+            val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
             with(waterAlarm) {
                 if (firstEvent == null) {
                     waterRepository.addNewWaterEvent(waterEvent)
-                    createAlarm(waterEvent.repeatStart)
+                    if(showNotifications) createAlarm(waterEvent.repeatStart)
                 } else {
                     if (isAlarmSet()) {
                         val nextEvent = firstEvent.repeatStart
-                        if (nextEvent > waterEvent.repeatStart) createAlarm(waterEvent.repeatStart)
+                        if (nextEvent > waterEvent.repeatStart && showNotifications) createAlarm(waterEvent.repeatStart)
                     }
                 }
                 waterRepository.addNewWaterEvent(waterEvent)
             }
-            waterAlarm.isAlarmSet()
         }
     }
 
-    private fun createWaterEvent(userPlant: UserPlant, id: Long): WaterEvent {
+    private fun createWaterEvent(userPlant: UserPlant): WaterEvent {
         val today = Calendar.getInstance().let {
             it[Calendar.HOUR_OF_DAY] = 12
             it[Calendar.MINUTE] = 0
@@ -52,7 +54,7 @@ class PlantForm2ViewModel(
         val repeatInterval = TimeUnit.DAYS.toMillis(userPlant.water.toLong())
         val repeatStart = today + repeatInterval
         return WaterEvent(
-            plantId = id.toString(),
+            plantId = userPlant.id,
             repeatStart = repeatStart,
             repeatInterval = repeatInterval
         )

@@ -79,6 +79,8 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/ivDetailPicture">
 
+
+            <!--
             <TextView
                 android:id="@+id/tvDetailNickname"
                 android:layout_width="match_parent"
@@ -88,6 +90,21 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+                -->
+
+            <EditText
+                android:id="@+id/etDetailNickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="Pepita la Florecita"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:enabled="false"
+                android:background="@drawable/background_transparent"
+                />
 
             <TextView
                 android:id="@+id/tvDetailCommonName"
@@ -147,6 +164,21 @@
 
                         />
 
+                    <EditText
+                        android:id="@+id/etCareWatering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:paddingHorizontal="10dp"
+                        android:text="Watering"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:enabled="false"
+                        android:background="@drawable/background_transparent"
+                        />
+
+<!--
                     <TextView
                         android:id="@+id/tvCareWatering"
                         android:layout_width="wrap_content"
@@ -158,6 +190,7 @@
                         android:textSize="15sp"
 
                         />
+-->
                 </LinearLayout>
 
 
@@ -178,6 +211,22 @@
                         android:src="@drawable/ic_sun"
                         />
 
+                    <EditText
+                        android:id="@+id/etCareLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:paddingHorizontal="10dp"
+                        android:text="Light"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+                        android:enabled="false"
+                        android:background="@drawable/background_transparent"
+
+                        />
+
+                    <!--
                     <TextView
                         android:id="@+id/tvCareLight"
                         android:layout_width="wrap_content"
@@ -186,7 +235,11 @@
                         android:paddingHorizontal="10dp"
                         android:text="Light"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_marginLeft="5dp"
+
+                        />
+                        -->
 
                 </LinearLayout>
 
@@ -306,6 +359,8 @@
 
             </LinearLayout>
 
+            <!--
+
             <TextView
                 android:id="@+id/tvDetailDescription"
                 android:layout_width="match_parent"
@@ -319,6 +374,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llFamily" />
 
+                -->
+
+            <EditText
+                android:id="@+id/etDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:paddingVertical="10dp"
+                android:text="Naughty Marietta is a compact annual to around 30cm tall bearing a profusion of single flowers with bright yellow petals each marked with a central deep red blotch"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llFamily"
+                android:enabled="false"
+                android:background="@drawable/background_transparent"
+                android:paddingHorizontal="2dp"
+                />
+
 
 
             <TextView
@@ -331,8 +405,26 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/etDetailDescription" />
 
+            <EditText
+                android:id="@+id/etDetailCultivation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:paddingVertical="10dp"
+                android:text="Easy to grow in reasonable conditions; requires a sheltered, sunny position"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:paddingHorizontal="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetailCultivationTitle"
+                android:enabled="false"
+                android:background="@drawable/background_transparent"
+                />
+
+            <!--
             <TextView
                 android:id="@+id/tvDetailCultivation"
                 android:layout_width="match_parent"
@@ -345,7 +437,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDetailCultivationTitle" />
-
+            -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

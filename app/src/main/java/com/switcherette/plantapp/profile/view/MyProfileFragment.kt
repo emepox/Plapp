@@ -1,7 +1,6 @@
-package com.switcherette.plantapp.profile
+package com.switcherette.plantapp.profile.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -16,16 +15,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.databinding.FragmentMyProfileBinding
-
+import com.switcherette.plantapp.profile.viewModel.MyProfileViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
 
     private lateinit var binding: FragmentMyProfileBinding
     private lateinit var user: FirebaseUser
+    private val viewModel: MyProfileViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentMyProfileBinding.bind(view)
         user = (Firebase.auth).currentUser!!
 
@@ -35,6 +35,10 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
             tvPassword.setOnClickListener { showChangePasswordDialog() }
             tvSignOut.setOnClickListener { signUserOut() }
             tvDelete.setOnClickListener { deleteUser() }
+            scToggleNotifications.isChecked = viewModel.showNotifications
+            scToggleNotifications.setOnCheckedChangeListener { _, showNotification ->
+                viewModel.updateShowNotifications(showNotification)
+            }
         }
     }
 

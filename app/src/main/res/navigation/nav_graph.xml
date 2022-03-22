@@ -14,10 +14,14 @@
         android:id="@+id/detailPlantFragment"
         android:name="com.switcherette.plantapp.detail.DetailPlantFragment"
         android:label="fragment_detail_plant"
-        tools:layout="@layout/fragment_detail_plant" />
+        tools:layout="@layout/fragment_detail_plant" >
+        <action
+            android:id="@+id/action_detailPlantFragment_to_myPlantsFragment"
+            app:destination="@id/myPlantsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homePlantFragment"
-        android:name="com.switcherette.plantapp.home.HomePlantFragment"
+        android:name="com.switcherette.plantapp.home.view.HomeFragment"
         android:label="fragment_home_plant"
         tools:layout="@layout/fragment_home_plant"/>
 
@@ -44,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
-        android:name="com.switcherette.plantapp.profile.MyProfileFragment"
+        android:name="com.switcherette.plantapp.profile.view.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile">
     </fragment>
