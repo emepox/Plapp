@@ -67,13 +67,16 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                     }
 
                     recyclerView.adapter = suggestionsAdapter
+                    binding.pageIndicator.attachTo(recyclerView)
 
                     binding.ivLoading.visibility = View.GONE
                     binding.rvSuggestions.visibility = View.VISIBLE
+                    binding.pageIndicator.visibility = View.VISIBLE
 
                 } else {
                     binding.ivLoading.visibility = View.GONE
                     binding.tvSuggestions.text = getString(R.string.not_a_plant)
+                    binding.tvSuggestions.textSize = 20F
                 }
             }
         }
