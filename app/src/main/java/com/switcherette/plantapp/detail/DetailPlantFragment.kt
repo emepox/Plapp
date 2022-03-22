@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -109,16 +110,17 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             onEditButtonClicked()
         }
 
-        /*
+
         btnEditPlant.setOnClickListener {
-            findNavController().navigate(R.id.action_myPlantsFragment_to_searchByNameFragment)
+            Toast.makeText(requireContext(), "Clicked Edit", Toast.LENGTH_SHORT).show()
         }
 
         btnDeletePlant.setOnClickListener {
-            findNavController().navigate(R.id.action_myPlantsFragment_to_addPlantPictureFragment)
+            Toast.makeText(requireContext(), "Clicked Delete", Toast.LENGTH_SHORT).show()
+
         }
 
-         */
+
     }
 
     private fun onEditButtonClicked() {
