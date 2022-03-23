@@ -30,10 +30,11 @@
     <string name="water">Water</string>
     <string name="your_info">YOUR INFO</string>
     <string name="settings">SETTINGS</string>
-    <string name="receive_water_notifications">NOTIFICATIONS:</string>
+    <string name="receive_water_notifications">NOTIFICATIONS</string>
     <string name="change_password">CHANGE PASSWORD</string>
     <string name="sign_out">SIGN OUT</string>
     <string name="delete_account">DELETE ACCOUNT</string>
     <string name="welcome_stranger">WELCOME STRANGER</string>
     <string name="plapp">Plapp</string>
+    <string name="try_again">TRY AGAIN</string>
 </resources>

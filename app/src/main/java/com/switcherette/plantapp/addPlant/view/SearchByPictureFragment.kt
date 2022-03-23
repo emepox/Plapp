@@ -4,6 +4,7 @@ package com.switcherette.plantapp.addPlant.view
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         uri = arguments?.get("picturePath") as Uri
 
@@ -42,6 +44,9 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                         putString("userPhotoUrl", photoUrlFromAPI)
                     }
                 )
+            }
+            btnTryAgain.setOnClickListener {
+                findNavController().navigate(R.id.action_searchByPictureFragment_to_addPlantPictureFragment)
             }
         }
     }

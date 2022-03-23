@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/white_bg"
+    android:background="@drawable/white_bg2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".profile.view.MyProfileFragment">
 
@@ -111,10 +111,11 @@
         android:layout_height="wrap_content"
         android:text="@string/delete_account"
         android:paddingHorizontal="32dp"
+        android:layout_marginTop="20dp"
         android:textColor="#A8291F"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:paddingVertical="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSignOut"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSignOut" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
