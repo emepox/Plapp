@@ -27,6 +27,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     private lateinit var binding: FragmentDetailPlantBinding
     private lateinit var plant: UserPlant
     private lateinit var editedPlant : UserPlant
+    private lateinit var daysLeftToWater : String
 
     private var saveIcon : Boolean = false
 
@@ -66,11 +67,11 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
         plant = arguments?.getParcelable("plant")!!
 
-        Log.e("myplant", "${plant.image}")
-
         setOptionsAnimation()
 
         with(binding) {
+
+            tvWateringTime.text = detailPlantVM.daysLeftToWater(plant)
 
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
@@ -169,6 +170,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
         btnDeletePlant.setOnClickListener {
             detailPlantVM.deletePlant(plant)
+            detailPlantVM.deleteWaterEvent(plant)
             findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
 
         }
