@@ -2,6 +2,7 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -26,8 +27,8 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentSearchByNameBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         userPhotoUrl = arguments?.getString("userPhotoUrl")
 

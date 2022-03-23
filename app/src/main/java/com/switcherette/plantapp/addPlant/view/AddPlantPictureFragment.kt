@@ -4,6 +4,7 @@ package com.switcherette.plantapp.addPlant.view
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddPlantPictureBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         observeConfirmationBtn()
         setClickListeners()

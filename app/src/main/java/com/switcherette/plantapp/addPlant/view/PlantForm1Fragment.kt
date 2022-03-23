@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -26,8 +27,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentPlantForm1Binding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         val args: PlantForm1FragmentArgs by navArgs()
         // get API info (if coming from SearchByPicture)
