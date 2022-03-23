@@ -68,10 +68,13 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         plant = arguments?.getParcelable("plant")!!
 
         setOptionsAnimation()
+        detailPlantVM.getWaterEvent(plant)
 
         with(binding) {
 
-            tvWateringTime.text = detailPlantVM.daysLeftToWater(plant)
+            detailPlantVM.daysToWater.observe(viewLifecycleOwner) {
+                tvWateringTime.text = "$it"
+            }
 
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
