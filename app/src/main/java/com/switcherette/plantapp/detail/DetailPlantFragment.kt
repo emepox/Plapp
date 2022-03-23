@@ -164,12 +164,14 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                     )
                     Log.e("editedplant", "$editedPlant")
                     detailPlantVM.editPlant(editedPlant)
+                    detailPlantVM.editPlantOnFirebase(editedPlant)
                 }
             }
         }
 
         btnDeletePlant.setOnClickListener {
             detailPlantVM.deletePlant(plant)
+            detailPlantVM.deletePlantFromFirebase(plant)
             detailPlantVM.deleteWaterEvent(plant)
             findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
 

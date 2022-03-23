@@ -65,8 +65,8 @@ class PlantForm2ViewModel(
             "userId" to finalUserPlant?.userId
         )
         docRef
-            .set(userPlant, SetOptions.merge())
-            .addOnSuccessListener { Log.d("Success", "Plant successfully written!") }
+            .set(userPlant)
+            .addOnSuccessListener { Log.d("Success", "Plant successfully added!") }
             .addOnFailureListener { e -> Log.w("Failure", "Error writing plant", e) }
 
     }
