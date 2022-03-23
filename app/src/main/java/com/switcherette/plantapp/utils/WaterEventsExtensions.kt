@@ -21,3 +21,14 @@ fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
     }
     return newWaterEvents
 }
+
+fun filterEventsByTime(
+    newEvents: List<WaterEvent>?,
+    startTime: Long,
+    endTime: Long
+): List<WaterEvent> {
+    val filterEvents = newEvents!!.filter {
+        it.repeatStart in startTime..endTime
+    }
+    return filterEvents
+}

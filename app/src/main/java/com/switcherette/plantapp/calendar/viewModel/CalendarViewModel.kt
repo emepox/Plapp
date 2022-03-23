@@ -8,6 +8,7 @@ import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import com.switcherette.plantapp.utils.addAndCalculateNextWaterEvents
+import com.switcherette.plantapp.utils.filterEventsByTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -29,12 +30,9 @@ class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel
     fun getWaterEventByTimeRange(startTime: Long, endTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val newEvents = allWaterEvents.value
-            val filterEvents = newEvents!!.filter {
-                it.repeatStart in startTime..endTime
-            }
+            val filterEvents = filterEventsByTime(newEvents, startTime, endTime)
             waterEventsPerDay.postValue(filterEvents)
         }
     }
-
 }
 
