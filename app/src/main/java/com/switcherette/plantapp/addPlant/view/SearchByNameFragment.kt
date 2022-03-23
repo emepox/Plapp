@@ -1,19 +1,28 @@
 package com.switcherette.plantapp.addPlant.view
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.adapter.SearchByNameAdapter
+import com.switcherette.plantapp.addPlant.adapter.SearchByNamePagingAdapter
 import com.switcherette.plantapp.addPlant.viewModel.SearchByNameViewModel
 import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentSearchByNameBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -21,14 +30,13 @@ import java.util.*
 class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
     private lateinit var binding: FragmentSearchByNameBinding
-    private val searchByNameVM: SearchByNameViewModel by viewModel()
+    private val viewModel: SearchByNameViewModel by viewModel()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentSearchByNameBinding.bind(view)
-
-        searchByNameVM.getAllPlants()
         setRecyclerView()
         binding.tvNoList.setOnClickListener { createEmptyUserPlant() }
 
@@ -40,23 +48,43 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        val allPlantsAdapter = SearchByNameAdapter() { choosePlant(it) }
+        val allPlantsAdapter = SearchByNamePagingAdapter() { choosePlant(it) }
         recyclerView.adapter = allPlantsAdapter
 
-        searchByNameVM.allPlants.observe(viewLifecycleOwner) {
-            allPlantsAdapter.submitList(it)
+        lifecycleScope.launch {
+            viewModel.pagingDataFlow.collectLatest(allPlantsAdapter::submitData)
         }
 
-        binding.etSearch.addTextChangedListener { text ->
-            allPlantsAdapter.submitList(searchByNameVM.allPlants.value?.filter {
-                (it.scientificName!!.contains(
-                    text.toString(),
-                    true
-                )) || (it.commonName != null && it.commonName.contains(
-                    text.toString(),
-                    true
-                ))
-            })
+        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if(actionId == EditorInfo.IME_ACTION_GO){
+                binding.etSearch.text.trim().let{
+                    setNewFlow(it, allPlantsAdapter)
+                }
+                true
+            }else{
+                false
+            }
+        }
+        binding.etSearch.setOnKeyListener { _, keyCode, event ->
+            if(event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
+                binding.etSearch.text.trim().let{
+                    setNewFlow(it, allPlantsAdapter)
+                }
+                true
+            }else{
+                false
+            }
+        }
+    }
+
+    private fun setNewFlow(
+        it: CharSequence,
+        allPlantsAdapter: SearchByNamePagingAdapter
+    ): Job {
+        binding.rvSearchPlantByName.scrollToPosition(0)
+        viewModel.update(it.toString())
+        return lifecycleScope.launch {
+            viewModel.pagingDataFlow.collectLatest(allPlantsAdapter::submitData)
         }
     }
 
