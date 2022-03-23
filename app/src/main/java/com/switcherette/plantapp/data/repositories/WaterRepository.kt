@@ -32,8 +32,8 @@ class WaterRepository : KoinComponent {
         return  waterDao.getFirstWaterEventByDate()
     }
 
-    fun getRepeatStartByPlantId(plantId: String) {
-        waterDao.getRepeatsByPlantId(plantId)
+    fun getRepeatStartByPlantId(plantId: String): List<Long> {
+        return waterDao.getRepeatsByPlantId(plantId)
     }
 
     fun updateDates(list: List<WaterEvent>){

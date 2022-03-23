@@ -25,7 +25,7 @@ interface WaterDao {
     fun getFirstWaterEventByDate(): WaterEvent
 
     @Query("SELECT repeatStart AND repeatInterval FROM WaterEvent WHERE plantId LIKE (:plantId)")
-    fun getRepeatsByPlantId(plantId: String)
+    fun getRepeatsByPlantId(plantId: String) : List<Long>
 
     @Update
     fun updateDates(list: List<WaterEvent>)
