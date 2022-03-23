@@ -42,6 +42,6 @@ object KoinGraph {
         viewModel { CalendarViewModel(get()) }
         viewModel { SearchByNameViewModel(get()) }
         viewModel { MyProfileViewModel(get(), get(), get()) }
-        viewModel { DetailPlantViewModel(get()) }
+        viewModel { DetailPlantViewModel(get(), get()) }
     }
 }
