@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
@@ -70,6 +71,12 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         setOptionsAnimation()
 
         with(binding) {
+
+            Glide.with(requireContext())
+                .load(plant.image)
+                .placeholder(R.drawable.plant_img)
+                .centerCrop()
+                .into(ivDetailPicture);
 
             tvWateringTime.text = detailPlantVM.daysLeftToWater(plant)
 

@@ -37,4 +37,11 @@
     <string name="welcome_stranger">WELCOME STRANGER</string>
     <string name="plapp">Plapp</string>
     <string name="try_again">TRY AGAIN</string>
+    <string name="cultivation">HELP IT GROW!</string>
+    <string name="information">GET TO KNOW IT</string>
+    <string name="next_watering">WATERING IN</string>
+    <string name="days">DAYS</string>
+    <string name="my_plant">My plant</string>
+    <string name="fab">FAB</string>
+    <string name="care">CARE</string>
 </resources>
