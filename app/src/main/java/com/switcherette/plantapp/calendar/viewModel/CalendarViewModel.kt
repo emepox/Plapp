@@ -20,15 +20,39 @@ class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel
             val result = Firebase.auth.currentUser?.uid?.let {
                 waterEventRepo.getAllWaterEvents()
             }
-            allWaterEvents.postValue(result!!)
+            val newEvents = addAndCalculateNextWaterEvents(result!!)
+            allWaterEvents.postValue(newEvents)
         }
     }
 
     fun getWaterEventByTimeRange(startTime: Long, endTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = waterEventRepo.getWaterEventByTimeRange(startTime, endTime)
-            waterEventsPerDay.postValue(result!!)
+            val newEvents = allWaterEvents.value
+            val filterEvents = newEvents!!.filter {
+                it.repeatStart in startTime..endTime
+            }
+            waterEventsPerDay.postValue(filterEvents)
         }
+    }
+
+    private fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
+        val newWaterEvents: MutableList<WaterEvent> = mutableListOf<WaterEvent>().apply {
+            addAll(events)
+        }
+
+        events.forEach {
+
+            for (i in 2..10) {
+                val nextEvent = WaterEvent(
+                    it.id + i,
+                    it.plantId,
+                    it.repeatInterval * i,
+                    it.repeatInterval
+                )
+                newWaterEvents.add(nextEvent)
+            }
+        }
+        return newWaterEvents
     }
 }
 

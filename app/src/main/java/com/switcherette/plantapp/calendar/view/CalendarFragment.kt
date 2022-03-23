@@ -1,6 +1,5 @@
 package com.switcherette.plantapp.calendar.view
 
-import android.media.metrics.Event
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -32,9 +31,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         observeAllWaterEvents()
-
         observeWaterEventsPerDay()
-
         onDateClick()
     }
 
@@ -82,8 +79,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
 
     private fun observeWaterEventsPerDay() {
         calendarVM.waterEventsPerDay.observe(viewLifecycleOwner) { events ->
-            val newEvents = addAndCalculateNextWaterEvents(events)
-            binding.rvCalendarTasksPerDay.adapter = TasksAdapter(newEvents)
+            binding.rvCalendarTasksPerDay.adapter = TasksAdapter(events)
         }
     }
 
@@ -95,26 +91,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
         }
     }
 
-    private fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
-        val newWaterEvents : MutableList<WaterEvent> = mutableListOf<WaterEvent>().apply {
-            addAll(events)
-        }
-
-        events.forEach {
-            val nextEvent = WaterEvent(it.id+1, it.plantId, it.repeatStart + it.repeatInterval, it.repeatInterval)
-            val nextEvent2 = WaterEvent(it.id+2, it.plantId, it.repeatStart + it.repeatInterval*2, it.repeatInterval)
-            val nextEvent3 = WaterEvent(it.id+3, it.plantId, it.repeatStart + it.repeatInterval*3, it.repeatInterval)
-
-            newWaterEvents.add(nextEvent)
-           // newWaterEvents.add(nextEvent2)
-           // newWaterEvents.add(nextEvent3)
-        }
-        return newWaterEvents
-    }
-
     private fun convertEventsToEventDays(events: List<WaterEvent>): List<EventDay> {
-       val newEvents = addAndCalculateNextWaterEvents(events)
-        return newEvents.map {
+        return events.map {
             val calendar = Calendar.getInstance().apply {
                 time = Date(it.repeatStart)
             }
