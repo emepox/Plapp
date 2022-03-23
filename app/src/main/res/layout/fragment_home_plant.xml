@@ -37,8 +37,8 @@
         android:id="@+id/ivBee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
         android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
         android:src="@drawable/ic_baseline_emoji_nature_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
@@ -60,10 +60,10 @@
         android:id="@+id/tvHomePlantFactAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         android:paddingHorizontal="20dp"
-        android:textColor="@color/white"
+        android:paddingBottom="10dp"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:text="These are your pending tasks:"
+        android:text="These are your pending tasks for today:"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,8 @@
         android:paddingHorizontal="30dp"
         android:paddingVertical="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading"
+        tools:listitem="@layout/item_home_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

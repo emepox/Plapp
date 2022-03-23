@@ -1,21 +1,17 @@
 package com.switcherette.plantapp.detail
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentDetailPlantBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -76,35 +72,42 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 tvWateringTime.text = "$it"
             }
 
+            Glide.with(requireContext())
+                .load(plant.image)
+                .placeholder(R.drawable.plant_img)
+                .centerCrop()
+                .into(ivDetailPicture);
+
+
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
 
-            etCareWatering.setText("every ${plant.water} days")
+            etCareWatering.setText("Every ${plant.water} days")
             plant.light.let {
                 when(it) {
                     1 -> {
-                        etCareLight.setText("Full shadow")
+                        etCareLight.setText(R.string.full_shadow)
                         ivCareLight.setImageResource(R.drawable.ic_cloud)
                     }
                     2 -> {
-                        etCareLight.setText("Partial shade")
+                        etCareLight.setText(R.string.partial_shade)
                         ivCareLight.setImageResource(R.drawable.ic_sun_clouds)
                     }
                     3 -> {
-                        etCareLight.setText("Full sun")
+                        etCareLight.setText(R.string.full_sun)
                         ivCareLight.setImageResource(R.drawable.ic_sun)
                     }
                     4 -> {
-                        etCareLight.setText("Light adaptable")
+                        etCareLight.setText(R.string.light_adaptable)
                         ivCareLight.setImageResource(R.drawable.ic_sun_clouds)
                     }
-                    else -> etCareLight.setText("No data")
+                    else -> etCareLight.setText(R.string.no_data_available)
 
                 }
             }
-            tvDetailScientificName.text = plant.scientificName?: "No data"
-            etDetailDescription.setText(plant.description?: "No description data")
-            etDetailCultivation.setText(plant.cultivation?: "No cultivation data")
+            tvDetailScientificName.text = plant.scientificName?: "No data available"
+            etDetailDescription.setText(plant.description?: "No description data available!")
+            etDetailCultivation.setText(plant.cultivation?: "No cultivation data available!")
             plant.family?.let { family ->
                 tvDetailFamily.text = family
                 tvDetailFamily.visibility = VISIBLE
@@ -125,50 +128,13 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
 
         btnEditPlant.setOnClickListener {
-            Log.e("saveiconbefore", "$saveIcon")
             saveIcon = !saveIcon
-            Log.e("saveiconafter", "$saveIcon")
             if (saveIcon) {
                 // EDIT FUNCTIONALITY
-                Toast.makeText(requireContext(), "Please edit", Toast.LENGTH_SHORT).show()
-                btnEditPlant.setImageResource(R.drawable.ic_save)
-
-                with(binding) {
-                    mutableListOf(
-                        etDetailNickname,
-                        etDetailDescription,
-                        etDetailCultivation
-                    ).onEach { element ->
-                        element.isEnabled = true
-                        element.setBackgroundColor(Color.parseColor("#FF9C4141"))
-                        //it.setHintTextColor("#FF9C4141")
-                        //it.setTextAppearance(R.style.LineEditText)
-                    }
-                }
+                editPlant()
             } else {
                 // SAVE FUNCTIONALITY
-                Toast.makeText(requireContext(), "Clicked save", Toast.LENGTH_SHORT).show()
-                btnEditPlant.setImageResource(R.drawable.ic_edit2)
-
-                // Create new edited plant object
-                with(binding) {
-                    editedPlant = UserPlant(
-                        plant.id,
-                        etDetailNickname.text.toString(),
-                        plant.scientificName,
-                        plant.commonName,
-                        plant.family,
-                        etDetailDescription.text.toString(),
-                        etDetailCultivation.text.toString(),
-                        plant.light,
-                        plant.water,
-                        plant.image,
-                        plant.userId
-                    )
-                    Log.e("editedplant", "$editedPlant")
-                    detailPlantVM.editPlant(editedPlant)
-                    detailPlantVM.editPlantOnFirebase(editedPlant)
-                }
+                saveUpdatedPlant()
             }
         }
 
@@ -178,6 +144,61 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             detailPlantVM.deleteWaterEvent(plant)
             findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
 
+        }
+    }
+
+    private fun saveUpdatedPlant() {
+        btnEditPlant.setImageResource(R.drawable.ic_edit2)
+
+        // Create new edited plant object
+        with(binding) {
+            editedPlant = UserPlant(
+                plant.id,
+                etDetailNickname.text.toString(),
+                plant.scientificName,
+                plant.commonName,
+                plant.family,
+                etDetailDescription.text.toString(),
+                etDetailCultivation.text.toString(),
+                plant.light,
+                plant.water,
+                plant.image,
+                plant.userId
+            )
+            Log.e("editedplant", "$editedPlant")
+            detailPlantVM.editPlant(editedPlant)
+            detailPlantVM.editPlantOnFirebase(editedPlant)
+            onEditButtonClicked()
+
+            with(binding) {
+                mutableListOf(
+                    etDetailNickname,
+                    etDetailDescription,
+                    etDetailCultivation
+                ).onEach { element ->
+                    element.isEnabled = false
+                    element.setBackgroundResource(0)
+                }
+            }
+
+            Toast.makeText(requireContext(), "Your plant info has been updated", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    private fun editPlant() {
+        Toast.makeText(requireContext(), "Please edit", Toast.LENGTH_SHORT).show()
+        btnEditPlant.setImageResource(R.drawable.ic_save)
+
+        with(binding) {
+            mutableListOf(
+                etDetailNickname,
+                etDetailDescription,
+                etDetailCultivation
+            ).onEach { element ->
+                element.isEnabled = true
+                element.setBackgroundResource(R.drawable.rounded2)
+            }
         }
     }
 

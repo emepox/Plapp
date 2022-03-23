@@ -34,7 +34,7 @@ class PlantForm2ViewModel(
             val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
             with(waterAlarm) {
                 if (firstEvent == null) {
-                    waterRepository.addNewWaterEvent(waterEvent)
+                   /* waterRepository.addNewWaterEvent(waterEvent)*/
                     if(showNotifications) createAlarm(waterEvent.repeatStart)
                 } else {
                     if (isAlarmSet()) {
