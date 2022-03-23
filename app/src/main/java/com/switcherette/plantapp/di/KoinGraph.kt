@@ -35,7 +35,7 @@ object KoinGraph {
         single { PlantInfoRepository() }
         viewModel { SearchByPictureViewModel(get()) }
         viewModel { AddPlantPictureViewModel() }
-        viewModel { HomeViewModel(get(), get(), get()) }
+        viewModel { HomeViewModel(get(), get()) }
         viewModel { PlantForm1ViewModel(get()) }
         viewModel { PlantForm2ViewModel(get(), get(), get(), get()) }
         viewModel { MyPlantsViewModel(get()) }

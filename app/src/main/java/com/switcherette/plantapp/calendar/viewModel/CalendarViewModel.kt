@@ -7,6 +7,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.WaterRepository
+import com.switcherette.plantapp.utils.addAndCalculateNextWaterEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -35,24 +36,5 @@ class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel
         }
     }
 
-    private fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
-        val newWaterEvents: MutableList<WaterEvent> = mutableListOf<WaterEvent>().apply {
-            addAll(events)
-        }
-
-        events.forEach {
-
-            for (i in 2..10) {
-                val nextEvent = WaterEvent(
-                    it.id + i,
-                    it.plantId,
-                    it.repeatInterval * i,
-                    it.repeatInterval
-                )
-                newWaterEvents.add(nextEvent)
-            }
-        }
-        return newWaterEvents
-    }
 }
 
