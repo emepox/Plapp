@@ -32,6 +32,10 @@ class WaterRepository : KoinComponent {
         return  waterDao.getFirstWaterEventByDate()
     }
 
+    fun getRepeatStartByPlantId(plantId: String) {
+        waterDao.getRepeatsByPlantId(plantId)
+    }
+
     fun updateDates(list: List<WaterEvent>){
         waterDao.updateDates(list)
     }
@@ -39,4 +43,5 @@ class WaterRepository : KoinComponent {
     fun deleteWaterEvent(waterEvent: WaterEvent){
         waterDao.deleteWaterEvent(waterEvent)
     }
+
 }
