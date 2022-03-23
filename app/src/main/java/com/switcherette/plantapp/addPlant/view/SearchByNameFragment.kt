@@ -1,6 +1,5 @@
 package com.switcherette.plantapp.addPlant.view
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
@@ -44,7 +43,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        val allPlantsAdapter = SearchByNameAdapter() { choosePlant(it) }
+        val allPlantsAdapter = SearchByNameAdapter { choosePlant(it) }
         recyclerView.adapter = allPlantsAdapter
 
         searchByNameVM.allPlants.observe(viewLifecycleOwner) {
@@ -66,11 +65,10 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
     private fun choosePlant(plantInfo: PlantInfo) {
 
-        var image: String? = null
-        if (userPhotoUrl != null){
-            image = userPhotoUrl
+        val image = if (userPhotoUrl != null){
+            userPhotoUrl
         } else {
-            image = plantInfo.img
+            plantInfo.img
         }
 
         val userPlant = UserPlant(
