@@ -3,12 +3,15 @@ package com.switcherette.plantapp.detail
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.data.UserPlant
+import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +19,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
 
 class DetailPlantViewModel(
     private val userPlantRepo: UserPlantRepository,
@@ -23,6 +28,9 @@ class DetailPlantViewModel(
 ): ViewModel(), KoinComponent {
 
     val context: Context by inject()
+
+    var daysToWater: MutableLiveData<Long> = MutableLiveData()
+
 
     fun deletePlant(plant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -74,12 +82,6 @@ class DetailPlantViewModel(
             .addOnFailureListener { e -> Log.w("Failure", "Error updating plant", e) }
     }
 
-    private fun getWaterEvent(plant: UserPlant) {
-        viewModelScope.launch(Dispatchers.IO) {
-            waterRepo.getWaterEventByPlantId(plant.id)
-        }
-    }
-
     fun deleteWaterEvent(plant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
             val waterEvent = waterRepo.getWaterEventByPlantId(plant.id)
@@ -87,13 +89,26 @@ class DetailPlantViewModel(
         }
     }
 
-    fun daysLeftToWater(plant: UserPlant): String {
-        val waterEvent = getWaterEvent(plant)
-        val waterRepeats = waterRepo.getRepeatStartByPlantId(plant.id)
-        Log.e("waterevent", waterRepeats.toString())
-        return "Hello"
+    fun getWaterEvent(plant: UserPlant) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val waterEvent = waterRepo.getWaterEventByPlantId(plant.id)
+            val nextEvent = waterEvent.repeatStart
+            val today = Calendar.getInstance().let {
+                it[Calendar.HOUR_OF_DAY] = 12
+                it[Calendar.MINUTE] = 0
+                it[Calendar.SECOND] = 0
+                it[Calendar.MILLISECOND] = 0
+                it.timeInMillis
+            }
+            val result = nextEvent - today
+            val hours = result.milliseconds.inWholeHours
+            val days = hours/24
+
+            withContext(Dispatchers.Main) {
+                daysToWater.value = days
+                Log.e("waterevent", "$days")
+            }
+        }
     }
-
-
 
 }

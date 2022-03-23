@@ -64,8 +64,13 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         plant = arguments?.getParcelable("plant")!!
 
         setOptionsAnimation()
+        detailPlantVM.getWaterEvent(plant)
 
         with(binding) {
+
+            detailPlantVM.daysToWater.observe(viewLifecycleOwner) {
+                tvWateringTime.text = "$it"
+            }
 
             Glide.with(requireContext())
                 .load(plant.image)
@@ -73,7 +78,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 .centerCrop()
                 .into(ivDetailPicture);
 
-            tvWateringTime.text = detailPlantVM.daysLeftToWater(plant)
 
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
