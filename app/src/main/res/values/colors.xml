@@ -4,11 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#2E6157</color>
     <color name="primary_dark">#0D3E2C</color>
-    <color name="primary_light">#408779</color>
+    <color name="primary_light">#79009688</color>
     <color name="secondary">#8EA667</color>
     <color name="secondary_light">#C8DCA8</color>
     <color name="secondary_dark">#4C5C32</color>
     <color name="accent">#9A7ECC</color>
+    <color name="water">#C2E2FB</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
