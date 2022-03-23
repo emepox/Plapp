@@ -24,10 +24,9 @@ class CalendarViewModel(private val waterEventRepo: WaterRepository) : ViewModel
         }
     }
 
-    fun getWaterEventByTimeRange(startTime: Long, endTime:Long) {
+    fun getWaterEventByTimeRange(startTime: Long, endTime: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val result = waterEventRepo.getWaterEventByTimeRange(startTime, endTime)
-
             waterEventsPerDay.postValue(result!!)
         }
     }
