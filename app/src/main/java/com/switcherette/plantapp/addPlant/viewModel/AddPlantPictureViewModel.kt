@@ -10,6 +10,9 @@ import com.switcherette.plantapp.BuildConfig
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddPlantPictureViewModel() : ViewModel(), KoinComponent {
@@ -19,12 +22,12 @@ class AddPlantPictureViewModel() : ViewModel(), KoinComponent {
     var finalPath: MutableLiveData<Uri> = MutableLiveData()
 
     fun getTmpFileUri(): Uri {
-        val tmpFile =
-            File.createTempFile("tmp_image_file", ".png", context.cacheDir)
-                .apply {
-                createNewFile()
-                deleteOnExit()
-            }
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        val tmpFile = File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */)
         return FileProvider.getUriForFile(
             context,
             "${BuildConfig.APPLICATION_ID}.provider",

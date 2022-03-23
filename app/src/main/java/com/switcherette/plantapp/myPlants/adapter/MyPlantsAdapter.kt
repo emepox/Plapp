@@ -27,14 +27,9 @@ class MyPlantsAdapter(
         fun bind(plant: UserPlant, seePlantDetails: (UserPlant) -> Unit) {
             binding.tvPlantName.text = plant.nickname
 
-            if (plant.image?.contains("content") == true){
+            if (plant.image?.contains("http") == false){
                 val uri = Uri.parse(plant.image)
-                //binding.ivPlantImage.setImageURI(uri)
-                Glide
-                    .with(context)
-                    .load(uri.path)
-                    .centerCrop()
-                    .into(binding.ivPlantImage);
+                binding.ivPlantImage.setImageURI(uri)
             } else {
                 Glide
                     .with(context)
