@@ -83,32 +83,32 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
 
-            etCareWatering.setText("every ${plant.water} days")
+            etCareWatering.setText("Every ${plant.water} days")
             plant.light.let {
                 when(it) {
                     1 -> {
-                        etCareLight.setText("Full shadow")
+                        etCareLight.setText(R.string.full_shadow)
                         ivCareLight.setImageResource(R.drawable.ic_cloud)
                     }
                     2 -> {
-                        etCareLight.setText("Partial shade")
+                        etCareLight.setText(R.string.partial_shade)
                         ivCareLight.setImageResource(R.drawable.ic_sun_clouds)
                     }
                     3 -> {
-                        etCareLight.setText("Full sun")
+                        etCareLight.setText(R.string.full_sun)
                         ivCareLight.setImageResource(R.drawable.ic_sun)
                     }
                     4 -> {
-                        etCareLight.setText("Light adaptable")
+                        etCareLight.setText(R.string.light_adaptable)
                         ivCareLight.setImageResource(R.drawable.ic_sun_clouds)
                     }
-                    else -> etCareLight.setText("No data")
+                    else -> etCareLight.setText(R.string.no_data_available)
 
                 }
             }
-            tvDetailScientificName.text = plant.scientificName?: "No data"
-            etDetailDescription.setText(plant.description?: "No description data")
-            etDetailCultivation.setText(plant.cultivation?: "No cultivation data")
+            tvDetailScientificName.text = plant.scientificName?: "No data available"
+            etDetailDescription.setText(plant.description?: "No description data available!")
+            etDetailCultivation.setText(plant.cultivation?: "No cultivation data available!")
             plant.family?.let { family ->
                 tvDetailFamily.text = family
                 tvDetailFamily.visibility = VISIBLE
@@ -144,7 +144,9 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                         etDetailCultivation
                     ).onEach { element ->
                         element.isEnabled = true
-                        element.setBackgroundColor(Color.parseColor("#FF9C4141"))
+                        //element.setBackgroundColor(resources.getColor(R.color.accent))
+                        element.setBackgroundResource(R.drawable.rounded2)
+                        //Color.parseColor("#FF9C4141")
                         //it.setHintTextColor("#FF9C4141")
                         //it.setTextAppearance(R.style.LineEditText)
                     }
