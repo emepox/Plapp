@@ -63,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            tools:src="@tools:sample/backgrounds/scenic"
-             />
+            tools:src="@tools:sample/backgrounds/scenic"/>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -123,6 +123,5 @@
         app:barrierDirection="bottom"
         app:barrierMargin="16dp"
         app:constraint_referenced_ids="cardPreview" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

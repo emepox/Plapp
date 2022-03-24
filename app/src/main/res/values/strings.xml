@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PlantApp</string>
+    <string name="app_name">PLAPP</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_photos"><u>NO PHOTOS, PLEASE!</u></string>
     <string name="no_guess"><u>YOU GOT IT WRONG.\n I\'D RATHER CHOOSE FROM A LIST</u></string>
@@ -49,6 +49,8 @@
     <string name="full_sun">Full sun</string>
     <string name="light_adaptable">Partial sun</string>
     <string name="no_data_available">No data available!</string>
+    <string name="your_pending_tasks_for_today">YOUR PENDING TASKS FOR TODAY:</string>
+    <string name="yay_today_you_have_no_pending_tasks">YAY! Today you have no pending tasks</string>
     <string name="restore_backup">RESTORE BACKUP</string>
     <string name="no_date_selected_calendar">No date selected</string>
     <string name="these_are_your_pending_tasks_for_today">These are your pending tasks for today:</string>
@@ -88,5 +90,4 @@
     <string name="password_changed">Password changed!</string>
     <string name="input_your_new_password">Input your new password</string>
     <string name="save_new_password">SAVE NEW PASSWORD</string>
-
 </resources>

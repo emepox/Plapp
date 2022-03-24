@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,8 +32,12 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         binding = FragmentPlantForm1Binding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.primary))
+            ResourcesCompat.getColor(resources, R.color.primary, null))
 
+        gettingNavArgs()
+    }
+
+    private fun gettingNavArgs() {
         val args: PlantForm1FragmentArgs by navArgs()
         // get API info (if coming from SearchByPicture)
         val apiSuggestion = args.suggestionFromApi

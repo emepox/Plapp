@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,14 +29,13 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         binding = FragmentSearchByPictureBinding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.primary))
+            ResourcesCompat.getColor(resources, R.color.primary, null))
 
         uri = arguments?.get("picturePath") as Uri
 
         identifyPlant()
         observePlantId()
         setOnClickListeners()
-
     }
 
     private fun setOnClickListeners() {
@@ -58,7 +58,6 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         binding.ivPreview.setImageURI(uri)
         searchPicVM.identifyPlant(uri)
     }
-
 
     private fun observePlantId() {
         searchPicVM.plantId.observe(viewLifecycleOwner) { it ->

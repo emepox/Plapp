@@ -19,6 +19,8 @@
 - User's plant library
 - Watering notifications
 - Featuring a 'Zen quote of the day' on home screen :)
+- Calendar that displays watering events
+- Authentication & Restoring plants when logging in from different phone
 
 
 ## Setup
@@ -39,6 +41,7 @@ This project uses several additional libraries/dependencies:
 - Lottie animations
 - Gif drawable
 - Material-Calendar-View
+- MaterialAlertDialogBuilder
 - okhttp3
 - page-indicator
 

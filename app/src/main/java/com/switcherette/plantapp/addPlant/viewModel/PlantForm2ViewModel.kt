@@ -3,11 +3,9 @@ package com.switcherette.plantapp.addPlant.viewModel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.data.UserPlant
-import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.SharedPrefsRepository
 import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import com.switcherette.plantapp.data.repositories.WaterRepository
@@ -17,8 +15,6 @@ import com.switcherette.plantapp.utils.createWaterEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 class PlantForm2ViewModel(
     private val waterRepository: WaterRepository,
@@ -35,12 +31,13 @@ class PlantForm2ViewModel(
             val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
             with(waterAlarm) {
                 if (firstEvent == null) {
-                   /* waterRepository.addNewWaterEvent(waterEvent)*/
-                    if(showNotifications) createAlarm(waterEvent.repeatStart)
+                    if (showNotifications) createAlarm(waterEvent.repeatStart)
                 } else {
                     if (isAlarmSet()) {
                         val nextEvent = firstEvent.repeatStart
-                        if (nextEvent > waterEvent.repeatStart && showNotifications) createAlarm(waterEvent.repeatStart)
+                        if (nextEvent > waterEvent.repeatStart && showNotifications) createAlarm(
+                            waterEvent.repeatStart
+                        )
                     }
                 }
                 waterRepository.addNewWaterEvent(waterEvent)
@@ -69,6 +66,5 @@ class PlantForm2ViewModel(
             .set(userPlant)
             .addOnSuccessListener { Log.d("Success", "Plant successfully added!") }
             .addOnFailureListener { e -> Log.w("Failure", "Error writing plant", e) }
-
     }
 }

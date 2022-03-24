@@ -6,6 +6,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -58,7 +59,7 @@ class MyPlantsFragment : Fragment(R.layout.fragment_my_plants) {
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.white))
+            ResourcesCompat.getColor(resources, R.color.white, null))
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         myPlantsVM.getUserPlants()

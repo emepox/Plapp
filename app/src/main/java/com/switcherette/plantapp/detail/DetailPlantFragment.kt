@@ -1,5 +1,6 @@
 package com.switcherette.plantapp.detail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -62,7 +64,9 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.white))
+            Color.parseColor("#F3F4F6")
+        )
+
         binding = FragmentDetailPlantBinding.bind(view)
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
@@ -83,7 +87,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 .placeholder(R.drawable.plant_img)
                 .centerCrop()
                 .into(ivDetailPicture);
-
 
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
@@ -121,8 +124,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         }
     }
 
-    // MOVIDA DE LOS BOTONES
-
     private fun setOptionsAnimation() {
         btnEdit = binding.btnEdit
         btnEditPlant = binding.btnEditPlant
@@ -131,7 +132,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEdit.setOnClickListener {
             onEditButtonClicked()
         }
-
 
         btnEditPlant.setOnClickListener {
             saveIcon = !saveIcon
@@ -235,6 +235,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     }
 
     private fun setDialogBox() {
+
         val singleItems = arrayOf(getString(R.string.it_did_not_survive), getString(R.string.it_found_a_new_home), getString(
                     R.string.i_added_a_wrong_plant), getString(R.string.no_comment))
         val checkedItem = 1
@@ -247,12 +248,12 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 detailPlantVM.deleteWaterEvent(plant)
                 findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
             }
+
             .setPositiveButton(getString(R.string.cancel)) { dialog, which ->
                 // Respond to positive button press
+
             }
-            // Single-choice items (initialized with checked item)
             .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
-                // Respond to item chosen
             }
             .show()
     }
@@ -261,5 +262,4 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEditPlant.isClickable = !clicked
         btnDeletePlant.isClickable = !clicked
     }
-
 }

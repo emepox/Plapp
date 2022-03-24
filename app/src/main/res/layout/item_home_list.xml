@@ -11,7 +11,8 @@
         android:id="@+id/ivWaterIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/watering_icon"
+        android:src="@drawable/ic_watering"
+        app:tint="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvItemHomeList"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,8 +24,8 @@
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         tools:text="Plant nickname"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/ivWaterIcon"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

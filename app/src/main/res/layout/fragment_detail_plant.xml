@@ -83,7 +83,6 @@
                 android:background="@drawable/background_transparent"
                 android:enabled="false"
                 android:layout_marginHorizontal="20dp"
-
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -100,16 +99,12 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:id="@+id/llCare"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/ivDetailPicture"
-
-            >
+            app:layout_constraintTop_toBottomOf="@+id/ivDetailPicture">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clCare"
@@ -137,9 +132,7 @@
                     android:gravity="start"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCare"
-
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/tvCare">
 
                     <ImageView
                         android:id="@+id/ivCareWatering"
@@ -161,9 +154,7 @@
                         tools:text="Watering"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -201,7 +192,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -223,9 +213,7 @@
                         android:text="@string/next_watering"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvWateringTime"
@@ -249,14 +237,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvWateringTime" />
 
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clInfo"
@@ -266,7 +251,6 @@
             android:paddingBottom="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llCare">
-
 
             <TextView
                 android:id="@+id/tvInfo"
@@ -278,7 +262,6 @@
                 android:text="@string/information"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <LinearLayout
                 android:id="@+id/llFamily"
@@ -309,9 +292,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Rosaea" />
 
-
             </LinearLayout>
-
 
             <EditText
                 android:id="@+id/etDetailDescription"
@@ -327,7 +308,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llFamily"
                 tools:text="Naughty Marietta is a compact annual to around 30cm tall bearing a profusion of single flowers with bright yellow petals each marked with a central deep red blotch" />
-
 
             <TextView
                 android:id="@+id/tvDetailCultivationTitle"
@@ -359,8 +339,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </ScrollView>

@@ -25,7 +25,5 @@ class SearchByPictureViewModel(
                 plantId.value = result!!
             }
         }
-
     }
-
 }

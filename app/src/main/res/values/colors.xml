@@ -16,5 +16,7 @@
     <color name="divider">#BDBDBD</color>
     <color name="light_grey">#C9ECEEEC</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFFFFFFF</color>
+    <color name="ic_logo_final_background">#009688</color>
+
 </resources>
 

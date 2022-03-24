@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,12 +27,12 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
         binding = FragmentAddPlantPictureBinding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.primary))
+            ResourcesCompat.getColor(resources, R.color.primary, null)
+        )
 
         observeConfirmationBtn()
         setClickListeners()
     }
-
 
     private fun observeConfirmationBtn() {
         searchPicVM.finalPath.observe(viewLifecycleOwner) {
@@ -42,11 +43,8 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
     private fun setClickListeners() {
 
         with(binding) {
-
             cardPreview.setOnClickListener { showOptionsDialog() }
-
             fabEditPic.setOnClickListener { showOptionsDialog() }
-
             tvNoPic.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_addPlantPictureFragment_to_searchByNameFragment,
@@ -62,7 +60,6 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
                 )
             }
         }
-
     }
 
     private fun showOptionsDialog() {
@@ -112,5 +109,4 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
                 searchPicVM.finalPath.value = uri
             }
         }
-
 }

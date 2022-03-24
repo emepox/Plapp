@@ -16,7 +16,6 @@ class SearchByPictureAdapter(
     private var chooseSuggestion: (Suggestion) -> Unit
 ) : RecyclerView.Adapter<SearchByPictureAdapter.SuggestionViewHolder>() {
 
-
     class SuggestionViewHolder(
         private val binding: ItemSuggestionBinding
     ) : RecyclerView.ViewHolder(binding.root), KoinComponent {
@@ -48,14 +47,12 @@ class SearchByPictureAdapter(
     ): SuggestionViewHolder {
         val binding = ItemSuggestionBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-
         return SuggestionViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: SuggestionViewHolder, position: Int) {
         holder.bind(dataSet[position], chooseSuggestion)
     }
-
 
     override fun getItemCount(): Int {
         return dataSet.size

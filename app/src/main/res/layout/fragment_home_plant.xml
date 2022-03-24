@@ -10,17 +10,15 @@
         android:id="@+id/ivHomePicture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/rounded"
         android:contentDescription="@string/plapp"
         android:foreground="#401E1E1E"
-        android:background="@drawable/rounded"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent
-
-"
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
@@ -43,11 +41,10 @@
         android:layout_height="60dp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:src="@drawable/ic_coffee_lines"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBarrierBottom"
+        android:src="@drawable/ic_coffee"
         app:layout_constraintBottom_toTopOf="@id/tvHomePlantFact"
- />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBarrierBottom" />
 
     <TextView
         android:id="@+id/tvHomePlantFact"
@@ -56,9 +53,9 @@
         android:paddingHorizontal="20dp"
         android:paddingBottom="5dp"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/tvHomePlantFactAuthor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivBee"
-        app:layout_constraintBottom_toTopOf="@id/tvHomePlantFactAuthor"
         tools:text="This is a random plant fact" />
 
     <TextView
@@ -70,18 +67,18 @@
         android:textAlignment="center"
         android:textSize="12sp"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomePlantFact"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="somebody said" />
 
     <LinearLayout
         android:id="@+id/llTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/rounded3"
         android:elevation="20dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading">
 
@@ -97,16 +94,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHomeList"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading"
-        tools:listitem="@layout/item_home_list" />
 
+        <TextView
+            android:id="@+id/tvNoPendingTasks"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
+            android:text="@string/yay_today_you_have_no_pending_tasks"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
+
+        <ImageView
+            android:id="@+id/ivNoTasksIcon"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:paddingBottom="10dp"
+            android:visibility="visible"
+            android:layout_marginBottom="20dp"
+            android:maxHeight="250dp"
+            android:src="@drawable/happy_plant_icon" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomeList"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="20dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoPendingTasks"
+            tools:listitem="@layout/item_home_list" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Barrier
