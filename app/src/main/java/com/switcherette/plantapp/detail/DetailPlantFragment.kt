@@ -237,7 +237,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     }
 
     private fun setDialogBox() {
-        val singleItems = arrayOf("It did not survive :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
+        val singleItems = arrayOf("It did not survive... ", "It found a new home", "I added the wrong plant", "No comment...")
         val checkedItem = 1
 
        MaterialAlertDialogBuilder(requireContext())
@@ -259,5 +259,4 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEditPlant.isClickable = !clicked
         btnDeletePlant.isClickable = !clicked
     }
-
 }
