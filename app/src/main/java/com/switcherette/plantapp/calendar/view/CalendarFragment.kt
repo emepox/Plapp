@@ -102,7 +102,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             val calendar = Calendar.getInstance().apply {
                 time = Date(it.repeatStart)
             }
-            EventDay(calendar, R.drawable.ic_flower)
+            EventDay(calendar, R.drawable.ic_flower_accent)
         }
     }
 
