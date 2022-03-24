@@ -64,15 +64,15 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
 
     private fun showOptionsDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("You choose!")
-            .setMessage("We need an image to identify your plant")
-            .setNeutralButton("Cancel") { dialog, which ->
+            .setTitle(getString(R.string.you_choose_dialog))
+            .setMessage(getString(R.string.we_need_an_image_to_identify_your_plant))
+            .setNeutralButton(getString(R.string.cancel)) { dialog, which ->
                 dialog.dismiss()
             }
-            .setNegativeButton("Take photo") { dialog, which ->
+            .setNegativeButton(getString(R.string.take_photo)) { dialog, which ->
                 takeImage()
             }
-            .setPositiveButton("Choose from gallery") { dialog, which ->
+            .setPositiveButton(getString(R.string.choose_from_gallery)) { dialog, which ->
                 selectImageFromGallery()
             }
             .show()

@@ -82,18 +82,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading">
 
-        <TextView
-            android:id="@+id/tvHomeListHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="20dp"
-            android:text="@string/your_pending_tasks_for_today"
-            android:textColor="@color/primary_dark"
-            android:fontFamily="@font/montserrat_bold"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
+    <TextView
+        android:id="@+id/tvHomeListHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="@string/these_are_your_pending_tasks_for_today"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
+
 
         <TextView
             android:id="@+id/tvNoPendingTasks"
