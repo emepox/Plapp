@@ -168,7 +168,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 plant.image,
                 plant.userId
             )
-            Log.e("editedplant", "$editedPlant")
             detailPlantVM.editPlant(editedPlant)
             detailPlantVM.editPlantOnFirebase(editedPlant)
             onEditButtonClicked()
@@ -237,7 +236,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     }
 
     private fun setDialogBox() {
-        val singleItems = arrayOf("It did not survey :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
+        val singleItems = arrayOf("It did not survive :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
         val checkedItem = 1
 
         val dialog = MaterialAlertDialogBuilder(requireContext())
