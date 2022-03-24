@@ -85,14 +85,14 @@ class DetailPlantViewModel(
     fun deleteWaterEvent(plant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
             val waterEvent = waterRepo.getWaterEventByPlantId(plant.id)
-            waterRepo.deleteWaterEvent(waterEvent)
+            waterRepo.deleteWaterEvent(waterEvent!!)
         }
     }
 
     fun getWaterEvent(plant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
             val waterEvent = waterRepo.getWaterEventByPlantId(plant.id)
-            val nextEvent = waterEvent.repeatStart
+            val nextEvent = waterEvent!!.repeatStart
             val today = Calendar.getInstance().let {
                 it[Calendar.HOUR_OF_DAY] = 12
                 it[Calendar.MINUTE] = 0

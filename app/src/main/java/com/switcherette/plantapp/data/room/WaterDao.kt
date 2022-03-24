@@ -13,7 +13,7 @@ interface WaterDao {
     fun getAllWaterEvents(): List<WaterEvent>
 
     @Query("SELECT * FROM WaterEvent WHERE plantId LIKE (:plantId)")
-    fun getWaterEventByPlantId(plantId: String): WaterEvent
+    fun getWaterEventByPlantId(plantId: String): WaterEvent?
 
     @Query("SELECT * FROM WaterEvent WHERE repeatStart LIKE (:startDate) ")
     fun getWaterEventByDate(startDate: Long): List<WaterEvent>
