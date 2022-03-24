@@ -16,7 +16,7 @@ class WaterRepository : KoinComponent {
         return waterDao.getAllWaterEvents()
     }
 
-    fun getWaterEventByPlantId(plantId: String): WaterEvent{
+    fun getWaterEventByPlantId(plantId: String): WaterEvent?{
         return waterDao.getWaterEventByPlantId(plantId)
     }
 

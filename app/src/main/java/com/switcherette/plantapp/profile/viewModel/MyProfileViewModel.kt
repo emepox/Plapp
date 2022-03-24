@@ -1,6 +1,7 @@
 package com.switcherette.plantapp.profile.viewModel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
@@ -50,13 +51,16 @@ class MyProfileViewModel(
                 responseList.forEach { documentSnapshot ->
                     val plant = documentSnapshot.toObject(UserPlant::class.java)
                     plantRepository.addNewUserPlant(plant!!)
-                    val waterEvent = createWaterEvent(plant)
-                    waterRepository.addNewWaterEvent(waterEvent)
-                    val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
-                    if (showNotifications){
-                        val earliestEvent = waterRepository.getFirstWaterEventByDate()
-                        if (earliestEvent != null) waterAlarm.createAlarm(earliestEvent.repeatStart)
+                    val existingEvent = waterRepository.getWaterEventByPlantId(plant.id)
+                    if (existingEvent != null) {
+                        val waterEvent = createWaterEvent(plant)
+                        waterRepository.addNewWaterEvent(waterEvent)
                     }
+                }
+                val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
+                if (showNotifications && !waterAlarm.isAlarmSet()) {
+                    val earliestEvent = waterRepository.getFirstWaterEventByDate()
+                    if (earliestEvent != null) waterAlarm.createAlarm(earliestEvent.repeatStart)
                 }
             }
             .addOnFailureListener {
