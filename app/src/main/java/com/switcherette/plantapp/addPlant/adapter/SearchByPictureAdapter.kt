@@ -7,15 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.switcherette.plantapp.data.Suggestion
 import com.switcherette.plantapp.databinding.ItemSuggestionBinding
-import org.koin.core.Koin
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.math.roundToInt
 
-class SuggestionsAdapter(
+class SearchByPictureAdapter(
     private val dataSet: List<Suggestion>,
     private var chooseSuggestion: (Suggestion) -> Unit
-) : RecyclerView.Adapter<SuggestionsAdapter.SuggestionViewHolder>() {
+) : RecyclerView.Adapter<SearchByPictureAdapter.SuggestionViewHolder>() {
 
 
     class SuggestionViewHolder(
@@ -27,7 +26,7 @@ class SuggestionsAdapter(
         fun bind(suggestion: Suggestion, chooseSuggestion: (Suggestion) -> Unit) {
             binding.tvSciName.text = suggestion.plant_details.scientific_name
             if (suggestion.plant_details.common_names.toString() != "null"){
-                binding.tvCommonName.text = suggestion.plant_details.common_names.toString()
+                binding.tvCommonName.text = suggestion.plant_details.common_names.toString().drop(1).dropLast(1)
             } else {
                 binding.tvCommonName.text = ""
             }

@@ -107,6 +107,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
 
     // Calendar
     implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'

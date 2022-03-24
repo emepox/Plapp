@@ -76,20 +76,6 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/ivDetailPicture">
 
-
-            <!--
-            <TextView
-                android:id="@+id/tvDetailNickname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:text="Pepita la Florecita"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-                -->
-
             <EditText
                 android:id="@+id/etDetailNickname"
                 android:layout_width="match_parent"
@@ -97,7 +83,7 @@
                 android:background="@drawable/background_transparent"
                 android:enabled="false"
                 android:layout_marginHorizontal="20dp"
-                android:padding="2dp"
+
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -176,19 +162,6 @@
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                    <!--
-                                        <TextView
-                                            android:id="@+id/tvCareWatering"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="10dp"
-                                            android:paddingHorizontal="10dp"
-                                            android:text="Watering"
-                                            android:textColor="@color/black"
-                                            android:textSize="15sp"
-
-                                            />
-                    -->
                 </LinearLayout>
 
 
@@ -354,22 +327,6 @@
 
             </LinearLayout>
 
-            <!--
-
-            <TextView
-                android:id="@+id/tvDetailDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:paddingVertical="10dp"
-                android:text="Naughty Marietta is a compact annual to around 30cm tall bearing a profusion of single flowers with bright yellow petals each marked with a central deep red blotch"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llFamily" />
-
-                -->
 
             <EditText
                 android:id="@+id/etDetailDescription"
@@ -414,21 +371,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDetailCultivationTitle"
                 tools:text="Easy to grow in reasonable conditions; requires a sheltered, sunny position" />
-
-            <!--
-            <TextView
-                android:id="@+id/tvDetailCultivation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:paddingVertical="10dp"
-                android:text="Easy to grow in reasonable conditions; requires a sheltered, sunny position"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailCultivationTitle" />
-            -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

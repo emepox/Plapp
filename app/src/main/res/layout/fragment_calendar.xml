@@ -31,9 +31,10 @@
         <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             app:firstDayOfWeek="monday"
             app:headerColor="@color/primary_dark"
+            app:todayLabelColor="@color/primary_light"
             app:layout_constraintBottom_toTopOf="@+id/rvCalendarTasksPerDay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -2,10 +2,12 @@ package com.switcherette.plantapp.calendar.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+import com.google.android.material.transition.MaterialFadeThrough
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.calendar.adapter.TasksAdapter
 import com.switcherette.plantapp.calendar.viewModel.CalendarViewModel
@@ -23,6 +25,10 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.white))
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
         binding = FragmentCalendarBinding.bind(view)
 
         calendarVM.getWaterEvents()
@@ -96,7 +102,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             val calendar = Calendar.getInstance().apply {
                 time = Date(it.repeatStart)
             }
-            EventDay(calendar, R.drawable.ic_flower)
+            EventDay(calendar, R.drawable.ic_flower_accent)
         }
     }
 

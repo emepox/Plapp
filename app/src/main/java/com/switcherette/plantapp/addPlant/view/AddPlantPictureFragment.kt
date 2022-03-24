@@ -7,9 +7,11 @@ import android.os.Environment
 import android.view.View
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
@@ -29,6 +31,8 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddPlantPictureBinding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.primary))
 
         observeConfirmationBtn()
         setClickListeners()
