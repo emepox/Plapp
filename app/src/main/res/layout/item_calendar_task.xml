@@ -2,7 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/llNickName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/llWater"
+        app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
         android:id="@+id/ivPlantIcon"
@@ -11,23 +20,34 @@
         android:layout_marginStart="10dp"
         android:src="@drawable/ic_flower"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/primary" />
 
     <TextView
         android:id="@+id/tvTaskItemNickname"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="Nickname"
+        android:layout_marginStart="15dp"
+        tools:text="Nickname"
         app:layout_constraintBottom_toBottomOf="@id/ivPlantIcon"
         app:layout_constraintStart_toEndOf="@id/ivPlantIcon"
         app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llWater"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/llNickName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
         android:id="@+id/ivWaterIcon"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/watering_icon"
+        android:src="@drawable/ic_watering"
+        app:tint="@color/primary"
         app:layout_constraintBottom_toBottomOf="@id/ivPlantIcon"
         app:layout_constraintEnd_toStartOf="@id/tvTaskItemWatering"
         app:layout_constraintStart_toEndOf="@id/tvTaskItemNickname"
@@ -35,13 +55,14 @@
 
     <TextView
         android:id="@+id/tvTaskItemWatering"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="every 5 days"
+        tools:text="every 5 days"
+        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="@id/ivPlantIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivWaterIcon"
         app:layout_constraintTop_toTopOf="parent" />
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
