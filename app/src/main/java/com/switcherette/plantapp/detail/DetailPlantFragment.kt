@@ -180,7 +180,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 ).onEach { element ->
                     element.isEnabled = false
                     element.setBackgroundResource(0)
-                    element.setPadding(20)
+                    element.setPadding(0)
                 }
             }
 
@@ -201,7 +201,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             ).onEach { element ->
                 element.isEnabled = true
                 element.setBackgroundResource(R.drawable.rounded2)
-                element.setPadding(20)
+                element.setPadding(25)
             }
         }
     }
