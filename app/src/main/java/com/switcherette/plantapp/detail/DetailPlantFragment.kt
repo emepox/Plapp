@@ -13,6 +13,7 @@ import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.transition.MaterialFadeThrough
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentDetailPlantBinding
@@ -63,6 +64,8 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
             resources.getColor(R.color.white))
         binding = FragmentDetailPlantBinding.bind(view)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
 
         plant = arguments?.getParcelable("plant")!!
 

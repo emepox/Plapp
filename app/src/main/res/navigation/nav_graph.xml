@@ -38,13 +38,15 @@
         <action
             android:id="@+id/action_myPlantsFragment_to_addPlantPictureFragment"
             app:destination="@id/addPlantPictureFragment"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_myPlantsFragment_to_searchByNameFragment"
             app:destination="@id/searchByNameFragment"
+            app:exitAnim="@anim/fui_slide_out_left"
             app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -60,10 +62,14 @@
         tools:layout="@layout/fragment_add_plant_picture" >
         <action
             android:id="@+id/action_addPlantPictureFragment_to_searchByPictureFragment"
-            app:destination="@id/searchByPictureFragment" />
+            app:destination="@id/searchByPictureFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
         <action
             android:id="@+id/action_addPlantPictureFragment_to_searchByNameFragment"
-            app:destination="@id/searchByNameFragment" />
+            app:destination="@id/searchByNameFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/searchByNameFragment"
@@ -72,12 +78,14 @@
         tools:layout="@layout/fragment_search_by_name">
         <action
             android:id="@+id/action_searchByNameFragment_to_plantForm1Fragment"
-            app:destination="@id/plantForm1Fragment" >
+            app:destination="@id/plantForm1Fragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left">
             <argument
                 android:name="userPlant"
                 android:defaultValue="@null"
-                app:nullable="true"
-                app:argType="com.switcherette.plantapp.data.UserPlant" />
+                app:argType="com.switcherette.plantapp.data.UserPlant"
+                app:nullable="true" />
         </action>
     </fragment>
     <fragment
@@ -88,21 +96,25 @@
 
         <action
             android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
-            app:destination="@id/searchByNameFragment" />
+            app:destination="@id/searchByNameFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
 
         <action
             android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
-            app:destination="@id/plantForm1Fragment" >
+            app:destination="@id/plantForm1Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/fui_slide_out_left">
             <argument
                 android:name="suggestionFromApi"
                 android:defaultValue="@null"
-                app:nullable="true"
-                app:argType="com.switcherette.plantapp.data.Suggestion" />
+                app:argType="com.switcherette.plantapp.data.Suggestion"
+                app:nullable="true" />
             <argument
                 android:name="photoUri"
                 android:defaultValue="@null"
-                app:nullable="true"
-                app:argType="string" />
+                app:argType="string"
+                app:nullable="true" />
         </action>
         <action
             android:id="@+id/action_searchByPictureFragment_to_addPlantPictureFragment"
@@ -115,7 +127,8 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homePlantFragment"
-            app:destination="@id/homePlantFragment" />
+            app:destination="@id/homePlantFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/plantForm1Fragment"
@@ -138,12 +151,14 @@
             app:argType="com.switcherette.plantapp.data.UserPlant" />
         <action
             android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
-            app:destination="@id/plantForm2Fragment" >
+            app:destination="@id/plantForm2Fragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left">
             <argument
                 android:name="userPlant"
                 android:defaultValue="@null"
-                app:nullable="true"
-                app:argType="com.switcherette.plantapp.data.UserPlant" />
+                app:argType="com.switcherette.plantapp.data.UserPlant"
+                app:nullable="true" />
         </action>
     </fragment>
     <fragment
