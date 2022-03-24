@@ -52,7 +52,7 @@ class MyProfileViewModel(
                     val plant = documentSnapshot.toObject(UserPlant::class.java)
                     plantRepository.addNewUserPlant(plant!!)
                     val existingEvent = waterRepository.getWaterEventByPlantId(plant.id)
-                    if (existingEvent != null) {
+                    if (existingEvent == null) {
                         val waterEvent = createWaterEvent(plant)
                         waterRepository.addNewWaterEvent(waterEvent)
                     }
