@@ -67,7 +67,7 @@
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="THAT'S MY PLANT!"
+                android:text="@string/that_s_my_plant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCommonName" />
 

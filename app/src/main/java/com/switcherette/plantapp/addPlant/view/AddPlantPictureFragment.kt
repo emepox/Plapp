@@ -3,7 +3,6 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,16 +10,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentAddPlantPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
 
@@ -73,15 +67,15 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
 
     private fun showOptionsDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("You choose!")
-            .setMessage("We need an image to identify your plant")
-            .setNeutralButton("Cancel") { dialog, which ->
+            .setTitle(getString(R.string.you_choose_dialog))
+            .setMessage(getString(R.string.we_need_an_image_to_identify_your_plant))
+            .setNeutralButton(getString(R.string.cancel)) { dialog, which ->
                 dialog.dismiss()
             }
-            .setNegativeButton("Take photo") { dialog, which ->
+            .setNegativeButton(getString(R.string.take_photo)) { dialog, which ->
                 takeImage()
             }
-            .setPositiveButton("Choose from gallery") { dialog, which ->
+            .setPositiveButton(getString(R.string.choose_from_gallery)) { dialog, which ->
                 selectImageFromGallery()
             }
             .show()

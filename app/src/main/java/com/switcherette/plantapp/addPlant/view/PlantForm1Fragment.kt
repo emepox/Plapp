@@ -132,11 +132,11 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                     //show error
                     Toast.makeText(
                         requireContext(),
-                        "Please give your plant a nickname",
+                        getString(R.string.please_give_your_plant_a_nickname),
                         Toast.LENGTH_SHORT
                     )
                         .show()
-                    etNickname.error = "Please give your plant a nickname"
+                    etNickname.error = getString(R.string.please_give_your_plant_a_nickname)
                 }
 
             }

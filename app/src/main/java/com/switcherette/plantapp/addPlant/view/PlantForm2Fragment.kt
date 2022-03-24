@@ -60,10 +60,10 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
             Toast.makeText(
                 requireContext(),
-                "Plapp! ${finalUserPlant?.nickname ?: "Your green friend"} has been added to the family :)",
+                getString(R.string.plant_has_been_added_to_the_family,
+                    finalUserPlant?.nickname ?: getString(R.string.your_green_friend)),
                 Toast.LENGTH_SHORT
             ).show()
-
         }
     }
 
@@ -85,13 +85,13 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private fun FragmentPlantForm2Binding.setLabelsForWater() {
         slWater.setLabelFormatter {
             when (it.toInt()) {
-                1 -> "every 30 days"
-                2 -> "every 15 days"
-                3 -> "every 14 days"
-                4 -> "every 7 days"
-                5 -> "every 5 days"
-                6 -> "every 3 days"
-                else -> "unknown"
+                1 -> getString(R.string.every_30_days)
+                2 -> getString(R.string.every_15_days)
+                3 -> getString(R.string.every_14_days)
+                4 -> getString(R.string.every_7_days)
+                5 -> getString(R.string.every_5_days)
+                6 -> getString(R.string.every_3_days)
+                else -> getString(R.string.unknown)
             }
         }
     }
@@ -99,11 +99,11 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private fun FragmentPlantForm2Binding.setLabelsForLight() {
         slLight.setLabelFormatter {
             when (it.toInt()) {
-                1 -> "Full shade"
-                2 -> "Partial shade"
-                3 -> "Partial sun"
-                4 -> "Full sun"
-                else -> "unknown"
+                1 -> getString(R.string.full_shade)
+                2 -> getString(R.string.partial_shade)
+                3 -> getString(R.string.partial_sun)
+                4 -> getString(R.string.full_sun)
+                else -> getString(R.string.unknown)
             }
         }
     }

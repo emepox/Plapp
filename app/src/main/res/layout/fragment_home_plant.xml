@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:text="These are your pending tasks for today:"
+        android:text="@string/these_are_your_pending_tasks_for_today"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
