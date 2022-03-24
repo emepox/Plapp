@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PlantApp</string>
+    <string name="app_name">PLAPP</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_photos"><u>NO PHOTOS, PLEASE!</u></string>
     <string name="no_guess"><u>YOU GOT IT WRONG.\n I\'D RATHER CHOOSE FROM A LIST</u></string>
