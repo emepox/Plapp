@@ -5,5 +5,4 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_leaf"
     tools:context=".login.LoginFragment">
-
 </FrameLayout>
