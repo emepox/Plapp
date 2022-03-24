@@ -44,7 +44,6 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
         userPhotoUrl = arguments?.getString("userPhotoUrl")
 
-        viewModel.getAllPlants()
         setRecyclerView()
         binding.tvNoList.setOnClickListener { createEmptyUserPlant() }
 
