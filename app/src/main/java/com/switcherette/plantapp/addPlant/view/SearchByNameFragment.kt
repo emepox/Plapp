@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
@@ -23,8 +24,7 @@ import com.switcherette.plantapp.databinding.FragmentSearchByNameBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -86,6 +86,15 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
                 false
             }
         }
+        val notLoading = allPlantsAdapter.loadStateFlow
+            .distinctUntilChangedBy{it.source.refresh}
+            .map { it.source.refresh is LoadState.NotLoading }
+
+        lifecycleScope.launch {
+            notLoading.collect{
+                if(it) binding.rvSearchPlantByName.scrollToPosition(0)
+            }
+        }
     }
 
     private fun setNewFlow(
@@ -133,6 +142,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
     private fun createEmptyUserPlant() {
         findNavController().navigate(R.id.action_searchByNameFragment_to_plantForm1Fragment)
     }
+
 
 }
 
