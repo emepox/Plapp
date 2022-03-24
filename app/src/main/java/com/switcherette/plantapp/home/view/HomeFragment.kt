@@ -1,9 +1,7 @@
 package com.switcherette.plantapp.home.view
 
-import android.graphics.Color
 import android.graphics.Color.parseColor
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -12,7 +10,6 @@ import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.calendar.adapter.TasksAdapter
 import com.switcherette.plantapp.databinding.FragmentHomePlantBinding
 import com.switcherette.plantapp.home.adapter.HomeTasksAdapter
 import com.switcherette.plantapp.home.viewModel.HomeViewModel
@@ -28,7 +25,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-           parseColor("#401E1E1E"))
+            parseColor("#401E1E1E")
+        )
         binding = FragmentHomePlantBinding.bind(view)
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
@@ -45,7 +43,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
             "WELCOME, $name"
                 ?: resources.getString(R.string.welcome_stranger)
 
-        val startTime= Calendar.getInstance().let {
+        displayTodaysTasks()
+    }
+
+    private fun displayTodaysTasks() {
+        val startTime = Calendar.getInstance().let {
             it[Calendar.HOUR_OF_DAY] = 1
             it[Calendar.MINUTE] = 0
             it[Calendar.SECOND] = 0
@@ -53,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
             it.timeInMillis
         }
 
-        val endTime= Calendar.getInstance().let {
+        val endTime = Calendar.getInstance().let {
             it[Calendar.HOUR_OF_DAY] = 23
             it[Calendar.MINUTE] = 0
             it[Calendar.SECOND] = 0
@@ -72,8 +74,13 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
 
     private fun observeTodaysWaterEvents() {
         homeVM.waterEventsToday.observe(viewLifecycleOwner) { events ->
-            if (events != null) {
+            if (events.isEmpty()) {
 
+                binding.tvNoPendingTasks.setVisibility(View.VISIBLE)
+                binding.ivNoTasksIcon.setVisibility(View.VISIBLE)
+                binding.rvHomeList.setVisibility(View.GONE)
+            } else {
+                binding.ivNoTasksIcon.setVisibility(View.GONE)
                 binding.rvHomeList.adapter = HomeTasksAdapter(events)
             }
         }
