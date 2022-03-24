@@ -45,7 +45,7 @@
             android:id="@+id/etSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="search by plant name..."
+            android:hint="@string/search_by_plant_name"
             android:imeOptions="actionSearch"
             android:inputType="textNoSuggestions"
             android:selectAllOnFocus="true"
@@ -61,7 +61,7 @@
         android:id="@+id/tvNoList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MY PLANT IS NOT HERE"
+        android:text="@string/my_plant_is_not_here"
         android:textAlignment="viewEnd"
         android:paddingVertical="6dp"
         android:layout_marginEnd="16dp"
@@ -83,14 +83,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoList"
         tools:listitem="@layout/item_search_plant_byname"/>
-
-<!--    <Button-->
-<!--        android:id="@+id/btnGo2Form"-->
-<!--        android:text="Add"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,14 +50,12 @@ class MyPlantsAdapter(
     ): MyPlantViewHolder {
         val binding = ItemPlantMyplantsBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-
         return MyPlantViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyPlantViewHolder, position: Int) {
         holder.bind(dataSet[position], seePlantDetails)
     }
-
 
     override fun getItemCount(): Int {
         return dataSet.size

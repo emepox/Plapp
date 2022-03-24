@@ -28,5 +28,4 @@
         app:layout_constraintStart_toEndOf="@id/ivWaterIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

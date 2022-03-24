@@ -55,7 +55,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
         AuthUI.getInstance()
             .signOut(requireContext())
             .addOnCompleteListener {
-                Toast.makeText(requireContext(), "Signed out", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.signed_out), Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.loginFragment)
             }
     }
@@ -64,7 +64,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
         AuthUI.getInstance()
             .delete(requireContext())
             .addOnCompleteListener {
-                Toast.makeText(requireContext(), "User deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.user_deleted), Toast.LENGTH_SHORT).show()
                 AuthUI.getInstance()
                     .signOut(requireContext())
                     .addOnCompleteListener {
@@ -80,14 +80,14 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
                     Log.d("PW", "User password updated.")
                 }
             }
-        Toast.makeText(requireContext(), "Password changed!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.password_changed), Toast.LENGTH_SHORT).show()
     }
 
     private fun showChangePasswordDialog() {
         var newPassword = ""
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Input your new password")
+        builder.setTitle(getString(R.string.input_your_new_password))
 
         val input = TextInputEditText(requireContext())
 
@@ -95,15 +95,14 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
         builder.setView(input)
 
         builder.setPositiveButton(
-            "SAVE NEW PASSWORD"
+            getString(R.string.save_new_password)
         ) { dialog, which ->
             newPassword = input.text.toString()
             updatePassword(newPassword)
         }
         builder.setNegativeButton(
-            "CANCEL"
+            getString(R.string.cancel)
         ) { dialog, which -> dialog.cancel() }
         builder.show()
     }
-
 }

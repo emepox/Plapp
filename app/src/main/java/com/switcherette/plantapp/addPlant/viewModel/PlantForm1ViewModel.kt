@@ -23,6 +23,5 @@ class PlantForm1ViewModel(
                 infoFromPlantLibrary.value = result
             }
         }
-
     }
 }

@@ -70,7 +70,6 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +96,6 @@
                 android:inputType="textMultiLine|textCapWords"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <TextView
             android:layout_width="wrap_content"

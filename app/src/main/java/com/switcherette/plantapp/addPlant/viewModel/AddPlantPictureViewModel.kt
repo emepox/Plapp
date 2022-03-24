@@ -34,5 +34,4 @@ class AddPlantPictureViewModel() : ViewModel(), KoinComponent {
             tmpFile
         )
     }
-
 }

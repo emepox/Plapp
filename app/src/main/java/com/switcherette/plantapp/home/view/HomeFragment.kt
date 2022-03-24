@@ -40,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
         val name = Firebase.auth.currentUser?.displayName?.split(" ")?.get(0)?.uppercase()
 
         binding.tvHomeHeading.text =
-            "WELCOME, $name"
+            getString(R.string.welcome_name, name)
                 ?: resources.getString(R.string.welcome_stranger)
 
         displayTodaysTasks()
@@ -66,10 +66,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
         observeTodaysWaterEvents()
 
         homeVM.getTodaysWaterEventsByTimeRange(startTime, endTime)
-
         binding.rvHomeList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
     }
 
     private fun observeTodaysWaterEvents() {

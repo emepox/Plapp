@@ -29,7 +29,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     private lateinit var binding: FragmentDetailPlantBinding
     private lateinit var plant: UserPlant
     private lateinit var editedPlant : UserPlant
-    private lateinit var daysLeftToWater : String
 
     private var saveIcon : Boolean = false
 
@@ -89,11 +88,10 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 .centerCrop()
                 .into(ivDetailPicture);
 
-
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
 
-            etCareWatering.setText("Every ${plant.water} days")
+            etCareWatering.setText(getString(R.string.every_x_days, plant.water))
             plant.light.let {
                 when(it) {
                     1 -> {
@@ -116,17 +114,15 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
                 }
             }
-            tvDetailScientificName.text = plant.scientificName?: "No data available"
-            etDetailDescription.setText(plant.description?: "No description data available!")
-            etDetailCultivation.setText(plant.cultivation?: "No cultivation data available!")
+            tvDetailScientificName.text = plant.scientificName?: getString(R.string.no_data_available)
+            etDetailDescription.setText(plant.description?: getString(R.string.no_description_data_available))
+            etDetailCultivation.setText(plant.cultivation?: getString(R.string.no_description_data_available))
             plant.family?.let { family ->
                 tvDetailFamily.text = family
                 tvDetailFamily.visibility = VISIBLE
             }
         }
     }
-
-    // MOVIDA DE LOS BOTONES
 
     private fun setOptionsAnimation() {
         btnEdit = binding.btnEdit
@@ -136,7 +132,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEdit.setOnClickListener {
             onEditButtonClicked()
         }
-
 
         btnEditPlant.setOnClickListener {
             saveIcon = !saveIcon
@@ -188,13 +183,13 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 }
             }
 
-            Toast.makeText(requireContext(), "Your plant info has been updated", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), getString(R.string.your_plant_info_has_been_updated), Toast.LENGTH_SHORT)
                 .show()
         }
     }
 
     private fun editPlant() {
-        Toast.makeText(requireContext(), "Please edit", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.please_edit), Toast.LENGTH_SHORT).show()
         btnEditPlant.setImageResource(R.drawable.ic_save)
 
         with(binding) {
@@ -240,18 +235,23 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     }
 
     private fun setDialogBox() {
-        val singleItems = arrayOf("It did not survive... ", "It found a new home", "I added the wrong plant", "No comment...")
+
+        val singleItems = arrayOf(getString(R.string.it_did_not_survive), getString(R.string.it_found_a_new_home), getString(
+                    R.string.i_added_a_wrong_plant), getString(R.string.no_comment))
         val checkedItem = 1
 
-       MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Oh no! Can we know why you are deleting ${plant.nickname}?")
-            .setNeutralButton("delete") { dialog, which ->
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.can_we_know_why_you_are_deleting_plant, plant.nickname))
+            .setNeutralButton(getString(R.string.delete)) { dialog, which ->
                 detailPlantVM.deletePlant(plant)
                 detailPlantVM.deletePlantFromFirebase(plant)
                 detailPlantVM.deleteWaterEvent(plant)
                 findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
             }
-            .setPositiveButton("cancel") { dialog, which ->
+
+            .setPositiveButton(getString(R.string.cancel)) { dialog, which ->
+                // Respond to positive button press
+
             }
             .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
             }
