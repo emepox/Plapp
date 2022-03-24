@@ -46,7 +46,7 @@ class PagingViewHolder(private val binding: ItemSearchPlantBynameBinding): Recyc
         }
         Glide
             .with(itemView.context)
-            .load(plantInfo!!.img)
+            .load(plantInfo?.img)
             .centerCrop()
             .into(binding.ivPlantImage);
     }

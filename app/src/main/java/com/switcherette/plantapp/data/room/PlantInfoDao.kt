@@ -16,6 +16,6 @@ interface PlantInfoDao {
     @Query("SELECT * FROM PlantInfo WHERE scientificName LIKE (:name)")
     fun getPlantByName(name: String): PlantInfo?
 
-    @Query("SELECT * FROM PlantInfo WHERE scientificName LIKE (:name)")
+    @Query("SELECT * FROM PlantInfo WHERE scientificName LIKE (:name) OR commonName LIKE :name")
     fun getPagedPlantByName(name: String): PagingSource<Int, PlantInfo>
 }

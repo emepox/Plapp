@@ -20,6 +20,7 @@ import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentSearchByNameBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -81,11 +82,15 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
         it: CharSequence,
         allPlantsAdapter: SearchByNamePagingAdapter
     ): Job {
-        binding.rvSearchPlantByName.scrollToPosition(0)
         viewModel.update(it.toString())
         return lifecycleScope.launch {
-            viewModel.pagingDataFlow.collectLatest(allPlantsAdapter::submitData)
+            viewModel.pagingDataFlow.collectLatest{
+                allPlantsAdapter.submitData(it)
+                binding.rvSearchPlantByName.scrollTo(0, 0)
+            }
+
         }
+
     }
 
     private fun choosePlant(plantInfo: PlantInfo) {
