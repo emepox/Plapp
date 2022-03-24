@@ -1,9 +1,14 @@
 package com.switcherette.plantapp.home.view
 
+import android.graphics.Color
+import android.graphics.Color.parseColor
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
@@ -22,16 +27,22 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+           parseColor("#401E1E1E"))
         binding = FragmentHomePlantBinding.bind(view)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
 
         homeVM.getRandomQuote()
         homeVM.quote.observe(viewLifecycleOwner) {
             binding.tvHomePlantFact.text = it.q
             binding.tvHomePlantFactAuthor.text = it.a
         }
+
+        val name = Firebase.auth.currentUser?.displayName?.split(" ")?.get(0)?.uppercase()
+
         binding.tvHomeHeading.text =
-            "WELCOME, ${Firebase.auth.currentUser?.displayName?.uppercase()}"
+            "WELCOME, $name"
                 ?: resources.getString(R.string.welcome_stranger)
 
         val startTime= Calendar.getInstance().let {

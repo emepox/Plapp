@@ -6,10 +6,13 @@ import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -26,6 +29,11 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).apply{
+            setBackgroundColor(resources.getColor(R.color.white))
+        }
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
         binding = FragmentMyProfileBinding.bind(view)
         user = (Firebase.auth).currentUser!!
 

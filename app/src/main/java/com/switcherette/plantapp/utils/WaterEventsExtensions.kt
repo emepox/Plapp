@@ -9,7 +9,7 @@ fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
 
     events.forEach {
 
-        for (i in 2..100) {
+        for (i in 1..100) {
             val nextEvent = WaterEvent(
                 it.id + i,
                 it.plantId,

@@ -5,11 +5,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.switcherette.plantapp.R
-import com.switcherette.plantapp.addPlant.adapter.SuggestionsAdapter
+import com.switcherette.plantapp.addPlant.adapter.SearchByPictureAdapter
 import com.switcherette.plantapp.addPlant.viewModel.SearchByPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentSearchByPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +27,8 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.primary))
 
         uri = arguments?.get("picturePath") as Uri
 
@@ -67,7 +70,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
                     recyclerView.layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-                    val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
+                    val suggestionsAdapter = SearchByPictureAdapter(it.suggestions) { suggestion ->
                         val action = SearchByPictureFragmentDirections
                             .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, null, uri.toString(), null)
                         findNavController().navigate(action)

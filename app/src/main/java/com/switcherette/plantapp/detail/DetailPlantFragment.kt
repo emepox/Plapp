@@ -8,9 +8,13 @@ import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.transition.MaterialFadeThrough
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentDetailPlantBinding
@@ -58,13 +62,16 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.white))
         binding = FragmentDetailPlantBinding.bind(view)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
 
         plant = arguments?.getParcelable("plant")!!
 
         setOptionsAnimation()
-        detailPlantVM.getWaterEvent(plant)
+        detailPlantVM.getDaysToWater(plant)
 
         with(binding) {
 
@@ -139,11 +146,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         }
 
         btnDeletePlant.setOnClickListener {
-            detailPlantVM.deletePlant(plant)
-            detailPlantVM.deletePlantFromFirebase(plant)
-            detailPlantVM.deleteWaterEvent(plant)
-            findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
-
+            setDialogBox()
         }
     }
 
@@ -165,7 +168,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 plant.image,
                 plant.userId
             )
-            Log.e("editedplant", "$editedPlant")
             detailPlantVM.editPlant(editedPlant)
             detailPlantVM.editPlantOnFirebase(editedPlant)
             onEditButtonClicked()
@@ -178,6 +180,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 ).onEach { element ->
                     element.isEnabled = false
                     element.setBackgroundResource(0)
+                    element.setPadding(0)
                 }
             }
 
@@ -198,6 +201,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             ).onEach { element ->
                 element.isEnabled = true
                 element.setBackgroundResource(R.drawable.rounded2)
+                element.setPadding(25)
             }
         }
     }
@@ -229,6 +233,28 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             btnEditPlant.startAnimation(toBottom)
             btnDeletePlant.startAnimation(toBottom)
         }
+    }
+
+    private fun setDialogBox() {
+        val singleItems = arrayOf("It did not survive :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
+        val checkedItem = 1
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Oh no! Can we know why you are deleting ${plant.nickname}?")
+            .setNeutralButton("delete") { dialog, which ->
+                detailPlantVM.deletePlant(plant)
+                detailPlantVM.deletePlantFromFirebase(plant)
+                detailPlantVM.deleteWaterEvent(plant)
+                findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
+            }
+            .setPositiveButton("cancel") { dialog, which ->
+                // Respond to positive button press
+            }
+            // Single-choice items (initialized with checked item)
+            .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                // Respond to item chosen
+            }
+            .show()
     }
 
     private fun setClickable(clicked: Boolean) {
