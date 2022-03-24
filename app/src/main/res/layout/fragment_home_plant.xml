@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
-            android:text="These are your pending tasks for today:"
+            android:text="@string/these_are_your_pending_tasks_for_today"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,14 +99,24 @@
         <TextView
             android:id="@+id/tvNoPendingTasks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
-            android:text="YAY! Today you have no pending tasks"
+            android:text="@string/yay_today_you_have_no_pending_tasks"
             android:textColor="@color/black"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
+
+        <ImageView
+            android:id="@+id/ivNoTasksIcon"
+            android:layout_width="320dp"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            android:layout_marginBottom="20dp"
+            android:maxHeight="250dp"
+            android:src="@drawable/happy_plant_icon" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeList"
@@ -114,6 +124,7 @@
             android:layout_height="250dp"
             android:paddingHorizontal="30dp"
             android:paddingVertical="20dp"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNoPendingTasks"
             tools:listitem="@layout/item_home_list" />

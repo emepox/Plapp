@@ -66,13 +66,18 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
 
         binding.rvHomeList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
     }
 
     private fun observeTodaysWaterEvents() {
         homeVM.waterEventsToday.observe(viewLifecycleOwner) { events ->
             if (events.isEmpty()) {
+
                 binding.tvNoPendingTasks.setVisibility(View.VISIBLE)
+                binding.ivNoTasksIcon.setVisibility(View.VISIBLE)
+                binding.rvHomeList.setVisibility(View.GONE)
             } else {
+                binding.ivNoTasksIcon.setVisibility(View.GONE)
                 binding.rvHomeList.adapter = HomeTasksAdapter(events)
             }
         }
