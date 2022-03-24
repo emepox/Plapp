@@ -21,6 +21,8 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private var finalUserPlant: UserPlant? = null
     private val waterConverter =
         mapOf(Pair(3, 6), Pair(5, 5), Pair(7, 4), Pair(14, 3), Pair(15, 2), Pair(30, 1))
+    private val lightConverter =
+        mapOf(Pair(3, 4), Pair(4, 3), Pair(2, 2), Pair(1, 1))
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +47,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
         btnSave.setOnClickListener {
 
             val light = slLight.value
-            finalUserPlant = finalUserPlant?.copy(light = light.toInt())
+            finalUserPlant = finalUserPlant?.copy(light = lightConverter.entries.find {it.value == light.toInt()}!!.key)
 
             val water = slWater.value
             finalUserPlant =

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_bg"
+    android:background="@drawable/bg_leaf"
     tools:context=".login.LoginFragment">
 
 </FrameLayout>

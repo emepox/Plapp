@@ -43,7 +43,9 @@
         android:layout_height="60dp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:src="@drawable/ic_coffee"
+        android:src="@drawable/ic_coffee_lines"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBarrierBottom"
         app:layout_constraintBottom_toTopOf="@id/tvHomePlantFact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBarrierBottom" />

@@ -1,27 +1,48 @@
 # PlantApp
 
 1. [Context](#context)
-2. [Get started](#setup)
+2. [Features](#features)
+3. [Get started](#setup)
    - [Dependencies](#dependencies)
    - [Database prep](#database-prep)
-3. [Architecture](#architecture)
-   - [Database schema](#database-schema)
-   - [API routes plan](#API-routes-plan)
 4. [Support](#support)
 
 ## Context
 
 'Plapp' is an Android app project developed by @YakimchukAnna <https://github.com/YakimchukAnna/>, @emepox <https://github.com/emepox/>, @MareikeHerrmann <https://github.com/MareikeHerrmann/> and @switcherette <https://github.com/switcherette/> to id and keep track of your home plants' needs.
 
+
+## Features
+
+- Plant information database (+20K entries)
+- Plant identification by picture service
+- User's plant library
+- Watering notifications
+- Featuring a 'Zen quote of the day' on home screen :)
+
+
 ## Setup
 
 ### Dependencies
 
-- Do not forget to build your project.
+This project uses several additional libraries/dependencies:
 
-This project uses several additional libraries:
+- Firebase (Auth, AuthUI, Firestore cloud database)
+- Room DB
+- Koin
+- Navigation 
+- ViewModel
+- Paging
+- Coroutines
+- Retrofit
+- Glide
+- Lottie animations
+- Gif drawable
+- Material-Calendar-View
+- okhttp3
+- page-indicator
 
-- X
+Do not forget to build your project so that they can be implemented!
 
 You will also need an **API key** to access Plant.id plant identification service. 
 - You can request one here. <https://web.plant.id/>
@@ -32,11 +53,6 @@ You will also need an **API key** to access Plant.id plant identification servic
 -  x
 
 
-## Architecture
-
-### Database schema
-
-### API routes plan
 
 ## Support
 
