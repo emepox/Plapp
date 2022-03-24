@@ -1,7 +1,10 @@
 package com.switcherette.plantapp.home.view
 
+import android.graphics.Color
+import android.graphics.Color.parseColor
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
@@ -22,7 +25,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+           parseColor("#401E1E1E"))
         binding = FragmentHomePlantBinding.bind(view)
 
         homeVM.getRandomQuote()

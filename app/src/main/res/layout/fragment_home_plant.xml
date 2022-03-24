@@ -6,18 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".home.view.HomeFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivHomePicture"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:contentDescription="@string/plapp"
-        android:foreground="#96323232"
+        android:foreground="#401E1E1E"
+        android:background="@drawable/rounded"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/plant_img" />
+        app:layout_constraintBottom_toBottomOf="parent
+
+"
+        app:srcCompat="@drawable/bg_home" />
 
     <TextView
         android:id="@+id/tvHomeHeading"
@@ -41,8 +45,9 @@
         android:paddingVertical="10dp"
         android:src="@drawable/ic_baseline_emoji_nature_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
-        app:tint="@color/white" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBarrierBottom"
+        app:layout_constraintBottom_toTopOf="@id/tvHomePlantFact"
+ />
 
     <TextView
         android:id="@+id/tvHomePlantFact"
@@ -51,9 +56,9 @@
         android:paddingHorizontal="20dp"
         android:paddingBottom="5dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivBee"
+        app:layout_constraintBottom_toTopOf="@id/tvHomePlantFactAuthor"
         tools:text="This is a random plant fact" />
 
     <TextView
@@ -63,12 +68,22 @@
         android:paddingHorizontal="20dp"
         android:paddingBottom="10dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomePlantFact"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="somebody said" />
+
+    <LinearLayout
+        android:id="@+id/llTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded3"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading">
 
     <TextView
         android:id="@+id/tvHomeListHeading"
@@ -80,17 +95,26 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivHomePicture" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:paddingHorizontal="30dp"
         android:paddingVertical="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading"
         tools:listitem="@layout/item_home_list" />
 
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/buttonBarrierBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:barrierMargin="16dp"
+        app:constraint_referenced_ids="llTasks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

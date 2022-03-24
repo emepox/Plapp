@@ -2,6 +2,7 @@ package com.switcherette.plantapp.calendar.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
@@ -23,6 +24,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.white))
         binding = FragmentCalendarBinding.bind(view)
 
         calendarVM.getWaterEvents()
