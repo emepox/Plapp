@@ -39,6 +39,7 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
             scToggleNotifications.setOnCheckedChangeListener { _, showNotification ->
                 viewModel.updateShowNotifications(showNotification)
             }
+            tvRestoreBackup.setOnClickListener { viewModel.restoreBackup() }
         }
     }
 
