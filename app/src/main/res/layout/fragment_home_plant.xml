@@ -36,14 +36,15 @@
     <ImageView
         android:id="@+id/ivBee"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:src="@drawable/ic_baseline_emoji_nature_24"
+        android:src="@drawable/ic_coffee"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
-        app:tint="@color/white" />
-
+        app:tint="@color/white"
+        />
+    <!--android:src="@drawable/ic_baseline_emoji_nature_24"-->
     <TextView
         android:id="@+id/tvHomePlantFact"
         android:layout_width="match_parent"
