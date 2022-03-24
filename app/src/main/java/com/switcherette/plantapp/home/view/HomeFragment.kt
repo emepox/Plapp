@@ -25,7 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            parseColor("#401E1E1E")
+            parseColor("#C2C2C2") //"#401E1E1E"
         )
         binding = FragmentHomePlantBinding.bind(view)
         enterTransition = MaterialFadeThrough()
