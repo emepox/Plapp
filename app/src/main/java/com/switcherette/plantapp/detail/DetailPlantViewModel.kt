@@ -89,7 +89,7 @@ class DetailPlantViewModel(
         }
     }
 
-    fun getWaterEvent(plant: UserPlant) {
+    fun getDaysToWater(plant: UserPlant) {
         viewModelScope.launch(Dispatchers.IO) {
             val waterEvent = waterRepo.getWaterEventByPlantId(plant.id)
             val nextEvent = waterEvent.repeatStart
@@ -106,7 +106,6 @@ class DetailPlantViewModel(
 
             withContext(Dispatchers.Main) {
                 daysToWater.value = days
-                Log.e("waterevent", "$days")
             }
         }
     }

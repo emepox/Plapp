@@ -67,7 +67,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         plant = arguments?.getParcelable("plant")!!
 
         setOptionsAnimation()
-        detailPlantVM.getWaterEvent(plant)
+        detailPlantVM.getDaysToWater(plant)
 
         with(binding) {
 

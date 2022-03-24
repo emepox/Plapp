@@ -3,6 +3,7 @@ package com.switcherette.plantapp.home.view
 import android.graphics.Color
 import android.graphics.Color.parseColor
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -34,8 +35,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
             binding.tvHomePlantFact.text = it.q
             binding.tvHomePlantFactAuthor.text = it.a
         }
+
+        val name = Firebase.auth.currentUser?.displayName?.split(" ")?.get(0)?.uppercase()
+
         binding.tvHomeHeading.text =
-            "WELCOME, ${Firebase.auth.currentUser?.displayName?.uppercase()}"
+            "WELCOME, $name"
                 ?: resources.getString(R.string.welcome_stranger)
 
         val startTime= Calendar.getInstance().let {
