@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,8 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
         requireActivity().onBackPressedDispatcher.addCallback(this) {}
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.primary))
 
         uri = arguments?.get("picturePath") as Uri
 

@@ -8,6 +8,8 @@ import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,7 +60,8 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
+            resources.getColor(R.color.white))
         binding = FragmentDetailPlantBinding.bind(view)
 
         plant = arguments?.getParcelable("plant")!!
@@ -178,6 +181,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 ).onEach { element ->
                     element.isEnabled = false
                     element.setBackgroundResource(0)
+                    element.setPadding(20)
                 }
             }
 
@@ -198,6 +202,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
             ).onEach { element ->
                 element.isEnabled = true
                 element.setBackgroundResource(R.drawable.rounded2)
+                element.setPadding(20)
             }
         }
     }
