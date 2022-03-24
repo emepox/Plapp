@@ -19,7 +19,7 @@ fun addAndCalculateNextWaterEvents(events: List<WaterEvent>): List<WaterEvent> {
             newWaterEvents.add(nextEvent)
         }
     }
-    return events
+    return newWaterEvents
 }
 
 fun filterEventsByTime(
