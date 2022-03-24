@@ -9,6 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -63,7 +64,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.white))
+            ResourcesCompat.getColor(resources, R.color.white, null))
         binding = FragmentDetailPlantBinding.bind(view)
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
