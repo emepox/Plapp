@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,7 +29,7 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            resources.getColor(R.color.primary))
+            ResourcesCompat.getColor(resources, R.color.primary, null))
         binding = FragmentPlantForm2Binding.bind(view)
 
         val args: PlantForm2FragmentArgs by navArgs()
