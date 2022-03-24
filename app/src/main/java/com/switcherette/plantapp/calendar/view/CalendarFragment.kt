@@ -27,7 +27,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            ResourcesCompat.getColor(resources, R.color.white, null))
+            ResourcesCompat.getColor(resources, R.color.white, null)
+        )
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
         binding = FragmentCalendarBinding.bind(view)

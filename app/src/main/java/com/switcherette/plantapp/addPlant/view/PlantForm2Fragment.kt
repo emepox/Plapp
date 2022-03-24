@@ -25,7 +25,6 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     private val lightConverter =
         mapOf(Pair(3, 4), Pair(4, 3), Pair(2, 2), Pair(1, 1))
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
@@ -64,10 +63,8 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
                 "Plapp! ${finalUserPlant?.nickname ?: "Your green friend"} has been added to the family :)",
                 Toast.LENGTH_SHORT
             ).show()
-
         }
     }
-
 
     private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater() {
         if (finalUserPlant?.water == null) {

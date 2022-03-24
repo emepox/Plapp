@@ -36,7 +36,6 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         identifyPlant()
         observePlantId()
         setOnClickListeners()
-
     }
 
     private fun setOnClickListeners() {
@@ -59,7 +58,6 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
         binding.ivPreview.setImageURI(uri)
         searchPicVM.identifyPlant(uri)
     }
-
 
     private fun observePlantId() {
         searchPicVM.plantId.observe(viewLifecycleOwner) { it ->

@@ -47,5 +47,4 @@ class SearchByNameViewModel(
         pagingDataFlow = searchPlantInfo(query)
             .cachedIn(viewModelScope)
     }
-
 }

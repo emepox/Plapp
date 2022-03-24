@@ -20,7 +20,6 @@ class HomeViewModel(
 ) : ViewModel() {
 
     var quote: MutableLiveData<RandomQuote> = MutableLiveData()
-
     var waterEventsToday: MutableLiveData<List<WaterEvent>> = MutableLiveData()
 
     fun getRandomQuote() {
