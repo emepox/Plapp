@@ -1,5 +1,6 @@
 package com.switcherette.plantapp.detail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -64,7 +65,9 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
-            ResourcesCompat.getColor(resources, R.color.white, null))
+            Color.parseColor("#F3F4F6")
+        )
+
         binding = FragmentDetailPlantBinding.bind(view)
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
@@ -237,7 +240,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
     }
 
     private fun setDialogBox() {
-        val singleItems = arrayOf("It did not survive :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
+        val singleItems = arrayOf("It did not survive... ", "It found a new home", "I added the wrong plant", "No comment...")
         val checkedItem = 1
 
        MaterialAlertDialogBuilder(requireContext())
@@ -259,5 +262,4 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEditPlant.isClickable = !clicked
         btnDeletePlant.isClickable = !clicked
     }
-
 }
