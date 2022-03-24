@@ -239,7 +239,7 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         val singleItems = arrayOf("It did not survive :( ", "${plant.nickname} found a new home", "I added the wrong plant", "No comment")
         val checkedItem = 1
 
-        val dialog = MaterialAlertDialogBuilder(requireContext())
+       MaterialAlertDialogBuilder(requireContext())
             .setTitle("Oh no! Can we know why you are deleting ${plant.nickname}?")
             .setNeutralButton("delete") { dialog, which ->
                 detailPlantVM.deletePlant(plant)
@@ -248,11 +248,8 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 findNavController().navigate(R.id.action_detailPlantFragment_to_myPlantsFragment)
             }
             .setPositiveButton("cancel") { dialog, which ->
-                // Respond to positive button press
             }
-            // Single-choice items (initialized with checked item)
             .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
-                // Respond to item chosen
             }
             .show()
     }

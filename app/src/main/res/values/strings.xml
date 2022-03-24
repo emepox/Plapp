@@ -49,5 +49,7 @@
     <string name="full_sun">Full sun</string>
     <string name="light_adaptable">Partial sun</string>
     <string name="no_data_available">No data available!</string>
-
+    <string name="these_are_your_pending_tasks_for_today">These are your pending tasks for today:</string>
+    <string name="yay_today_you_have_no_pending_tasks">YAY! Today you have no pending tasks</string>
+    <string name="restore_backup">RESTORE BACKUP</string>
 </resources>

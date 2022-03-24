@@ -13,6 +13,7 @@ import com.switcherette.plantapp.data.repositories.UserPlantRepository
 import com.switcherette.plantapp.data.repositories.WaterRepository
 import com.switcherette.plantapp.utils.NOTIFICATION_TOGGLE_KEY
 import com.switcherette.plantapp.utils.WaterAlarm
+import com.switcherette.plantapp.utils.createWaterEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -69,22 +70,5 @@ class PlantForm2ViewModel(
             .addOnSuccessListener { Log.d("Success", "Plant successfully added!") }
             .addOnFailureListener { e -> Log.w("Failure", "Error writing plant", e) }
 
-    }
-
-    private fun createWaterEvent(userPlant: UserPlant): WaterEvent {
-        val today = Calendar.getInstance().let {
-            it[Calendar.HOUR_OF_DAY] = 12
-            it[Calendar.MINUTE] = 0
-            it[Calendar.SECOND] = 0
-            it[Calendar.MILLISECOND] = 0
-            it.timeInMillis
-        }
-        val repeatInterval = TimeUnit.DAYS.toMillis(userPlant.water.toLong())
-        val repeatStart = today + repeatInterval
-        return WaterEvent(
-            plantId = userPlant.id,
-            repeatStart = repeatStart,
-            repeatInterval = repeatInterval
-        )
     }
 }
