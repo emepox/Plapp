@@ -49,5 +49,6 @@
     <string name="full_sun">Full sun</string>
     <string name="light_adaptable">Partial sun</string>
     <string name="no_data_available">No data available!</string>
+    <string name="restore_backup">RESTORE BACKUP</string>
 
 </resources>

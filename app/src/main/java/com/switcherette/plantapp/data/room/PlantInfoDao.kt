@@ -7,11 +7,6 @@ import com.switcherette.plantapp.data.PlantInfo
 
 @Dao
 interface PlantInfoDao {
-    @Query("SELECT * FROM PlantInfo")
-    fun getAllPlantInfo(): List<PlantInfo>
-
-    @Query("SELECT * FROM PlantInfo")
-    fun getPagedPlantInfo(): PagingSource<Int, PlantInfo>
 
     @Query("SELECT * FROM PlantInfo WHERE scientificName LIKE (:name)")
     fun getPlantByName(name: String): PlantInfo?

@@ -1,6 +1,5 @@
 package com.switcherette.plantapp.addPlant.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -9,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.switcherette.plantapp.data.PlantInfo
 import com.switcherette.plantapp.databinding.ItemSearchPlantBynameBinding
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 class SearchByNamePagingAdapter(
     private var choosePlant: (PlantInfo) -> Unit
