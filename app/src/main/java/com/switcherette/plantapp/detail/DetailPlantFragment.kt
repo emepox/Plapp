@@ -86,7 +86,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
                 .centerCrop()
                 .into(ivDetailPicture);
 
-
             etDetailNickname.setText(plant.nickname)
             tvDetailCommonName.text = plant.commonName?: "No common name data"
 
@@ -123,8 +122,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         }
     }
 
-    // MOVIDA DE LOS BOTONES
-
     private fun setOptionsAnimation() {
         btnEdit = binding.btnEdit
         btnEditPlant = binding.btnEditPlant
@@ -133,7 +130,6 @@ class DetailPlantFragment : Fragment(R.layout.fragment_detail_plant) {
         btnEdit.setOnClickListener {
             onEditButtonClicked()
         }
-
 
         btnEditPlant.setOnClickListener {
             saveIcon = !saveIcon

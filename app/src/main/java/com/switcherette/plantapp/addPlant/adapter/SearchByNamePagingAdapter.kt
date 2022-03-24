@@ -15,9 +15,7 @@ class SearchByNamePagingAdapter(
 
     object PlantInfoDiffUtil : DiffUtil.ItemCallback<PlantInfo>() {
         override fun areItemsTheSame(oldItem: PlantInfo, newItem: PlantInfo): Boolean = oldItem.id == newItem.id
-
         override fun areContentsTheSame(oldItem: PlantInfo, newItem: PlantInfo): Boolean = oldItem == newItem
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {

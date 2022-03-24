@@ -34,6 +34,10 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         requireActivity().findViewById<ConstraintLayout>(R.id.cl_mainActivity).setBackgroundColor(
             ResourcesCompat.getColor(resources, R.color.primary, null))
 
+        gettingNavArgs()
+    }
+
+    private fun gettingNavArgs() {
         val args: PlantForm1FragmentArgs by navArgs()
         // get API info (if coming from SearchByPicture)
         val apiSuggestion = args.suggestionFromApi

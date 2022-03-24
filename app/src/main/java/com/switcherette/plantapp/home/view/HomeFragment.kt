@@ -66,10 +66,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_plant) {
         observeTodaysWaterEvents()
 
         homeVM.getTodaysWaterEventsByTimeRange(startTime, endTime)
-
         binding.rvHomeList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
     }
 
     private fun observeTodaysWaterEvents() {

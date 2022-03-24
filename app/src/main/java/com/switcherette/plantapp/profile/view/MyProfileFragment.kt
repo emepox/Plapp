@@ -105,5 +105,4 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
         ) { dialog, which -> dialog.cancel() }
         builder.show()
     }
-
 }
