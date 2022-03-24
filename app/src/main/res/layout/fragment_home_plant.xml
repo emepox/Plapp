@@ -10,7 +10,7 @@
         android:id="@+id/ivHomePicture"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:contentDescription="Plant App"
+        android:contentDescription="@string/plapp"
         android:foreground="#96323232"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
@@ -19,15 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/plant_img" />
 
-
     <TextView
         android:id="@+id/tvHomeHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_subrayada"
+        android:fontFamily="@font/montserrat_bold"
         android:paddingHorizontal="20dp"
         android:paddingVertical="16dp"
-        android:text="WELCOME, STRANGER"
+        android:text="@string/welcome_stranger"
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +37,8 @@
         android:id="@+id/ivBee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
         android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
         android:src="@drawable/ic_baseline_emoji_nature_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeHeading"
@@ -61,10 +60,10 @@
         android:id="@+id/tvHomePlantFactAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         android:paddingHorizontal="20dp"
-        android:textColor="@color/white"
+        android:paddingBottom="10dp"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +76,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
-        android:text="These are your pending tasks:"
+        android:text="These are your pending tasks for today:"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +89,8 @@
         android:paddingHorizontal="30dp"
         android:paddingVertical="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeListHeading"
+        tools:listitem="@layout/item_home_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.switcherette.plantapp.calendar.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
@@ -32,9 +31,7 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         observeAllWaterEvents()
-
         observeWaterEventsPerDay()
-
         onDateClick()
     }
 
@@ -43,10 +40,8 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             override fun onDayClick(eventDay: EventDay) {
                 val millis = convertEventDayToMillis(eventDay)
                 setHeadingForDay(millis)
-
                 calendarVM.getWaterEventByTimeRange(startTime(eventDay), endTime(eventDay))
             }
-
 
             private fun convertEventDayToMillis(eventDay: EventDay): Long {
                 val c = Calendar.getInstance()
@@ -57,7 +52,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
             private fun setHeadingForDay(millis: Long) {
                 val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
                 val dateSimpleDayFormat = sdf.format(millis)
-
                 binding.tvSelectedDate.text = dateSimpleDayFormat
             }
 
@@ -80,7 +74,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
                     it.timeInMillis
                 }
             }
-
         })
     }
 
@@ -94,8 +87,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar), KoinComponent {
         calendarVM.allWaterEvents.observe(viewLifecycleOwner) { events ->
             if (events != null) {
                 fillCalendarWithEvents(convertEventsToEventDays(events))
-            } else {
-                Toast.makeText(requireContext(), "Http error", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -1,8 +1,10 @@
 package com.switcherette.plantapp.addPlant.view
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,6 +18,7 @@ import com.switcherette.plantapp.databinding.FragmentPlantForm1Binding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
+
 class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
     private lateinit var binding: FragmentPlantForm1Binding
@@ -24,8 +27,8 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentPlantForm1Binding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         val args: PlantForm1FragmentArgs by navArgs()
         // get API info (if coming from SearchByPicture)
@@ -35,7 +38,19 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         val plantFromSearchByName = args.userPlant
 
         // initialise UserPlant object
-        finalUserPlant = UserPlant(UUID.randomUUID().toString(), "", null, null, null, null, null, 2, 15, imageFromUser, Firebase.auth.currentUser?.uid.orEmpty())
+        finalUserPlant = UserPlant(
+            UUID.randomUUID().toString(),
+            "",
+            null,
+            null,
+            null,
+            null,
+            null,
+            2,
+            15,
+            imageFromUser,
+            Firebase.auth.currentUser?.uid.orEmpty()
+        )
 
         fillForm(apiSuggestion, plantFromSearchByName)
     }
@@ -44,9 +59,9 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
         apiSuggestion: Suggestion?,
         plantFromSearchByName: UserPlant?
     ) {
-        if (apiSuggestion != null && plantFromSearchByName == null) {
+        if (apiSuggestion != null) {
             getInfoFromPlantLibrary(apiSuggestion.plant_details.scientific_name)
-            plantForm1VM.plantInfoAPI.observe(viewLifecycleOwner) {
+            plantForm1VM.infoFromPlantLibrary.observe(viewLifecycleOwner) {
                 if (it?.scientificName == null) {
                     finalUserPlant.scientificName = apiSuggestion.plant_details.scientific_name
                 } else finalUserPlant.scientificName = it.scientificName
@@ -56,10 +71,11 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                         apiSuggestion.plant_details.common_names.toString().drop(1).dropLast(1)
                 } else finalUserPlant.commonName = it.commonName
 
-                if (it?.img == null) {
-                    finalUserPlant.image =
-                        apiSuggestion.plant_details.wiki_image?.value
-                } else finalUserPlant.image = it.img
+                if (finalUserPlant.image == null) {
+                    if (it?.img == null) {
+                        finalUserPlant.image = apiSuggestion.plant_details.wiki_image?.value
+                    } else finalUserPlant.image = it.img
+                }
 
                 finalUserPlant.family = it?.family
                 finalUserPlant.description = it?.description
@@ -71,13 +87,16 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                 binding.etCommonName.setText(finalUserPlant.commonName)
                 handleOnClick(finalUserPlant)
             }
-        } else if (plantFromSearchByName != null && apiSuggestion == null) {
+        } else if (plantFromSearchByName != null) {
             finalUserPlant = plantFromSearchByName
             binding.etScientificName.setText(finalUserPlant.scientificName)
             binding.etCommonName.setText(finalUserPlant.commonName)
 
             handleOnClick(finalUserPlant)
 
+        } else {
+            finalUserPlant.image = "android.resource://com.switcherette.plantapp/" + R.drawable.plant_img.toString()
+            handleOnClick(finalUserPlant)
         }
 
 
@@ -92,15 +111,6 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                 // Check inputs
                 etNickname.text.toString().takeIf { it.isNotBlank() }?.let {
                     finalUserPlant = finalUserPlant.copy(nickname = it)
-                } ?: run {
-                    //show error
-                    Toast.makeText(
-                        requireContext(),
-                        "Please give your plant a nickname",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                    etNickname.error = "Please give your plant a nickname"
                 }
 
                 etCommonName.text.toString().let {
@@ -111,9 +121,21 @@ class PlantForm1Fragment : Fragment(R.layout.fragment_plant_form1) {
                     finalUserPlant = finalUserPlant.copy(scientificName = it)
                 }
 
-                val action = PlantForm1FragmentDirections
-                    .actionPlantForm1FragmentToPlantForm2Fragment(finalUserPlant)
-                findNavController().navigate(action)
+                if(etNickname.text!!.isNotEmpty()) {
+                    val action = PlantForm1FragmentDirections
+                        .actionPlantForm1FragmentToPlantForm2Fragment(finalUserPlant)
+                    findNavController().navigate(action)
+                } else {
+                    //show error
+                    Toast.makeText(
+                        requireContext(),
+                        "Please give your plant a nickname",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    etNickname.error = "Please give your plant a nickname"
+                }
+
             }
 
         }

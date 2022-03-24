@@ -1,7 +1,11 @@
 package com.switcherette.plantapp.addPlant.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.data.WaterEvent
 import com.switcherette.plantapp.data.repositories.SharedPrefsRepository
@@ -30,7 +34,7 @@ class PlantForm2ViewModel(
             val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
             with(waterAlarm) {
                 if (firstEvent == null) {
-                    waterRepository.addNewWaterEvent(waterEvent)
+                   /* waterRepository.addNewWaterEvent(waterEvent)*/
                     if(showNotifications) createAlarm(waterEvent.repeatStart)
                 } else {
                     if (isAlarmSet()) {
@@ -41,6 +45,30 @@ class PlantForm2ViewModel(
                 waterRepository.addNewWaterEvent(waterEvent)
             }
         }
+    }
+
+    fun addPlantToFirestore(finalUserPlant: UserPlant?) {
+        val db = Firebase.firestore
+        val docRef =
+            db.collection("Users").document("${finalUserPlant?.userId}").collection("Plants")
+                .document("${finalUserPlant?.id}")
+        val userPlant = hashMapOf(
+            "id" to finalUserPlant?.id,
+            "nickname" to finalUserPlant?.nickname,
+            "scientificName" to finalUserPlant?.scientificName,
+            "family" to finalUserPlant?.family,
+            "description" to finalUserPlant?.description,
+            "cultivation" to finalUserPlant?.cultivation,
+            "light" to finalUserPlant?.light,
+            "water" to finalUserPlant?.water,
+            "image" to finalUserPlant?.image,
+            "userId" to finalUserPlant?.userId
+        )
+        docRef
+            .set(userPlant)
+            .addOnSuccessListener { Log.d("Success", "Plant successfully added!") }
+            .addOnFailureListener { e -> Log.w("Failure", "Error writing plant", e) }
+
     }
 
     private fun createWaterEvent(userPlant: UserPlant): WaterEvent {

@@ -39,4 +39,5 @@ class WaterRepository : KoinComponent {
     fun deleteWaterEvent(waterEvent: WaterEvent){
         waterDao.deleteWaterEvent(waterEvent)
     }
+
 }

@@ -104,6 +104,9 @@
                 app:nullable="true"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_addPlantPictureFragment"
+            app:destination="@id/addPlantPictureFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

@@ -3,7 +3,9 @@ package com.switcherette.plantapp.addPlant.view
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,10 @@ import com.switcherette.plantapp.R
 import com.switcherette.plantapp.addPlant.viewModel.AddPlantPictureViewModel
 import com.switcherette.plantapp.databinding.FragmentAddPlantPictureBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
 
@@ -22,6 +28,7 @@ class AddPlantPictureFragment : Fragment(R.layout.fragment_add_plant_picture) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddPlantPictureBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         observeConfirmationBtn()
         setClickListeners()

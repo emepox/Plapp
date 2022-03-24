@@ -4,6 +4,7 @@ package com.switcherette.plantapp.addPlant.view
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +20,12 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
     private val searchPicVM: SearchByPictureViewModel by viewModel()
     private lateinit var binding: FragmentSearchByPictureBinding
     private lateinit var uri: Uri
+    private lateinit var photoUrlFromAPI: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchByPictureBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
 
         uri = arguments?.get("picturePath") as Uri
 
@@ -38,9 +41,12 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
             tvNoPic.setOnClickListener {
                 findNavController().navigate(R.id.action_searchByPictureFragment_to_searchByNameFragment,
                     Bundle().apply {
-                        putParcelable("uri", uri)
+                        putString("userPhotoUrl", photoUrlFromAPI)
                     }
                 )
+            }
+            btnTryAgain.setOnClickListener {
+                findNavController().navigate(R.id.action_searchByPictureFragment_to_addPlantPictureFragment)
             }
         }
     }
@@ -54,6 +60,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
     private fun observePlantId() {
         searchPicVM.plantId.observe(viewLifecycleOwner) { it ->
             if (it != null) {
+                photoUrlFromAPI = it.images[0].url
                 if (it.is_plant) {
                     val recyclerView = binding.rvSuggestions
 
@@ -62,7 +69,7 @@ class SearchByPictureFragment : Fragment(R.layout.fragment_search_by_picture) {
 
                     val suggestionsAdapter = SuggestionsAdapter(it.suggestions) { suggestion ->
                         val action = SearchByPictureFragmentDirections
-                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, uri.path)
+                            .actionSearchByPictureFragmentToPlantForm1Fragment(suggestion, null, uri.toString(), null)
                         findNavController().navigate(action)
                     }
 

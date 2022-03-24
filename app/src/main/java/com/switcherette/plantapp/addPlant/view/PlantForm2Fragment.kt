@@ -7,17 +7,20 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.switcherette.plantapp.R
+import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.FragmentPlantForm2Binding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.switcherette.plantapp.addPlant.viewModel.PlantForm2ViewModel
 
 
 class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
 
-    private lateinit var binding: FragmentPlantForm2Binding
-    private val waterConverter = mapOf(Pair(3, 1),Pair(5,2),Pair(7,3),Pair(14,4),Pair(15,5),Pair(30,6))
     private val plantForm2ViewModel: PlantForm2ViewModel by viewModel()
+    private lateinit var binding: FragmentPlantForm2Binding
+    private var finalUserPlant: UserPlant? = null
+    private val waterConverter =
+        mapOf(Pair(3, 6), Pair(5, 5), Pair(7, 4), Pair(14, 3), Pair(15, 2), Pair(30, 1))
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,30 +28,29 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
         binding = FragmentPlantForm2Binding.bind(view)
 
         val args: PlantForm2FragmentArgs by navArgs()
-        var finalUserPlant = args.userPlant
+        finalUserPlant = args.userPlant
 
         with(binding) {
             setLabelsForWater()
             setLabelsForLight()
-            setRecommendedValuesLightAndWater(finalUserPlant)
-            setSaveListener(finalUserPlant)
+            setRecommendedValuesLightAndWater()
+            setSaveListener()
         }
     }
 
-    private fun FragmentPlantForm2Binding.setSaveListener(
-        finalUserPlant: UserPlant?
-    ) {
-        var finalUserPlant1 = finalUserPlant
+    private fun FragmentPlantForm2Binding.setSaveListener() {
+        finalUserPlant
         btnSave.setOnClickListener {
 
             val light = slLight.value
-            finalUserPlant1 = finalUserPlant1?.copy(light = light.toInt())
+            finalUserPlant = finalUserPlant?.copy(light = light.toInt())
 
             val water = slWater.value
-            finalUserPlant1 =
-                finalUserPlant1?.copy(water = waterConverter.entries.find { it.value == water.toInt() }!!.key)
+            finalUserPlant =
+                finalUserPlant?.copy(water = waterConverter.entries.find { it.value == water.toInt() }!!.key)
 
-            plantForm2ViewModel.writePlant(finalUserPlant1!!)
+            plantForm2ViewModel.writePlant(finalUserPlant!!)
+            plantForm2ViewModel.addPlantToFirestore(finalUserPlant)
 
             findNavController().navigate(R.id.myPlantsFragment)
 
@@ -62,31 +64,29 @@ class PlantForm2Fragment : Fragment(R.layout.fragment_plant_form2) {
     }
 
 
-    private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater(
-        finalUserPlant: UserPlant?
-    ) {
+    private fun FragmentPlantForm2Binding.setRecommendedValuesLightAndWater() {
         if (finalUserPlant?.water == null) {
             slWater.value = 3.0F
         } else {
-            finalUserPlant.water.let { slWater.value = waterConverter.getValue(it).toFloat() }
+            finalUserPlant!!.water.let { slWater.value = waterConverter.getValue(it).toFloat() }
         }
 
         if (finalUserPlant?.light == null) {
             slLight.value = 3.0F
         } else {
-            finalUserPlant.light.let { slLight.value = it.toFloat() }
+            finalUserPlant!!.light.let { slLight.value = it.toFloat() }
         }
     }
 
     private fun FragmentPlantForm2Binding.setLabelsForWater() {
         slWater.setLabelFormatter {
             when (it.toInt()) {
-                1 -> "every 3 days"
-                2 -> "every 5 days"
-                3 -> "every 7 days"
-                4 -> "every 14 days"
-                5 -> "every 15 days"
-                6 -> "every 30 days"
+                1 -> "every 30 days"
+                2 -> "every 15 days"
+                3 -> "every 14 days"
+                4 -> "every 7 days"
+                5 -> "every 5 days"
+                6 -> "every 3 days"
                 else -> "unknown"
             }
         }

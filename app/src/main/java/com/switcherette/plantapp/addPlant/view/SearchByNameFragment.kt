@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -31,13 +32,19 @@ import java.util.*
 class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
     private lateinit var binding: FragmentSearchByNameBinding
+
     private val viewModel: SearchByNameViewModel by viewModel()
+    private var userPhotoUrl: String? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentSearchByNameBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {}
+
+        userPhotoUrl = arguments?.getString("userPhotoUrl")
+
+        viewModel.getAllPlants()
         setRecyclerView()
         binding.tvNoList.setOnClickListener { createEmptyUserPlant() }
 
@@ -48,6 +55,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
 
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
 
         val allPlantsAdapter = SearchByNamePagingAdapter() { choosePlant(it) }
         recyclerView.adapter = allPlantsAdapter
@@ -94,6 +102,13 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
     }
 
     private fun choosePlant(plantInfo: PlantInfo) {
+
+        val image = if (userPhotoUrl != null){
+            userPhotoUrl
+        } else {
+            plantInfo.img
+        }
+
         val userPlant = UserPlant(
             UUID.randomUUID().toString(),
             "",
@@ -104,7 +119,7 @@ class SearchByNameFragment : Fragment(R.layout.fragment_search_by_name) {
             plantInfo.cultivation,
             plantInfo.light ?: 2,
             plantInfo.water ?: 15,
-            plantInfo.img,
+            image,
             Firebase.auth.currentUser?.uid.orEmpty()
         )
 

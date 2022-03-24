@@ -1,10 +1,12 @@
 package com.switcherette.plantapp.myPlants.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.switcherette.plantapp.R
 import com.switcherette.plantapp.data.UserPlant
 import com.switcherette.plantapp.databinding.ItemPlantMyplantsBinding
 import org.koin.core.component.KoinComponent
@@ -25,25 +27,16 @@ class MyPlantsAdapter(
         fun bind(plant: UserPlant, seePlantDetails: (UserPlant) -> Unit) {
             binding.tvPlantName.text = plant.nickname
 
-            Glide
-                .with(context)
-                .load(plant.image)
-                .centerCrop()
-                .into(binding.ivPlantImage);
-
-//            if (plant.image?.contains("http")!!){
-//                Glide
-//                    .with(context)
-//                    .load(File(plant.image!!))
-//                    .centerCrop()
-//                    .into(binding.ivPlantImage);
-//            } else {
-//                Glide
-//                    .with(context)
-//                    .load(plant.image)
-//                    .centerCrop()
-//                    .into(binding.ivPlantImage);
-//            }
+            if (plant.image?.contains("http") == false){
+                val uri = Uri.parse(plant.image)
+                binding.ivPlantImage.setImageURI(uri)
+            } else {
+                Glide
+                    .with(context)
+                    .load(plant.image)
+                    .centerCrop()
+                    .into(binding.ivPlantImage);
+            }
 
             binding.root.setOnClickListener {
                 seePlantDetails(plant)

@@ -13,6 +13,9 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.switcherette.plantapp.R
 import com.switcherette.plantapp.databinding.FragmentLoginBinding
@@ -42,7 +45,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 findNavController().navigate(R.id.action_loginFragment_to_homePlantFragment)
 
             } else { // If user is not loggedIn
-                Log.e("userNotLogged in", "I'm here")
                 // This throws the launcher (UI)
                 val signInLauncher = registerForActivityResult(
                     FirebaseAuthUIActivityResultContract()
@@ -76,7 +78,31 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
+            val userId = Firebase.auth.currentUser?.uid
             Log.e("loginUser", "$user")
+            Log.e("loginUserId", "$userId")
+
+            // CLOUD FIRESTORE: Create the user document in DB if it does not already exist.
+            val db = Firebase.firestore
+            val docRef = db.collection("Users").document("$userId")
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    Log.e("document", "$document")
+                    if (document.exists()) {
+                        Log.d("existing user", "DocumentSnapshot data: ${document.data}")
+                    } else {
+                        val userActive = hashMapOf("active" to true, "name" to user?.displayName, "email" to user?.email)
+                        db.collection("Users").document("${user?.uid}")
+                            .set(userActive, SetOptions.merge())
+                            .addOnSuccessListener { Log.d("Success", "Document successfully written!") }
+                            .addOnFailureListener { e -> Log.w("Failure", "Error writing document", e) }
+                        Log.d("new user", "New User doc added")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("failure", "get failed with ", exception)
+                }
+
             Toast.makeText(requireContext(), "You are in", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_loginFragment_to_homePlantFragment)
             // ...
