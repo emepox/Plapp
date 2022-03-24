@@ -1,5 +1,6 @@
 package com.switcherette.plantapp.profile.viewModel
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ import com.switcherette.plantapp.utils.createWaterEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class MyProfileViewModel(
     private val sharedPrefsRepository: SharedPrefsRepository,
@@ -26,6 +28,7 @@ class MyProfileViewModel(
     private val plantRepository: UserPlantRepository
 ) : ViewModel(), KoinComponent {
 
+    val context: Context by inject()
     val showNotifications: Boolean = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
 
     fun updateShowNotifications(showNotification: Boolean) {
@@ -62,9 +65,10 @@ class MyProfileViewModel(
                     val earliestEvent = waterRepository.getFirstWaterEventByDate()
                     if (earliestEvent != null) waterAlarm.createAlarm(earliestEvent.repeatStart)
                 }
+                Toast.makeText(context, "Your plant family has been restored", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Log.e("backup", "lol looser, your exception is $it ")
+                Log.e("backup", "lol loser, your exception is $it")
             }
     }
 }
