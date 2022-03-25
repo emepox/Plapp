@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.switcherette.plantapp.calendar.view.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/detailPlantFragment"
+        android:name="com.switcherette.plantapp.detail.DetailPlantFragment"
+        android:label="fragment_detail_plant"
+        tools:layout="@layout/fragment_detail_plant" >
+        <action
+            android:id="@+id/action_detailPlantFragment_to_myPlantsFragment"
+            app:destination="@id/myPlantsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePlantFragment"
+        android:name="com.switcherette.plantapp.home.view.HomeFragment"
+        android:label="fragment_home_plant"
+        tools:layout="@layout/fragment_home_plant"/>
+
+    <fragment
+        android:id="@+id/myPlantsFragment"
+        android:name="com.switcherette.plantapp.myPlants.view.MyPlantsFragment"
+        android:label="fragment_my_plants"
+        tools:layout="@layout/fragment_my_plants">
+        <action
+            android:id="@+id/action_myPlantsFragment_to_detailPlantFragment"
+            app:destination="@id/detailPlantFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_myPlantsFragment_to_addPlantPictureFragment"
+            app:destination="@id/addPlantPictureFragment"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_myPlantsFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment"
+            app:exitAnim="@anim/fui_slide_out_left"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlantLibrary"
+        android:name="com.switcherette.plantapp.library.view.PlantLibraryFragment"
+        android:label="fragment_my_plants"
+        tools:layout="@layout/fragment_search_by_name">
+        <action
+            android:id="@+id/action_PlantLibraryFragment_to_detailPlantLibraryFragment"
+            app:destination="@id/detailPlantLibraryFragment">
+            <argument
+                android:name="libraryPlant"
+                android:defaultValue="@null"
+                app:argType="com.switcherette.plantapp.data.PlantInfo"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailPlantLibraryFragment"
+        android:name="com.switcherette.plantapp.library.view.DetailPlantLibraryFragment"
+        android:label="fragment_library_detail"
+        tools:layout="@layout/fragment_detail_library_plant">
+        <argument
+            android:name="libraryPlant"
+            android:defaultValue="@null"
+            app:argType="com.switcherette.plantapp.data.PlantInfo"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.switcherette.plantapp.profile.view.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile">
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPlantPictureFragment"
+        android:name="com.switcherette.plantapp.addPlant.view.AddPlantPictureFragment"
+        android:label="fragment_add_plant_picture"
+        tools:layout="@layout/fragment_add_plant_picture" >
+        <action
+            android:id="@+id/action_addPlantPictureFragment_to_searchByPictureFragment"
+            app:destination="@id/searchByPictureFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+        <action
+            android:id="@+id/action_addPlantPictureFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchByNameFragment"
+        android:name="com.switcherette.plantapp.addPlant.view.SearchByNameFragment"
+        android:label="fragment_search_by_name"
+        tools:layout="@layout/fragment_search_by_name">
+        <action
+            android:id="@+id/action_searchByNameFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left">
+            <argument
+                android:name="userPlant"
+                android:defaultValue="@null"
+                app:argType="com.switcherette.plantapp.data.UserPlant"
+                app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/searchByPictureFragment"
+        android:name="com.switcherette.plantapp.addPlant.view.SearchByPictureFragment"
+        android:label="fragment_search_by_picture"
+        tools:layout="@layout/fragment_search_by_picture">
+
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_searchByNameFragment"
+            app:destination="@id/searchByNameFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_plantForm1Fragment"
+            app:destination="@id/plantForm1Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/fui_slide_out_left">
+            <argument
+                android:name="suggestionFromApi"
+                android:defaultValue="@null"
+                app:argType="com.switcherette.plantapp.data.Suggestion"
+                app:nullable="true" />
+            <argument
+                android:name="photoUri"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+        <action
+            android:id="@+id/action_searchByPictureFragment_to_addPlantPictureFragment"
+            app:destination="@id/addPlantPictureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.switcherette.plantapp.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_homePlantFragment"
+            app:destination="@id/homePlantFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantForm1Fragment"
+        android:name="com.switcherette.plantapp.addPlant.view.PlantForm1Fragment"
+        android:label="PlantForm1Fragment">
+        <argument
+            android:name="suggestionFromApi"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.Suggestion" />
+        <argument
+            android:name="photoFromUser"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="userPlant"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.UserPlant" />
+        <action
+            android:id="@+id/action_plantForm1Fragment_to_plantForm2Fragment"
+            app:destination="@id/plantForm2Fragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left">
+            <argument
+                android:name="userPlant"
+                android:defaultValue="@null"
+                app:argType="com.switcherette.plantapp.data.UserPlant"
+                app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/plantForm2Fragment"
+        android:name="com.switcherette.plantapp.addPlant.view.PlantForm2Fragment"
+        android:label="PlantForm2Fragment" >
+        <argument
+            android:name="userPlant"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.switcherette.plantapp.data.UserPlant" />
+    </fragment>
+</navigation>
