@@ -90,4 +90,10 @@
     <string name="password_changed">Password changed!</string>
     <string name="input_your_new_password">Input your new password</string>
     <string name="save_new_password">SAVE NEW PASSWORD</string>
+    <string name="learn_more">LEARN MORE</string>
+    <string name="home">Home</string>
+    <string name="my_plants_menu">My Plants</string>
+    <string name="calendar">Calendar</string>
+    <string name="my_profile_menu">My profile</string>
+    <string name="library">Library</string>
 </resources>
