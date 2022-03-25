@@ -52,7 +52,7 @@ You will also need an **API key** to access Plant.id plant identification servic
 
 ### Database Prep
 
--  x
+-  download MySQL
 
 
 
