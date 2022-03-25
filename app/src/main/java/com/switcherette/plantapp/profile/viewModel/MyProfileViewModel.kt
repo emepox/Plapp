@@ -61,7 +61,8 @@ class MyProfileViewModel(
                     }
                 }
                 val showNotifications = sharedPrefsRepository.readBoolean(NOTIFICATION_TOGGLE_KEY)
-                if (showNotifications && !waterAlarm.isAlarmSet()) {
+                waterAlarm.cancelAlarm()
+                if (showNotifications) {
                     val earliestEvent = waterRepository.getFirstWaterEventByDate()
                     if (earliestEvent != null) waterAlarm.createAlarm(earliestEvent.repeatStart)
                 }
