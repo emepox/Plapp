@@ -41,7 +41,6 @@ This project uses several additional libraries/dependencies:
 - Lottie animations
 - Gif drawable
 - Material-Calendar-View (Applandeo)
-- MaterialAlertDialogBuilder
 - okhttp3
 - page-indicator
 
