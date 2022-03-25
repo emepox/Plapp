@@ -9,7 +9,7 @@
 
 ## Context
 
-'Plapp' is an Android app project developed by @YakimchukAnna <https://github.com/YakimchukAnna/>, @emepox <https://github.com/emepox/>, @MareikeHerrmann <https://github.com/MareikeHerrmann/> and @switcherette <https://github.com/switcherette/> to id and keep track of your home plants' needs.
+'Plapp' is an Android app project developed by [@YakimchukAnna](https://github.com/YakimchukAnna/), [@emepox](https://github.com/emepox/), [@MareikeHerrmann](https://github.com/MareikeHerrmann/) and [@switcherette](https://github.com/switcherette/) to id and keep track of your home plants' needs.
 
 
 ## Features
@@ -52,7 +52,7 @@ You will also need an **API key** to access Plant.id plant identification servic
 
 ### Database Prep
 
--  download MySQL <https://www.google.com/search?q=how+to+donwload+mysql&rlz=1C5CHFA_enES976ES976&oq=how+to+donwload+mysql&aqs=chrome..69i57j0i10l9.3222j0j7&sourceid=chrome&ie=UTF-8>
+-  [Download MySQL](https://www.google.com/search?q=how+to+donwload+mysql&rlz=1C5CHFA_enES976ES976&oq=how+to+donwload+mysql&aqs=chrome..69i57j0i10l9.3222j0j7&sourceid=chrome&ie=UTF-8>)
 
 
 
