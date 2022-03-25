@@ -40,7 +40,7 @@ This project uses several additional libraries/dependencies:
 - Glide
 - Lottie animations
 - Gif drawable
-- Material-Calendar-View
+- Material-Calendar-View (Applandeo)
 - MaterialAlertDialogBuilder
 - okhttp3
 - page-indicator
